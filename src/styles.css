@@ -13,7 +13,7 @@
   --blue: #59a6ff;
   --blue-strong: #348fff;
   --blue-soft: #9bcfff;
-  --mint: #65f3b1;
+  --mint: #8ac7ff;
   --content: 1260px;
   --catalogue: 1460px;
   --header: 1460px;
@@ -637,7 +637,12 @@ p { color: var(--muted); }
   pointer-events: none;
   transform: scaleX(0);
   transform-origin: left center;
-  background: linear-gradient(90deg, #59a6ff, #8ac7ff 48%, #65f3b1);
+  background: linear-gradient(
+  90deg,
+  #348fff,
+  #59a6ff 48%,
+  #9bcfff
+);
   box-shadow: 0 0 18px rgba(89, 166, 255, 0.72);
   will-change: transform;
 }
@@ -741,7 +746,13 @@ p { color: var(--muted); }
   position: relative;
   display: inline;
   color: transparent;
-  background: linear-gradient(110deg, #f5f8fc 4%, #91caff 48%, #65f3b1 96%);
+  background: linear-gradient(
+  110deg,
+  #f5f8fc 4%,
+  #9bcfff 48%,
+  #59a6ff 76%,
+  #348fff 100%
+);
   background-size: 180% 100%;
   background-clip: text;
   -webkit-background-clip: text;

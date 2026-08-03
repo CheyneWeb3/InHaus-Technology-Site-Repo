@@ -183,7 +183,7 @@ function setupHeroNetwork() {
       if (pointer.active) {
         const distance = Math.hypot(point.x - pointer.x, point.y - pointer.y);
         if (distance < 190) {
-          context.strokeStyle = `rgba(101, 243, 177, ${0.22 * (1 - distance / 190)})`;
+          context.strokeStyle = `rgba(89, 166, 255, ${0.22 * (1 - distance / 190)})`;
           context.lineWidth = 1;
           context.beginPath();
           context.moveTo(point.x, point.y);
