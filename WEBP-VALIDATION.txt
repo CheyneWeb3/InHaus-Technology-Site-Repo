@@ -1,0 +1,19 @@
+INHAUS TECHNOLOGIES v1.7.6 — PROJECT IMAGE VALIDATION
+
+The project catalogue uses the following deployed media paths:
+
+01 Rose / OnlyRose                     assets/projects/rose.webp
+02 Forbidden Oasis / WATER            assets/projects/water.png
+03 Cooking Solana Trading System      assets/projects/deviscooking.webp
+04 FoxySwap Trade                      assets/projects/foxytrade.webp
+05 InHaus Universal USDC Cashier       assets/projects/universalusdc.webp
+06 InHaus Auditing Suite               assets/projects/replay.webp
+07 InHaus Deploylify                   assets/projects/deploylify.webp
+08 Memopoly                            assets/projects/memopoly.webp
+09 Deal or No Deal                     assets/projects/dnd.webp
+10 Dual-Chain Roulette / Spin & Win    assets/projects/spin.webp
+
+All paths exist in public/ and dist/.
+All WebP files have valid WebP signatures.
+All referenced files returned HTTP 200 with the correct image MIME type from the built dist server.
+The build now fails instead of silently continuing if a referenced project image is missing.

@@ -99,6 +99,21 @@ if (!html.includes("Does InHaus Technologies use AI?") || !html.includes("AI is 
 }
 if (html.includes("Systems and products.")) throw new Error("Obsolete products wording remains");
 
+
+// Every local image referenced by projects.json must exist in the built deployment.
+for (const project of catalogue.projects) {
+  const media = [
+    project.image,
+    ...(project.gallery || []).map((item) => typeof item === "string" ? item : (item?.src || item?.image))
+  ].filter(Boolean);
+
+  for (const source of media) {
+    if (/^(https?:|data:|blob:)/i.test(source)) continue;
+    const clean = String(source).replace(/^\.\//, "").replace(/^\//, "");
+    await access(path.join(dist, clean));
+  }
+}
+
 const systems = catalogue.projects.filter((project) => project.type === "System");
 const games = catalogue.projects.filter((project) => project.type === "Gaming");
 if (systems.length !== 7) throw new Error(`Expected 7 system projects, found ${systems.length}`);

@@ -57,7 +57,7 @@ for (const project of catalogue.projects) {
     const clean = String(source).replace(/^\.\//, "").replace(/^\//, "");
     const localPath = path.join(root, "public", clean);
     const details = await stat(localPath).catch(() => null);
-    if (!details?.isFile()) console.warn(`Optional project image not added yet for ${project.id}: ${source}`);
+    if (!details?.isFile()) throw new Error(`Missing referenced project image for ${project.id}: ${source}`);
   }
 }
 
@@ -126,7 +126,7 @@ builtHtml = builtHtml.replace(
 );
 builtHtml = builtHtml.replace(
   "</head>",
-  `  <meta name="inhaus-build" content="1.7.4-${digest(sourceCss + sourceJs)}" />\n</head>`
+  `  <meta name="inhaus-build" content="1.7.6-${digest(sourceCss + sourceJs)}" />\n</head>`
 );
 
 if (builtHtml.includes("./src/styles.css") || builtHtml.includes("./src/main.js")) {
@@ -171,7 +171,7 @@ await writeFile(path.join(dist, "_headers"), `
 
 const build = {
   name: "InHaus Technologies Business Site",
-  version: "1.7.4",
+  version: "1.7.6",
   builtAt: new Date().toISOString(),
   entries: catalogue.projects.length,
   projects: catalogue.projects.filter((project) => project.type === "System").length,
