@@ -1,7 +1,15 @@
-# InHaus Technologies Business Site v1.7.9
+# InHaus Technologies Business Site v1.7.10
 
 
-## v1.7.9 mobile interface condensation
+## v1.7.10 funded engagement clarification
+
+- Restores the FAQ policy that InHaus Technologies does not join project teams or commit development resources for future promises alone.
+- Confirms that exposure, future token value, equity, revenue, launch proceeds or success-based compensation do not replace funded engineering fees.
+- Clarifies that InHaus can work alongside a client team as an external development and project-delivery partner.
+- Keeps optional success participation available only as a separately negotiated written addition to the retainer, Scope of Works and development fees.
+
+
+## v1.7.10 mobile interface condensation
 
 - Mobile visitors see the heading and a short summary first instead of every detail at once.
 - Hero services, About details, Capabilities, Audit modules, Process and the full FAQ expand through accessible Read more controls.

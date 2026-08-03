@@ -1,4 +1,4 @@
-INHAUS TECHNOLOGIES v1.7.9 VALIDATION
+INHAUS TECHNOLOGIES v1.7.10 VALIDATION
 
 PASS: npm run build
 PASS: npm run verify
@@ -13,6 +13,10 @@ PASS: Project and game cards remain image-led on mobile
 PASS: Mobile project descriptions are clamped and tag clutter is hidden
 PASS: Desktop and tablet content remains fully expanded
 PASS: Full content remains available when JavaScript is unavailable
+PASS: Funded engagement FAQ restored as a separate policy
+PASS: InHaus does not join teams or commit development resources for future promises alone
+PASS: External team collaboration remains available under a funded commercial agreement
+PASS: Optional success participation never replaces funded engineering fees
 PASS: Optional success participation FAQ added
 PASS: Participation is expressly no-obligation and negotiable
 PASS: Participation remains separate from retainer, Scope of Works and development fees

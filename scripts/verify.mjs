@@ -119,6 +119,11 @@ if (!html.includes("Does InHaus Technologies request a participation in projects
     !html.includes("separate from the retainer, Scope of Works and development fees")) {
   throw new Error("Optional project-participation FAQ is missing or incomplete");
 }
+if (!html.includes("Does InHaus Technologies join project teams or work for future promises?") ||
+    !html.includes("does not join project teams or commit development resources") ||
+    !html.includes("never a replacement for—funded engineering fees")) {
+  throw new Error("Funded engagement and no-future-promises FAQ is missing or incomplete");
+}
 if (!html.includes('data-mobile-toggle="capabilityContent"') ||
     !html.includes('data-mobile-toggle="auditModules"') ||
     !html.includes('data-mobile-toggle="processGrid"') ||
