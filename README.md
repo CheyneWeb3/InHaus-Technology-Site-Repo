@@ -1,4 +1,4 @@
-# InHaus Technologies Business Site v1.7.6
+# InHaus Technologies Business Site v1.7.4
 
 Static, JSON-driven InHaus Technologies company site with full editable source and a built Netlify-ready `dist/`.
 
@@ -64,3 +64,7 @@ Drag the contents of `dist/`, or use the prepared ZIP inside `deploy/`.
 The production build includes the canonical `https://inhaus.technology/` URL, sitemap, robots file, web manifest, Organization/WebSite/WebPage/ItemList/FAQPage structured data, full Open Graph metadata and an X/Twitter `summary_large_image` card.
 
 See `SEO-AND-SOCIAL.md`.
+
+## v1.7.7 WebP display fix
+
+Project and game images are copied from `public/assets/projects/` into `dist/assets/projects/`. The build now stops if any image referenced by `public/projects.json` is missing, and verification checks the actual WebP/PNG/JPEG file signature. Project images are revalidated by browsers and Netlify instead of being cached immutably under reusable filenames.

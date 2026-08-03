@@ -99,25 +99,38 @@ if (!html.includes("Does InHaus Technologies use AI?") || !html.includes("AI is 
 }
 if (html.includes("Systems and products.")) throw new Error("Obsolete products wording remains");
 
-
-// Every local image referenced by projects.json must exist in the built deployment.
-for (const project of catalogue.projects) {
-  const media = [
-    project.image,
-    ...(project.gallery || []).map((item) => typeof item === "string" ? item : (item?.src || item?.image))
-  ].filter(Boolean);
-
-  for (const source of media) {
-    if (/^(https?:|data:|blob:)/i.test(source)) continue;
-    const clean = String(source).replace(/^\.\//, "").replace(/^\//, "");
-    await access(path.join(dist, clean));
-  }
-}
-
 const systems = catalogue.projects.filter((project) => project.type === "System");
 const games = catalogue.projects.filter((project) => project.type === "Gaming");
 if (systems.length !== 7) throw new Error(`Expected 7 system projects, found ${systems.length}`);
 if (games.length !== 3) throw new Error(`Expected 3 games, found ${games.length}`);
+
+// Every local image referenced by projects.json must exist in dist and have a real image signature.
+const imageSignatures = {
+  ".webp": (buffer) => buffer.length >= 12 && buffer.toString("ascii", 0, 4) === "RIFF" && buffer.toString("ascii", 8, 12) === "WEBP",
+  ".png": (buffer) => buffer.length >= 8 && buffer[0] === 0x89 && buffer.toString("ascii", 1, 4) === "PNG",
+  ".jpg": (buffer) => buffer.length >= 3 && buffer[0] === 0xff && buffer[1] === 0xd8 && buffer[2] === 0xff,
+  ".jpeg": (buffer) => buffer.length >= 3 && buffer[0] === 0xff && buffer[1] === 0xd8 && buffer[2] === 0xff
+};
+let verifiedProjectImages = 0;
+for (const project of catalogue.projects) {
+  const media = [
+    project.image,
+    ...(project.gallery || []).map((item) => typeof item === "string" ? item : item?.src)
+  ].filter(Boolean);
+  for (const source of media) {
+    if (/^(https?:|data:)/i.test(source)) continue;
+    const clean = String(source).split("?")[0].replace(/^\.\//, "").replace(/^\//, "");
+    const deployedPath = path.join(dist, clean);
+    await access(deployedPath);
+    const extension = path.extname(deployedPath).toLowerCase();
+    const validate = imageSignatures[extension];
+    if (!validate) throw new Error(`Unsupported project image extension: ${source}`);
+    const buffer = await readFile(deployedPath);
+    if (!validate(buffer)) throw new Error(`Invalid or mislabeled project image: ${source}`);
+    verifiedProjectImages += 1;
+  }
+}
+
 if (catalogue.projects.filter((project) => project.name === "InHaus Auditing Suite").length !== 1) {
   throw new Error("InHaus Auditing Suite must appear exactly once");
 }
@@ -181,7 +194,7 @@ const sha = (text) => createHash("sha256").update(text).digest("hex").slice(0, 1
 console.log("DIST VERIFICATION PASSED");
 console.log(`CSS ${cssMatch[1]} (${sha(builtCss)})`);
 console.log(`JS  ${jsMatch[1]} (${sha(builtJs)})`);
-console.log(`${systems.length} projects, ${games.length} games`);
+console.log(`${systems.length} projects, ${games.length} games, ${verifiedProjectImages} project images verified`);
 console.log("Project order is locked; Projects precede Games; projects.json is the single catalogue source.");
 console.log("SEO verified: canonical, robots, sitemap, manifest, structured data, Open Graph and X/Twitter 1200x630 card.");
 console.log("Production interactions verified: canvas network, reveals, pointer highlights, scroll progress and responsive modal scrolling.");

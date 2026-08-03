@@ -57,7 +57,7 @@ for (const project of catalogue.projects) {
     const clean = String(source).replace(/^\.\//, "").replace(/^\//, "");
     const localPath = path.join(root, "public", clean);
     const details = await stat(localPath).catch(() => null);
-    if (!details?.isFile()) throw new Error(`Missing referenced project image for ${project.id}: ${source}`);
+    if (!details?.isFile()) throw new Error(`Missing project image for ${project.id}: ${source}`);
   }
 }
 
@@ -126,7 +126,7 @@ builtHtml = builtHtml.replace(
 );
 builtHtml = builtHtml.replace(
   "</head>",
-  `  <meta name="inhaus-build" content="1.7.6-${digest(sourceCss + sourceJs)}" />\n</head>`
+  `  <meta name="inhaus-build" content="1.7.7-${digest(sourceCss + sourceJs)}" />\n</head>`
 );
 
 if (builtHtml.includes("./src/styles.css") || builtHtml.includes("./src/main.js")) {
@@ -152,6 +152,10 @@ await writeFile(path.join(dist, "_headers"), `
 /build.json
   Cache-Control: no-cache, no-store, must-revalidate
 
+/assets/projects/*
+  Cache-Control: public, max-age=0, must-revalidate
+  X-Content-Type-Options: nosniff
+
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
   X-Content-Type-Options: nosniff
@@ -171,7 +175,7 @@ await writeFile(path.join(dist, "_headers"), `
 
 const build = {
   name: "InHaus Technologies Business Site",
-  version: "1.7.6",
+  version: "1.7.7",
   builtAt: new Date().toISOString(),
   entries: catalogue.projects.length,
   projects: catalogue.projects.filter((project) => project.type === "System").length,
