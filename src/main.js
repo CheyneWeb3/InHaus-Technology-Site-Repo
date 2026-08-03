@@ -57,6 +57,8 @@ function setupRevealElements(root = document) {
     ".project-card",
     ".game-card",
     ".process-grid article",
+    ".faq-intro-layout > *",
+    ".faq-item",
     ".contact-layout > *",
     ".footer-main > *"
   ].join(","), root);
@@ -78,6 +80,8 @@ function setupPointerGlow(root = document) {
     ".project-card",
     ".game-card",
     ".process-grid article",
+    ".faq-commercial",
+    ".faq-item",
     ".contact-panel"
   ].join(","), root);
 

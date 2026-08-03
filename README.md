@@ -1,4 +1,4 @@
-# InHaus Technologies Business Site v1.7.0
+# InHaus Technologies Business Site v1.7.2
 
 Static, JSON-driven InHaus Technologies company site with full editable source and a built Netlify-ready `dist/`.
 
@@ -6,7 +6,7 @@ Static, JSON-driven InHaus Technologies company site with full editable source a
 
 - Company-first InHaus Technologies identity
 - Hero: “Technology built beyond the interface.”
-- Animated technical network canvas with restrained blue/mint motion
+- Animated technical network canvas with restrained InHaus blue motion
 - Scroll progress indicator and active navigation state
 - Staggered section and card reveals
 - Pointer-aware card highlights, image motion and button sheen
@@ -19,6 +19,8 @@ Static, JSON-driven InHaus Technologies company site with full editable source a
 - High desktop detail modals
 - Full modal scrolling on smaller screens and short-height devices
 - Professional company footer
+- Commercial FAQ covering payments, retainers, scope variations, delivery readiness, ethics and project acceptance
+- FAQPage structured data for search engines
 
 ## Locked current-project order
 
@@ -59,6 +61,6 @@ Drag the contents of `dist/`, or use the prepared ZIP inside `deploy/`.
 
 ## SEO and social cards
 
-The production build includes the canonical `https://inhaus.technology/` URL, sitemap, robots file, web manifest, Organization/WebSite/WebPage/ItemList structured data, full Open Graph metadata and an X/Twitter `summary_large_image` card.
+The production build includes the canonical `https://inhaus.technology/` URL, sitemap, robots file, web manifest, Organization/WebSite/WebPage/ItemList/FAQPage structured data, full Open Graph metadata and an X/Twitter `summary_large_image` card.
 
 See `SEO-AND-SOCIAL.md`.

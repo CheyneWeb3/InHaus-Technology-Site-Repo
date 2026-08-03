@@ -29,6 +29,13 @@ await access(path.join(dist, "assets", "social", "inhaus-technologies-social-car
 const builtCss = await readFile(builtCssPath, "utf8");
 const builtJs = await readFile(builtJsPath, "utf8");
 if (builtCss !== sourceCss) throw new Error("Built CSS differs from source CSS");
+// Blue-only colour policy: prevent the previously rejected GPT-style mint/green UI accent from returning.
+for (const forbiddenColour of ["--mint", "var(--mint)", "#65f3b1", "rgb(101, 243, 177)", "rgba(101, 243, 177"]) {
+  if (`${builtCss}
+${builtJs}`.toLowerCase().includes(forbiddenColour.toLowerCase())) {
+    throw new Error(`Forbidden green/mint UI colour token found: ${forbiddenColour}`);
+  }
+}
 if (builtJs !== sourceJs) throw new Error("Built JavaScript differs from source JavaScript");
 if (html.includes("./src/styles.css") || html.includes("./src/main.js")) throw new Error("Built HTML still references source assets");
 
@@ -46,7 +53,8 @@ const requiredSeo = [
   '"@type": "Organization"',
   '"@type": "WebSite"',
   '"@type": "WebPage"',
-  '"@type": "ItemList"'
+  '"@type": "ItemList"',
+  '"@type": "FAQPage"'
 ];
 for (const marker of requiredSeo) {
   if (!html.includes(marker)) throw new Error(`Required SEO marker missing: ${marker}`);
@@ -70,6 +78,8 @@ if (socialWidth !== 1200 || socialHeight !== 630) throw new Error(`Incorrect soc
 if (html.indexOf('id="projects"') > html.indexOf('id="games"')) throw new Error("Games appears before Projects");
 
 if (!html.includes("Current projects.")) throw new Error("Current projects heading is missing");
+if (!html.includes('id="faq"') || !html.includes("Paid engineering, not speculative participation.")) throw new Error("FAQ section or commercial engagement statement is missing");
+if (!html.includes("USDC") || !html.includes("Scope of Works")) throw new Error("Required FAQ commercial terms are missing");
 if (html.includes("Systems and products.")) throw new Error("Obsolete products wording remains");
 
 const systems = catalogue.projects.filter((project) => project.type === "System");
@@ -115,6 +125,8 @@ const requiredCss = [
   /\.network-canvas\s*[,\{]/,
   /@keyframes revealIn/,
   /@media \(max-width: 900px\), \(max-height: 820px\)[\s\S]*?\.project-detail\s*\{[\s\S]*?overflow-y:\s*auto/,
+  /\.faq-grid\s*\{[^}]*grid-template-columns:\s*repeat\(2/s,
+  /\.faq-item summary\s*\{/,
   /@media \(prefers-reduced-motion: reduce\)/
 ];
 for (const rule of requiredCss) {

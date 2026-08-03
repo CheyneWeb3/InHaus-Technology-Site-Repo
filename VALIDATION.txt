@@ -1,4 +1,4 @@
-INHAUS TECHNOLOGIES v1.7.0 VALIDATION
+INHAUS TECHNOLOGIES v1.7.2 VALIDATION
 
 PASS: npm run build
 PASS: npm run verify
@@ -9,6 +9,9 @@ PASS: Staggered reveal animations
 PASS: Pointer-aware card highlights and image motion
 PASS: Reduced-motion accessibility
 PASS: Small-screen and short-height modal scrolling
+PASS: Commercial FAQ section with payments, retainer, scope, delivery, ethics and partnership policy
+PASS: Paid engineering, not speculative participation statement
+PASS: Blue-only interface palette; no mint/green UI token
 PASS: Current Projects heading replaces products wording
 PASS: 7 project order locked:
   1 Rose / OnlyRose
@@ -25,7 +28,7 @@ PASS: robots index/follow directive
 PASS: robots.txt with absolute sitemap URL
 PASS: sitemap.xml
 PASS: Web app manifest and browser icons
-PASS: Organization, WebSite, WebPage and ItemList JSON-LD
+PASS: Organization, WebSite, WebPage, ItemList and FAQPage JSON-LD
 PASS: Open Graph large image metadata
 PASS: X/Twitter summary_large_image metadata
 PASS: Social card is a 1200 x 630 PNG
