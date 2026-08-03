@@ -58,38 +58,14 @@ function normalizedGallery(project) {
     .filter((entry) => entry?.src);
 }
 
-function inlineCatalogue() {
-  const element = qs("#projectCatalogue");
-  if (!element?.textContent?.trim()) return null;
-  try {
-    const value = JSON.parse(element.textContent);
-    return Array.isArray(value?.projects) ? value.projects : null;
-  } catch (error) {
-    console.warn("Inline project catalogue could not be read.", error);
-    return null;
-  }
-}
-
 async function loadCatalogue() {
-  const embedded = inlineCatalogue();
-  if (embedded) return embedded;
-
-  const candidates = ["./projects.json", "projects.json", "/projects.json"];
-  let lastError;
-  for (const source of candidates) {
-    try {
-      const response = await fetch(source, { cache: "no-store" });
-      if (!response.ok) throw new Error(`${source} returned ${response.status}`);
-      const catalogue = await response.json();
-      if (!catalogue || !Array.isArray(catalogue.projects)) {
-        throw new Error(`${source} does not contain a projects array`);
-      }
-      return catalogue.projects;
-    } catch (error) {
-      lastError = error;
-    }
+  const response = await fetch("./projects.json", { cache: "no-store" });
+  if (!response.ok) throw new Error(`./projects.json returned ${response.status}`);
+  const catalogue = await response.json();
+  if (!catalogue || !Array.isArray(catalogue.projects)) {
+    throw new Error("./projects.json does not contain a projects array");
   }
-  throw lastError || new Error("The project catalogue could not be loaded.");
+  return catalogue.projects;
 }
 
 function sortedByOrder(items) {

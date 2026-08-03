@@ -94,11 +94,11 @@ builtHtml = builtHtml.replace(
 );
 builtHtml = builtHtml.replace(
   '  <script type="module" src="./src/main.js"></script>',
-  `  <script id="projectCatalogue" type="application/json">${safeCatalogue}</script>\n  <script type="module" src="./assets/${jsName}"></script>`
+  `  <script type="module" src="./assets/${jsName}"></script>`
 );
 builtHtml = builtHtml.replace(
   "</head>",
-  `  <meta name="inhaus-build" content="1.6.3-${digest(sourceCss + sourceJs)}" />\n</head>`
+  `  <meta name="inhaus-build" content="1.6.4-${digest(sourceCss + sourceJs)}" />\n</head>`
 );
 
 if (builtHtml.includes("./src/styles.css") || builtHtml.includes("./src/main.js")) {
@@ -131,7 +131,7 @@ await writeFile(path.join(dist, "_headers"), `
 
 const build = {
   name: "InHaus Technologies Business Site",
-  version: "1.6.3",
+  version: "1.6.4",
   builtAt: new Date().toISOString(),
   entries: catalogue.projects.length,
   projects: catalogue.projects.filter((project) => project.type === "System").length,
@@ -149,3 +149,4 @@ console.log(`Validated ${build.entries} entries (${build.projects} projects, ${b
 console.log(`CSS: ${build.css}`);
 console.log(`JS:  ${build.javascript}`);
 console.log("Netlify cache mixing is prevented by content-hashed production assets.");
+console.log("projects.json is the single runtime catalogue source.");

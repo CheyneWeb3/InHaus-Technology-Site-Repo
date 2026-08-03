@@ -38,6 +38,29 @@ for (const oldName of ["Blockchain Time Machine & Replay Laboratory", "Audit & I
   if (catalogue.projects.some((project) => project.name === oldName)) throw new Error(`Obsolete project still exists: ${oldName}`);
 }
 
+const expectedProjectOrder = [
+  "Rose / OnlyRose",
+  "Forbidden Oasis / WATER",
+  "Cooking Solana Trading System",
+  "FoxySwap Trade",
+  "InHaus Universal USDC Cashier",
+  "InHaus Auditing Suite",
+  "InHaus Deploylify"
+];
+const actualProjectOrder = [...systems]
+  .sort((a, b) => a.order - b.order)
+  .map((project) => project.name);
+if (JSON.stringify(actualProjectOrder) !== JSON.stringify(expectedProjectOrder)) {
+  throw new Error(`Incorrect project order: ${actualProjectOrder.join(" -> ")}`);
+}
+const expectedGameOrder = ["Memopoly", "Deal or No Deal", "Dual-Chain Roulette / Spin & Win"];
+const actualGameOrder = [...games].sort((a, b) => a.order - b.order).map((project) => project.name);
+if (JSON.stringify(actualGameOrder) !== JSON.stringify(expectedGameOrder)) {
+  throw new Error(`Incorrect game order: ${actualGameOrder.join(" -> ")}`);
+}
+if (html.includes('id="projectCatalogue"')) throw new Error("Built HTML still embeds a duplicate project catalogue");
+if (!builtJs.includes('fetch("./projects.json"')) throw new Error("Built JavaScript does not load projects.json as the single source");
+
 const requiredCss = [
   /\.project-grid\s*\{[^}]*grid-template-columns:\s*repeat\(4/s,
   /calc\(100% - 64px\)/,
@@ -53,4 +76,4 @@ console.log("DIST VERIFICATION PASSED");
 console.log(`CSS ${cssMatch[1]} (${sha(builtCss)})`);
 console.log(`JS  ${jsMatch[1]} (${sha(builtJs)})`);
 console.log(`${systems.length} projects, ${games.length} games`);
-console.log("Projects precede Games; InHaus Auditing Suite is consolidated; Netlify cache headers are present.");
+console.log("Project order is locked; Projects precede Games; projects.json is the single catalogue source.");

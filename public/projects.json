@@ -14,10 +14,208 @@
   },
   "projects": [
     {
+      "id": "rose-onlyrose",
+      "name": "Rose / OnlyRose",
+      "type": "System",
+      "order": 1,
+      "category": "Creator & NFT Platform",
+      "status": "Platform development",
+      "summary": "A Solana NFT marketplace and creator platform combining collections, minting, subscriber content, trading and creator operations.",
+      "description": "Rose extends beyond a simple NFT gallery into collection creation, mint configuration, marketplace activity, creator channels, paid access, private media, community features and cashier-backed subscription flows.",
+      "problem": "Creators and NFT projects commonly depend on separate mint sites, marketplaces, subscription tools, chats, payment systems and administrative dashboards that do not share one identity or operating model.",
+      "solution": "A unified creator and NFT platform with wallet-aware access, collections, minting, marketplace features, subscriber channels, treasury fee handling and administrative controls.",
+      "image": "assets/projects/rose.webp",
+      "imageAlt": "Rose / OnlyRose project screen",
+      "imageFit": "cover",
+      "imagePosition": "center",
+      "gallery": [],
+      "cardTags": [
+        "Solana NFTs",
+        "Creator channels",
+        "Subscriptions"
+      ],
+      "stack": [
+        "React",
+        "TypeScript",
+        "Solana",
+        "Metaplex",
+        "Reown",
+        "PostgreSQL",
+        "Redis",
+        "MinIO",
+        "USDC"
+      ],
+      "capabilities": [
+        "Solana wallet and NFT ownership flows",
+        "Collection and Candy Machine creation",
+        "Public and subscriber-only media",
+        "Creator channels, chats, polls and events",
+        "Marketplace listing and sales analytics",
+        "Cross-chain purchase entry paths",
+        "Prepaid USDC creator subscriptions",
+        "Moderation and administration"
+      ],
+      "services": [
+        "Product architecture",
+        "NFT integration",
+        "Creator systems",
+        "Subscriptions",
+        "Marketplace UI",
+        "Moderation",
+        "Deployment"
+      ],
+      "links": [
+        {
+          "label": "Open Rose",
+          "url": "https://onlyrose-nft.hausserver.xyz",
+          "kind": "primary"
+        },
+        {
+          "label": "Documentation",
+          "url": "https://docs-onlyrose.hausserver.xyz",
+          "kind": "secondary"
+        }
+      ]
+    },
+    {
+      "id": "forbidden-oasis-water",
+      "name": "Forbidden Oasis / WATER",
+      "type": "System",
+      "order": 2,
+      "category": "Token & Staking Ecosystem",
+      "status": "Mainnet product",
+      "summary": "A BNB Chain token and staking ecosystem with flexible and locked vaults, rewards, dividend handling, emergency exits and operating tools.",
+      "description": "Forbidden Oasis combines the WATER token, vault-based staking, flexible and locked positions, WATER and BNB reward handling, compounding, administrative boundaries, public documentation and supporting calculation tools.",
+      "problem": "Staking products require consistent accounting across principal, rewards, lock state, expiry, penalties, compounding and dividends while keeping maintenance roles separate from asset-control permissions.",
+      "solution": "A modular vault and controller architecture with explicit locked and flexible state, defined expiry behaviour, emergency-exit rules, maintenance-only operators and user-facing tools for inspecting outcomes.",
+      "image": "assets/projects/water.png",
+      "imageAlt": "Forbidden Oasis / WATER project screen",
+      "imageFit": "cover",
+      "imagePosition": "center",
+      "gallery": [],
+      "cardTags": [
+        "BNB Chain",
+        "Vault staking",
+        "Reward accounting"
+      ],
+      "stack": [
+        "Solidity",
+        "BNB Chain",
+        "React",
+        "Reown",
+        "Wagmi",
+        "Viem",
+        "Hardhat",
+        "Docker"
+      ],
+      "capabilities": [
+        "Flexible and locked staking vaults",
+        "WATER and BNB reward claiming",
+        "Reward compounding and lock management",
+        "Expiry movement from locked to flexible",
+        "Emergency exit and penalty accounting",
+        "Maintenance-only operator boundaries",
+        "Mainnet wallet experience",
+        "Public website, documentation and calculators"
+      ],
+      "services": [
+        "Contract architecture",
+        "Staking UI",
+        "Mainnet deployment",
+        "Wallet integration",
+        "Documentation",
+        "Testing tools"
+      ],
+      "links": [
+        {
+          "label": "Open Forbidden Oasis",
+          "url": "https://www2.forbidden-oasis.xyz",
+          "kind": "primary"
+        },
+        {
+          "label": "Open Staking App",
+          "url": "https://staking.forbidden-oasis.xyz",
+          "kind": "primary"
+        },
+        {
+          "label": "Open Documentation",
+          "url": "https://docs.forbidden-oasis.xyz",
+          "kind": "primary"
+        }
+      ]
+    },
+    {
+      "id": "cooking-solana",
+      "name": "Cooking Solana Trading System",
+      "type": "System",
+      "order": 3,
+      "category": "Trading Automation",
+      "status": "Active development",
+      "summary": "A Solana trading and automation system with connected-wallet testing, execution controls, observers, strategies and operational tooling.",
+      "description": "Cooking Solana brings quoting, execution, automation, persistent transaction observation and user-facing trading workflows into a controlled system with staged validation and recovery-aware releases.",
+      "problem": "Trading systems can appear correct in the interface while failing through quote handling, wallet sessions, transaction assembly, execution observation, API boundaries or incomplete production controls.",
+      "solution": "A layered trading system with authenticated access, controlled execution, transaction hardening, persistent observers, strategy modules, diagnostics and repeatable deployment phases.",
+      "image": "assets/projects/deviscooking.png",
+      "imageAlt": "Cooking Solana Trading System project screen",
+      "imageFit": "cover",
+      "imagePosition": "center",
+      "gallery": [],
+      "cardTags": [
+        "Solana",
+        "Execution",
+        "Automation"
+      ],
+      "stack": [
+        "Solana",
+        "React",
+        "TypeScript",
+        "Node.js",
+        "PostgreSQL",
+        "Redis",
+        "Docker",
+        "Reown"
+      ],
+      "capabilities": [
+        "Connected Solana wallet flows",
+        "Quote and execution pipelines",
+        "Persistent transaction observers",
+        "Strategy and automation modules",
+        "Allowlisted execution controls",
+        "Authenticated beta and admin access",
+        "Diagnostic and validation phases",
+        "Production deployment tooling"
+      ],
+      "services": [
+        "Trading architecture",
+        "Wallet integration",
+        "Execution engineering",
+        "Automation",
+        "Diagnostics",
+        "Deployment"
+      ],
+      "links": [
+        {
+          "label": "Open Site",
+          "url": "https://www.devis.cooking",
+          "kind": "primary"
+        },
+        {
+          "label": "Open Beta App",
+          "url": "https://betatesting.devis.cooking",
+          "kind": "primary"
+        },
+        {
+          "label": "Open Documentation",
+          "url": "https://docs.hausserver.xyz",
+          "kind": "primary"
+        }
+      ]
+    },
+    {
       "id": "foxyswap-trade",
       "name": "FoxySwap Trade",
       "type": "System",
-      "order": 2,
+      "order": 4,
       "category": "Trading Infrastructure",
       "status": "Active platform development",
       "summary": "A configurable swap, routing and bridge platform for hosted applications, project sites and embedded trading experiences.",
@@ -75,10 +273,69 @@
       ]
     },
     {
+      "id": "universal-usdc-cashier",
+      "name": "InHaus Universal USDC Cashier",
+      "type": "System",
+      "order": 5,
+      "category": "Financial Infrastructure",
+      "status": "Operational platform",
+      "summary": "A reusable multichain USDC cashier for deposits, account credits, reservations, settlement, sweeps, withdrawals and reconciliation.",
+      "description": "The Universal Cashier provides the financial operating layer repeatedly required by games, subscription products, creator platforms and transaction systems. It separates chain watchers, ledgers, execution, reconciliation and the user-facing Banker into controlled services.",
+      "problem": "Products that hold user credit need reliable deposit detection, internal balances, reserved funds, treasury movement, withdrawals and audit evidence. Rebuilding that financial plumbing inside every product creates inconsistent controls and difficult investigations.",
+      "solution": "A reusable cashier architecture with per-user deposit accounts, EVM and Solana watchers, available and reserved balances, policy-checked execution, reconciliation workers and a consistent Banker interface.",
+      "image": "assets/projects/universalusdc.png",
+      "imageAlt": "InHaus Universal USDC Cashier project screen",
+      "imageFit": "cover",
+      "imagePosition": "center",
+      "gallery": [],
+      "cardTags": [
+        "EVM + Solana",
+        "USDC ledger",
+        "Reconciliation"
+      ],
+      "stack": [
+        "Node.js",
+        "TypeScript",
+        "MongoDB",
+        "Redis",
+        "EVM",
+        "Solana",
+        "USDC",
+        "Caddy",
+        "Cloudflare"
+      ],
+      "capabilities": [
+        "Canonical USDC deposits across EVM and Solana",
+        "Per-user deposit account allocation",
+        "Available, reserved and settled balance states",
+        "Treasury-sponsored sweep execution",
+        "Signed and policy-checked withdrawals",
+        "Reconciliation and full-day operational audits",
+        "Application billing and prize settlement APIs",
+        "User-facing Banker and operator controls"
+      ],
+      "services": [
+        "Financial architecture",
+        "Ledger engineering",
+        "Multichain watchers",
+        "Execution workers",
+        "Reconciliation",
+        "Banker UI",
+        "Operations"
+      ],
+      "links": [
+        {
+          "label": "Open Universal Cashier",
+          "url": "https://banker.inhaus.technology",
+          "kind": "primary"
+        }
+      ]
+    },
+    {
       "id": "inhaus-auditing-suite",
       "name": "InHaus Auditing Suite",
       "type": "System",
-      "order": 3,
+      "order": 6,
       "category": "Audit, Replay & Simulation",
       "status": "Applied investigation platform",
       "summary": "Historical replay, contract and system auditing, blockchain investigation, controlled simulation and evidence-driven fault reproduction.",
@@ -155,74 +412,10 @@
       "links": []
     },
     {
-      "id": "rose-onlyrose",
-      "name": "Rose / OnlyRose",
-      "type": "System",
-      "order": 4,
-      "category": "Creator & NFT Platform",
-      "status": "Platform development",
-      "summary": "A Solana NFT marketplace and creator platform combining collections, minting, subscriber content, trading and creator operations.",
-      "description": "Rose extends beyond a simple NFT gallery into collection creation, mint configuration, marketplace activity, creator channels, paid access, private media, community features and cashier-backed subscription flows.",
-      "problem": "Creators and NFT projects commonly depend on separate mint sites, marketplaces, subscription tools, chats, payment systems and administrative dashboards that do not share one identity or operating model.",
-      "solution": "A unified creator and NFT platform with wallet-aware access, collections, minting, marketplace features, subscriber channels, treasury fee handling and administrative controls.",
-      "image": "assets/projects/rose.webp",
-      "imageAlt": "Rose / OnlyRose project screen",
-      "imageFit": "cover",
-      "imagePosition": "center",
-      "gallery": [],
-      "cardTags": [
-        "Solana NFTs",
-        "Creator channels",
-        "Subscriptions"
-      ],
-      "stack": [
-        "React",
-        "TypeScript",
-        "Solana",
-        "Metaplex",
-        "Reown",
-        "PostgreSQL",
-        "Redis",
-        "MinIO",
-        "USDC"
-      ],
-      "capabilities": [
-        "Solana wallet and NFT ownership flows",
-        "Collection and Candy Machine creation",
-        "Public and subscriber-only media",
-        "Creator channels, chats, polls and events",
-        "Marketplace listing and sales analytics",
-        "Cross-chain purchase entry paths",
-        "Prepaid USDC creator subscriptions",
-        "Moderation and administration"
-      ],
-      "services": [
-        "Product architecture",
-        "NFT integration",
-        "Creator systems",
-        "Subscriptions",
-        "Marketplace UI",
-        "Moderation",
-        "Deployment"
-      ],
-      "links": [
-        {
-          "label": "Open Rose",
-          "url": "https://onlyrose-nft.hausserver.xyz",
-          "kind": "primary"
-        },
-        {
-          "label": "Documentation",
-          "url": "https://docs-onlyrose.hausserver.xyz",
-          "kind": "secondary"
-        }
-      ]
-    },
-    {
       "id": "inhaus-deploylify",
       "name": "InHaus Deploylify",
       "type": "System",
-      "order": 5,
+      "order": 7,
       "category": "Deployment & Operations",
       "status": "Operational control platform",
       "summary": "A private control plane for deploying, documenting, enrolling and operating applications across managed nodes and Cloudflare routes.",
@@ -271,199 +464,6 @@
         {
           "label": "Documentation",
           "url": "https://docs-deploylify.inhaus.technology",
-          "kind": "primary"
-        }
-      ]
-    },
-    {
-      "id": "universal-usdc-cashier",
-      "name": "InHaus Universal USDC Cashier",
-      "type": "System",
-      "order": 1,
-      "category": "Financial Infrastructure",
-      "status": "Operational platform",
-      "summary": "A reusable multichain USDC cashier for deposits, account credits, reservations, settlement, sweeps, withdrawals and reconciliation.",
-      "description": "The Universal Cashier provides the financial operating layer repeatedly required by games, subscription products, creator platforms and transaction systems. It separates chain watchers, ledgers, execution, reconciliation and the user-facing Banker into controlled services.",
-      "problem": "Products that hold user credit need reliable deposit detection, internal balances, reserved funds, treasury movement, withdrawals and audit evidence. Rebuilding that financial plumbing inside every product creates inconsistent controls and difficult investigations.",
-      "solution": "A reusable cashier architecture with per-user deposit accounts, EVM and Solana watchers, available and reserved balances, policy-checked execution, reconciliation workers and a consistent Banker interface.",
-      "image": "assets/projects/universalusdc.png",
-      "imageAlt": "InHaus Universal USDC Cashier project screen",
-      "imageFit": "cover",
-      "imagePosition": "center",
-      "gallery": [],
-      "cardTags": [
-        "EVM + Solana",
-        "USDC ledger",
-        "Reconciliation"
-      ],
-      "stack": [
-        "Node.js",
-        "TypeScript",
-        "MongoDB",
-        "Redis",
-        "EVM",
-        "Solana",
-        "USDC",
-        "Caddy",
-        "Cloudflare"
-      ],
-      "capabilities": [
-        "Canonical USDC deposits across EVM and Solana",
-        "Per-user deposit account allocation",
-        "Available, reserved and settled balance states",
-        "Treasury-sponsored sweep execution",
-        "Signed and policy-checked withdrawals",
-        "Reconciliation and full-day operational audits",
-        "Application billing and prize settlement APIs",
-        "User-facing Banker and operator controls"
-      ],
-      "services": [
-        "Financial architecture",
-        "Ledger engineering",
-        "Multichain watchers",
-        "Execution workers",
-        "Reconciliation",
-        "Banker UI",
-        "Operations"
-      ],
-      "links": [
-        {
-          "label": "Open Universal Cashier",
-          "url": "https://banker.inhaus.technology",
-          "kind": "primary"
-        }
-      ]
-    },
-    {
-      "id": "forbidden-oasis-water",
-      "name": "Forbidden Oasis / WATER",
-      "type": "System",
-      "order": 6,
-      "category": "Token & Staking Ecosystem",
-      "status": "Mainnet product",
-      "summary": "A BNB Chain token and staking ecosystem with flexible and locked vaults, rewards, dividend handling, emergency exits and operating tools.",
-      "description": "Forbidden Oasis combines the WATER token, vault-based staking, flexible and locked positions, WATER and BNB reward handling, compounding, administrative boundaries, public documentation and supporting calculation tools.",
-      "problem": "Staking products require consistent accounting across principal, rewards, lock state, expiry, penalties, compounding and dividends while keeping maintenance roles separate from asset-control permissions.",
-      "solution": "A modular vault and controller architecture with explicit locked and flexible state, defined expiry behaviour, emergency-exit rules, maintenance-only operators and user-facing tools for inspecting outcomes.",
-      "image": "assets/projects/water.png",
-      "imageAlt": "Forbidden Oasis / WATER project screen",
-      "imageFit": "cover",
-      "imagePosition": "center",
-      "gallery": [],
-      "cardTags": [
-        "BNB Chain",
-        "Vault staking",
-        "Reward accounting"
-      ],
-      "stack": [
-        "Solidity",
-        "BNB Chain",
-        "React",
-        "Reown",
-        "Wagmi",
-        "Viem",
-        "Hardhat",
-        "Docker"
-      ],
-      "capabilities": [
-        "Flexible and locked staking vaults",
-        "WATER and BNB reward claiming",
-        "Reward compounding and lock management",
-        "Expiry movement from locked to flexible",
-        "Emergency exit and penalty accounting",
-        "Maintenance-only operator boundaries",
-        "Mainnet wallet experience",
-        "Public website, documentation and calculators"
-      ],
-      "services": [
-        "Contract architecture",
-        "Staking UI",
-        "Mainnet deployment",
-        "Wallet integration",
-        "Documentation",
-        "Testing tools"
-      ],
-      "links": [
-        {
-          "label": "Open Forbidden Oasis",
-          "url": "https://www2.forbidden-oasis.xyz",
-          "kind": "primary"
-        },
-        {
-          "label": "Open Staking App",
-          "url": "https://staking.forbidden-oasis.xyz",
-          "kind": "primary"
-        },
-        {
-          "label": "Open Documentation",
-          "url": "https://docs.forbidden-oasis.xyz",
-          "kind": "primary"
-        }
-      ]
-    },
-    {
-      "id": "cooking-solana",
-      "name": "Cooking Solana Trading System",
-      "type": "System",
-      "order": 7,
-      "category": "Trading Automation",
-      "status": "Active development",
-      "summary": "A Solana trading and automation system with connected-wallet testing, execution controls, observers, strategies and operational tooling.",
-      "description": "Cooking Solana brings quoting, execution, automation, persistent transaction observation and user-facing trading workflows into a controlled system with staged validation and recovery-aware releases.",
-      "problem": "Trading systems can appear correct in the interface while failing through quote handling, wallet sessions, transaction assembly, execution observation, API boundaries or incomplete production controls.",
-      "solution": "A layered trading system with authenticated access, controlled execution, transaction hardening, persistent observers, strategy modules, diagnostics and repeatable deployment phases.",
-      "image": "assets/projects/deviscooking.png",
-      "imageAlt": "Cooking Solana Trading System project screen",
-      "imageFit": "cover",
-      "imagePosition": "center",
-      "gallery": [],
-      "cardTags": [
-        "Solana",
-        "Execution",
-        "Automation"
-      ],
-      "stack": [
-        "Solana",
-        "React",
-        "TypeScript",
-        "Node.js",
-        "PostgreSQL",
-        "Redis",
-        "Docker",
-        "Reown"
-      ],
-      "capabilities": [
-        "Connected Solana wallet flows",
-        "Quote and execution pipelines",
-        "Persistent transaction observers",
-        "Strategy and automation modules",
-        "Allowlisted execution controls",
-        "Authenticated beta and admin access",
-        "Diagnostic and validation phases",
-        "Production deployment tooling"
-      ],
-      "services": [
-        "Trading architecture",
-        "Wallet integration",
-        "Execution engineering",
-        "Automation",
-        "Diagnostics",
-        "Deployment"
-      ],
-      "links": [
-        {
-          "label": "Open Site",
-          "url": "https://www.devis.cooking",
-          "kind": "primary"
-        },
-        {
-          "label": "Open Beta App",
-          "url": "https://betatesting.devis.cooking",
-          "kind": "primary"
-        },
-        {
-          "label": "Open Documentation",
-          "url": "https://docs.hausserver.xyz",
           "kind": "primary"
         }
       ]

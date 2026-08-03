@@ -1,6 +1,30 @@
-# InHaus Technologies Business Site v1.6.3
+# InHaus Technologies Business Site v1.6.4
 
-This is the maintained v1.6 site with the approved hero option 4, deployment-safe hashed assets, and JSON-wired project and game image filenames. The page structure, Projects, Games, capabilities, footer and InHaus Auditing Suite remain unchanged.
+This release keeps the approved v1.6 site and corrects the portfolio order without redesigning the page.
+
+## Locked Projects order
+
+1. Rose / OnlyRose
+2. Forbidden Oasis / WATER
+3. Cooking Solana Trading System
+4. FoxySwap Trade
+5. InHaus Universal USDC Cashier
+6. InHaus Auditing Suite
+7. InHaus Deploylify
+
+The first four are shown initially. **View All Projects** reveals the remaining InHaus projects.
+
+## Locked Games order
+
+1. Memopoly
+2. Deal or No Deal
+3. Dual-Chain Roulette / Spin & Win
+
+Games remain in their own section after Projects.
+
+## Single project catalogue
+
+`public/projects.json` is now the only catalogue source. The build no longer embeds a duplicate copy in `index.html`, so edits to the JSON are not overridden by stale embedded data.
 
 ## Local development
 
@@ -10,47 +34,15 @@ npm run dev
 
 Open `http://localhost:49215`.
 
-## Build the exact Netlify deployment
+## Build and verify the Netlify deployment
 
 ```powershell
-npm run build
+npm run check
 npm run preview
 ```
 
-Open `http://localhost:49216`. The build produces content-hashed CSS and JavaScript filenames, so Netlify and the browser cannot combine a new page with an older stylesheet.
+Open `http://localhost:49216`. Deploy the contents of `dist/`, or use the prepared Netlify ZIP inside `deploy/`.
 
-## Netlify drag deployment
+## Images
 
-Use the prepared ZIP inside `deploy/`, or drag the **contents** of `dist/` into Netlify Drop. `index.html` must be at the deployment root.
-
-The deployment contains:
-
-- no-cache HTML and project JSON
-- fingerprinted immutable CSS and JavaScript
-- `_headers` for Netlify cache control
-- embedded project-catalogue fallback
-
-## Project and game images
-
-Put the real screenshots in:
-
-```text
-public/assets/projects/
-```
-
-The image paths are already wired in `public/projects.json`. Use the exact filenames listed in `public/assets/projects/README.txt`, then run:
-
-```powershell
-npm run build
-```
-
-Missing files are hidden cleanly until added. The site never generates, recreates or substitutes project artwork.
-
-## Catalogue structure
-
-- `type: "System"` renders under Projects.
-- `type: "Gaming"` renders under Games.
-- InHaus Auditing Suite is one project; the Time Machine, simulation and forensics tools are modules inside it.
-- The first four Projects are shown initially; View All Projects reveals the remainder.
-- Project cards use fixed content rows so titles, descriptions, chips and links align.
-- Detail modals use nearly the full desktop viewport height.
+Real project and game images remain in `public/assets/projects/` and are referenced from `public/projects.json`. The build does not generate or substitute project artwork.
