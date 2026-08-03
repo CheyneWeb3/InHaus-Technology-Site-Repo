@@ -4,7 +4,8 @@ const qsa = (selector, root = document) => [...root.querySelectorAll(selector)];
 const state = {
   projects: [],
   projectExpanded: false,
-  query: ""
+  query: "",
+  activeProjectId: null
 };
 
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -457,10 +458,49 @@ function moduleMarkup(project) {
     </section>`;
 }
 
-function openProject(id, updateHash = true) {
+function projectSequence(project) {
+  return sortedByOrder(state.projects.filter((item) => item.type === project.type));
+}
+
+function updateDialogNavigation(project) {
+  const sequence = projectSequence(project);
+  const previousButton = qs("#dialogPrevious");
+  const nextButton = qs("#dialogNext");
+  const isGame = project.type === "Gaming";
+  const itemLabel = isGame ? "game" : "project";
+
+  if (!previousButton || !nextButton) return;
+  const navigationAvailable = sequence.length > 1;
+  previousButton.hidden = !navigationAvailable;
+  nextButton.hidden = !navigationAvailable;
+  if (!navigationAvailable) return;
+
+  const currentIndex = sequence.findIndex((item) => item.id === project.id);
+  const previous = sequence[(currentIndex - 1 + sequence.length) % sequence.length];
+  const next = sequence[(currentIndex + 1) % sequence.length];
+
+  previousButton.setAttribute("aria-label", `Previous ${itemLabel}: ${previous.name}`);
+  nextButton.setAttribute("aria-label", `Next ${itemLabel}: ${next.name}`);
+  previousButton.title = `Previous ${itemLabel}: ${previous.name}`;
+  nextButton.title = `Next ${itemLabel}: ${next.name}`;
+}
+
+function navigateProject(direction) {
+  const current = state.projects.find((item) => item.id === state.activeProjectId);
+  if (!current) return;
+  const sequence = projectSequence(current);
+  if (sequence.length < 2) return;
+
+  const currentIndex = sequence.findIndex((item) => item.id === current.id);
+  const nextIndex = (currentIndex + direction + sequence.length) % sequence.length;
+  openProject(sequence[nextIndex].id, true, direction);
+}
+
+function openProject(id, updateHash = true, direction = 0) {
   const project = state.projects.find((item) => item.id === id);
   if (!project) return;
 
+  state.activeProjectId = project.id;
   const detail = qs("#projectDetail");
   detail.innerHTML = `
     <section class="detail-hero${projectImage(project) ? "" : " no-image"}">
@@ -507,17 +547,26 @@ function openProject(id, updateHash = true) {
     bindImageFallback(image, (failedImage) => failedImage.closest(".detail-media, figure")?.remove());
   });
 
+  updateDialogNavigation(project);
+  detail.classList.remove("modal-slide-previous", "modal-slide-next");
+  if (direction) {
+    void detail.offsetWidth;
+    detail.classList.add(direction < 0 ? "modal-slide-previous" : "modal-slide-next");
+  }
+
   const dialog = qs("#projectDialog");
-  if (!dialog.open) dialog.showModal();
+  const wasOpen = dialog.open;
+  if (!wasOpen) dialog.showModal();
   document.body.classList.add("dialog-open");
   if (updateHash) history.replaceState(null, "", `${location.pathname}${location.search}#project/${project.id}`);
-  qs("#dialogClose")?.focus();
+  if (!wasOpen) qs("#dialogClose")?.focus();
 }
 
 function closeProject() {
   const dialog = qs("#projectDialog");
   if (dialog.open) dialog.close();
   document.body.classList.remove("dialog-open");
+  state.activeProjectId = null;
   if (location.hash.startsWith("#project/")) {
     history.replaceState(null, "", `${location.pathname}${location.search}#projects`);
   }
@@ -629,12 +678,27 @@ function setupControls() {
   });
 
   qs("#dialogClose")?.addEventListener("click", closeProject);
+  qs("#dialogPrevious")?.addEventListener("click", () => navigateProject(-1));
+  qs("#dialogNext")?.addEventListener("click", () => navigateProject(1));
   qs("#projectDialog")?.addEventListener("click", (event) => {
     if (event.target === event.currentTarget) closeProject();
   });
   qs("#projectDialog")?.addEventListener("cancel", (event) => {
     event.preventDefault();
     closeProject();
+  });
+  document.addEventListener("keydown", (event) => {
+    const dialog = qs("#projectDialog");
+    if (!dialog?.open || event.altKey || event.ctrlKey || event.metaKey) return;
+    if (["INPUT", "TEXTAREA", "SELECT"].includes(document.activeElement?.tagName)) return;
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      navigateProject(-1);
+    }
+    if (event.key === "ArrowRight") {
+      event.preventDefault();
+      navigateProject(1);
+    }
   });
   window.addEventListener("hashchange", openFromHash);
 }

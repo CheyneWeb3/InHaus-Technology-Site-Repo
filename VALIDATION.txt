@@ -1,4 +1,4 @@
-INHAUS TECHNOLOGY v1.7.13 VALIDATION
+INHAUS TECHNOLOGY v1.7.14 VALIDATION
 
 PASS: npm run build
 PASS: npm run verify
@@ -63,3 +63,10 @@ PASS: Organization, WebSite, WebPage, ItemList and FAQPage JSON-LD
 PASS: Open Graph and X/Twitter 1200x630 social card
 PASS: Hashed production CSS, JavaScript and project media
 PASS: Netlify cache-control headers
+PASS: Discreet previous and next modal chevrons
+PASS: Modal chevrons remain vertically centred on desktop and mobile
+PASS: Project navigation remains within Projects
+PASS: Game navigation remains within Games
+PASS: First/last modal navigation wraps like a gallery
+PASS: Left and Right Arrow keyboard navigation
+PASS: Subtle directional modal slide transition

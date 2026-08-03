@@ -1,14 +1,15 @@
-# InHaus Technology Business Site v1.7.13
+# InHaus Technology Business Site v1.7.14
 
 
-## v1.7.13 roulette link and verifier correction
+## v1.7.14 modal gallery navigation
 
-- Preserves the user-edited game name **DeFi Spin & Win (BETA)**.
-- Adds the public game link `https://spin-n-win.devis.cooking`.
-- Fixes the Netlify failure caused by `verify.mjs` comparing editable display names instead of stable project IDs.
-- Project and game order is now validated by the permanent `id` fields and numeric `order` values.
-- Removes the obsolete Yarn lockfile so Netlify uses the committed npm lockfile without mixed-package-manager warnings.
-- Repairs the FAQ-count checks so they throw normal verification errors instead of calling an undefined helper.
+- Adds discreet previous and next chevrons to the vertical centre of every project and game modal.
+- Project modals cycle only through the seven projects; game modals cycle only through the three games.
+- Navigation wraps from the first item to the last and from the last item to the first.
+- Adds subtle directional slide motion without changing the existing modal layout.
+- Supports the on-screen chevrons on desktop and mobile, plus Left and Right Arrow keyboard navigation.
+- Keeps the user-edited **DeFi Spin & Win (BETA)** name and `https://spin-n-win.devis.cooking` link.
+- Continues validating project and game order by stable IDs rather than editable display names.
 
 
 ## v1.7.12 FAQ preservation and company-name correction

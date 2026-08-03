@@ -225,6 +225,15 @@ for (const marker of requiredInteractionMarkers) {
 for (const marker of ["setupHeroNetwork", "setupRevealElements", "setupPointerGlow", "setupScrollEffects", "setupMobileSections"]) {
   if (!builtJs.includes(marker)) throw new Error(`Required production interaction code missing: ${marker}`);
 }
+for (const marker of ['id="dialogPrevious"', 'id="dialogNext"']) {
+  if (!html.includes(marker)) throw new Error(`Modal gallery navigation control missing: ${marker}`);
+}
+for (const marker of ["navigateProject", "projectSequence", "updateDialogNavigation", "ArrowLeft", "ArrowRight"]) {
+  if (!builtJs.includes(marker)) throw new Error(`Modal gallery navigation code missing: ${marker}`);
+}
+if (!/\.dialog-nav\s*\{/.test(builtCss) || !/top:\s*50%/.test(builtCss) || !/modalSlideNext/.test(builtCss)) {
+  throw new Error("Discreet centred modal chevron navigation styles are missing");
+}
 
 if (!html.includes('Does InHaus Technology join project teams or work for future promises?')) {
   throw new Error('Funded engagement FAQ missing from production HTML');
@@ -245,4 +254,4 @@ console.log(`${systems.length} projects, ${games.length} games`);
 console.log("All 10 project and game cards reference valid content-hashed WebP files with local fallbacks.");
 console.log("Project and game order is verified by stable IDs; display names and links can be edited without false order failures.");
 console.log("SEO verified: canonical, robots, sitemap, manifest, structured data, Open Graph and X/Twitter 1200x630 card.");
-console.log("Production interactions verified: canvas network, reveals, pointer highlights, scroll progress and responsive modal scrolling.");
+console.log("Production interactions verified: canvas network, reveals, pointer highlights, scroll progress, responsive modal scrolling and previous/next chevron navigation.");
