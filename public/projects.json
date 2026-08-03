@@ -1,5 +1,5 @@
 {
-  "version": "1.7.16",
+  "version": "1.7.17",
   "imageHelp": {
     "localExample": "assets/projects/project-name.webp",
     "externalExample": "https://example.com/project-screen.webp",
@@ -604,8 +604,8 @@
       "description": "The roulette system combines a live wheel and betting table with server-controlled rounds, player balances, chain-aware payment paths, result settlement, history and administrative operations.",
       "problem": "Roulette requires synchronized timers, locked betting windows, authoritative outcomes, exact settlement, reconnect behaviour and a presentation that remains readable during live rounds.",
       "solution": "A real-time game system separating visual wheel animation from authoritative round state, bet validation, settlement and operational controls across supported chain environments.",
-      "image": "assets/projects/spinspin.png",
-      "imageAlt": "Dual-Chain Roulette / Spin & Win project screen",
+      "image": "assets/projects/spinspin.webp",
+      "imageAlt": "DeFi Spin & Win roulette project screen",
       "imageFit": "cover",
       "imagePosition": "center",
       "gallery": [],
@@ -649,7 +649,7 @@
           "kind": "primary"
         }
       ],
-      "imageFallback": "assets/projects/spin.png"
+      "imageFallback": "assets/projects/spinspin.png"
     }
   ]
 }

@@ -1,7 +1,11 @@
-# InHaus Technology Business Site v1.7.16
+# InHaus Technology Business Site v1.7.17
+
+## v1.7.17 roulette media correction
+
+The DeFi Spin & Win card now uses the user-supplied `spinspin.webp` as its WebP primary image, with `spinspin.png` retained as fallback.
 
 
-## v1.7.16 mobile FAQ visibility
+## v1.7.17 mobile FAQ visibility
 
 - The FAQ section is no longer hidden behind the generic mobile “Read more” section control.
 - All FAQ question rows remain visible on phones and small screens.

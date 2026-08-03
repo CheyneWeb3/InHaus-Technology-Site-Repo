@@ -1,0 +1,17 @@
+INHAUS TECHNOLOGY v1.7.17 — ROULETTE WEBP BUILD FIX
+
+Cause:
+The dual-chain-roulette catalogue entry referenced assets/projects/spinspin.png as its primary image, while the production build deliberately requires every primary card image to be WebP.
+
+Correction:
+- Created public/assets/projects/spinspin.webp from the supplied spinspin.png.
+- Updated the primary image to assets/projects/spinspin.webp.
+- Retained assets/projects/spinspin.png as the fallback.
+- Preserved the DeFi Spin & Win (BETA) name and https://spin-n-win.devis.cooking link.
+- Removed the stale Yarn lockfile; npm/package-lock.json remains authoritative.
+
+Validation:
+- npm ci: PASS
+- npm run check: PASS
+- 7 project entries and 3 game entries validated
+- Production hashed WebP and PNG fallback both present in dist
