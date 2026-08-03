@@ -597,6 +597,18 @@ p { color: var(--muted); }
 }
 .faq-answer strong { color: #d8e8f8; }
 
+.faq-analogy {
+  margin: 17px 0;
+  padding: 16px 18px;
+  border: 1px solid rgba(89, 166, 255, 0.24);
+  border-left: 3px solid #59a6ff;
+  border-radius: 0 14px 14px 0;
+  background: linear-gradient(110deg, rgba(52, 143, 255, 0.10), rgba(10, 20, 38, 0.22));
+  color: #cfe4fa;
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
 
 .process-section { border-top: 1px solid var(--line-soft); }
 .process-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }

@@ -1,4 +1,4 @@
-# InHaus Technologies Business Site v1.7.2
+# InHaus Technologies Business Site v1.7.3
 
 Static, JSON-driven InHaus Technologies company site with full editable source and a built Netlify-ready `dist/`.
 
@@ -19,7 +19,7 @@ Static, JSON-driven InHaus Technologies company site with full editable source a
 - High desktop detail modals
 - Full modal scrolling on smaller screens and short-height devices
 - Professional company footer
-- Commercial FAQ covering payments, retainers, scope variations, delivery readiness, ethics and project acceptance
+- Commercial FAQ covering payments, retainers, scope variations, delivery readiness, pricing versus delivery speed, AI-assisted development, ethics and project acceptance
 - FAQPage structured data for search engines
 
 ## Locked current-project order

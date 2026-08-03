@@ -80,6 +80,12 @@ if (html.indexOf('id="projects"') > html.indexOf('id="games"')) throw new Error(
 if (!html.includes("Current projects.")) throw new Error("Current projects heading is missing");
 if (!html.includes('id="faq"') || !html.includes("Paid engineering, not speculative participation.")) throw new Error("FAQ section or commercial engagement statement is missing");
 if (!html.includes("USDC") || !html.includes("Scope of Works")) throw new Error("Required FAQ commercial terms are missing");
+if (!html.includes("Why can a project be completed quickly when the quoted cost is substantial?") || !html.includes("23 years of technical experience")) {
+  throw new Error("FAQ value and delivery-speed explanation is missing");
+}
+if (!html.includes("Does InHaus Technologies use AI?") || !html.includes("AI is like a baseball bat")) {
+  throw new Error("FAQ AI-use explanation or analogy is missing");
+}
 if (html.includes("Systems and products.")) throw new Error("Obsolete products wording remains");
 
 const systems = catalogue.projects.filter((project) => project.type === "System");

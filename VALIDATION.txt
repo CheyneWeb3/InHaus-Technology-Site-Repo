@@ -1,4 +1,4 @@
-INHAUS TECHNOLOGIES v1.7.2 VALIDATION
+INHAUS TECHNOLOGIES v1.7.3 VALIDATION
 
 PASS: npm run build
 PASS: npm run verify
@@ -9,7 +9,7 @@ PASS: Staggered reveal animations
 PASS: Pointer-aware card highlights and image motion
 PASS: Reduced-motion accessibility
 PASS: Small-screen and short-height modal scrolling
-PASS: Commercial FAQ section with payments, retainer, scope, delivery, ethics and partnership policy
+PASS: Commercial FAQ section with payments, retainer, scope, delivery, value versus speed, AI use, ethics and partnership policy
 PASS: Paid engineering, not speculative participation statement
 PASS: Blue-only interface palette; no mint/green UI token
 PASS: Current Projects heading replaces products wording
