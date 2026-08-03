@@ -1,0 +1,640 @@
+{
+  "version": "1.6.0",
+  "imageHelp": {
+    "localExample": "assets/projects/project-name.webp",
+    "externalExample": "https://example.com/project-screen.webp",
+    "localFolder": "Place local images in public/assets/projects/. Use the image and gallery fields below. The build copies them to dist/assets/projects/.",
+    "supportedFields": [
+      "image",
+      "imageAlt",
+      "imageFit",
+      "imagePosition",
+      "gallery"
+    ]
+  },
+  "projects": [
+
+    {
+      "id": "foxyswap-trade",
+      "name": "FoxySwap Trade",
+      "type": "System",
+      "order": 2,
+      "category": "Trading Infrastructure",
+      "status": "Active platform development",
+      "summary": "A configurable swap, routing and bridge platform for hosted applications, project sites and embedded trading experiences.",
+      "description": "FoxySwap Trade combines wallet connection, token discovery, quoting, route presentation, fee handling, execution and embeddable widget delivery in one configurable platform across EVM and Solana product flows.",
+      "problem": "Projects often assemble wallet libraries, token catalogues, aggregators, fee logic, embeds and operational tooling as separate pieces without one coherent product or support model.",
+      "solution": "A managed application, API and widget layer that separates same-chain routing from cross-chain execution while giving projects control over branding, token lists, fees and hosted interfaces.",
+      "image": "assets/projects/foxytrade.png",
+      "imageAlt": "FoxySwap Trade project screen",
+      "imageFit": "cover",
+      "imagePosition": "center",
+      "gallery": [],
+      "cardTags": [
+        "Swap routing",
+        "Cross-chain",
+        "Embedded widgets"
+      ],
+      "stack": [
+        "React",
+        "TypeScript",
+        "Node.js",
+        "PostgreSQL",
+        "Redis",
+        "Reown",
+        "Wagmi",
+        "Viem",
+        "Jupiter",
+        "LI.FI",
+        "Cloudflare"
+      ],
+      "capabilities": [
+        "EVM and Solana wallet connection",
+        "Same-chain and cross-chain routing",
+        "PancakeSwap, Jupiter and LI.FI integrations",
+        "Token catalogues and custom imports",
+        "Quote, route and trading-fee presentation",
+        "Hosted and script-embedded widgets",
+        "Subscriber Studio and administration",
+        "Prepaid subscription-credit architecture"
+      ],
+      "services": [
+        "Product architecture",
+        "Full-stack engineering",
+        "Wallet integration",
+        "Routing integration",
+        "SaaS controls",
+        "Deployment",
+        "Documentation"
+      ],
+      "links": [
+        {
+          "label": "Open FoxySwap Trade",
+          "url": "https://swap-saas.inhaus.technology",
+          "kind": "primary"
+        }
+      ]
+    },
+    {
+      "id": "inhaus-auditing-suite",
+      "name": "InHaus Auditing Suite",
+      "type": "System",
+      "order": 3,
+      "category": "Audit, Replay & Simulation",
+      "status": "Applied investigation platform",
+      "summary": "Historical replay, contract and system auditing, blockchain investigation, controlled simulation and evidence-driven fault reproduction.",
+      "description": "The InHaus Auditing Suite brings historical blockchain replay, smart-contract and business-system auditing, wallet and token forensics, future-state simulation, reconciliation and operational evidence into one controlled investigation environment.",
+      "problem": "Complex failures rarely exist in one contract or one screen. Evidence can be distributed across blocks, wallets, tokens, application services, workers, permissions, ledgers, deployment state and operator actions.",
+      "solution": "One investigation suite that reconstructs historical state, replays events deterministically, slows or accelerates time, compares expected and actual outcomes, tests alternative futures and produces evidence-backed remediation paths.",
+      "image": "assets/projects/replay.png",
+      "imageAlt": "InHaus Auditing Suite project screen",
+      "imageFit": "cover",
+      "imagePosition": "center",
+      "gallery": [],
+      "cardTags": [
+        "Historical replay",
+        "System audit",
+        "Time simulation"
+      ],
+      "stack": [
+        "EVM",
+        "Solana",
+        "TypeScript",
+        "Node.js",
+        "Python",
+        "RPC archives",
+        "Event indexing",
+        "Ledger analysis",
+        "Simulation workers"
+      ],
+      "capabilities": [
+        "Blockchain Time Machine for historical replay",
+        "Smart-contract, application and business-system auditing",
+        "Slow-motion and accelerated-time chain simulation",
+        "Wallet, token and transaction forensics",
+        "Future-state and failure-path scenario testing",
+        "Evidence and reconciliation comparison",
+        "Operational replay for billing, rewards, expiry and settlement",
+        "Remediation plans backed by reproducible findings"
+      ],
+      "services": [
+        "Contract audit",
+        "System audit",
+        "Historical reconstruction",
+        "Replay engineering",
+        "Wallet and token forensics",
+        "Simulation",
+        "Reconciliation",
+        "Remediation planning"
+      ],
+      "modules": [
+        {
+          "name": "Blockchain Time Machine",
+          "description": "Historical replay of blocks, transactions, wallets, tokens and contract state."
+        },
+        {
+          "name": "Audit & Investigation",
+          "description": "Smart-contract, application, ledger and business-system auditing."
+        },
+        {
+          "name": "Simulation Laboratory",
+          "description": "Slow-motion, accelerated-time and future-state testing."
+        },
+        {
+          "name": "Wallet & Token Forensics",
+          "description": "Trace activity, balances, transfers, anomalies and behavioural history."
+        },
+        {
+          "name": "Evidence & Reconciliation",
+          "description": "Compare expected and actual state, preserve findings and reproduce faults."
+        },
+        {
+          "name": "Operational Replay",
+          "description": "Replay billing, settlement, rewards, expiry, renewals and administrative actions."
+        }
+      ],
+      "links": []
+    },
+    {
+      "id": "rose-onlyrose",
+      "name": "Rose / OnlyRose",
+      "type": "System",
+      "order": 4,
+      "category": "Creator & NFT Platform",
+      "status": "Platform development",
+      "summary": "A Solana NFT marketplace and creator platform combining collections, minting, subscriber content, trading and creator operations.",
+      "description": "Rose extends beyond a simple NFT gallery into collection creation, mint configuration, marketplace activity, creator channels, paid access, private media, community features and cashier-backed subscription flows.",
+      "problem": "Creators and NFT projects commonly depend on separate mint sites, marketplaces, subscription tools, chats, payment systems and administrative dashboards that do not share one identity or operating model.",
+      "solution": "A unified creator and NFT platform with wallet-aware access, collections, minting, marketplace features, subscriber channels, treasury fee handling and administrative controls.",
+      "image": "assets/projects/rose2.png",
+      "imageAlt": "Rose / OnlyRose project screen",
+      "imageFit": "cover",
+      "imagePosition": "center",
+      "gallery": [],
+      "cardTags": [
+        "Solana NFTs",
+        "Creator channels",
+        "Subscriptions"
+      ],
+      "stack": [
+        "React",
+        "TypeScript",
+        "Solana",
+        "Metaplex",
+        "Reown",
+        "PostgreSQL",
+        "Redis",
+        "MinIO",
+        "USDC"
+      ],
+      "capabilities": [
+        "Solana wallet and NFT ownership flows",
+        "Collection and Candy Machine creation",
+        "Public and subscriber-only media",
+        "Creator channels, chats, polls and events",
+        "Marketplace listing and sales analytics",
+        "Cross-chain purchase entry paths",
+        "Prepaid USDC creator subscriptions",
+        "Moderation and administration"
+      ],
+      "services": [
+        "Product architecture",
+        "NFT integration",
+        "Creator systems",
+        "Subscriptions",
+        "Marketplace UI",
+        "Moderation",
+        "Deployment"
+      ],
+      "links": [
+        {
+          "label": "Open Rose",
+          "url": "https://onlyrose-nft.hausserver.xyz",
+          "kind": "primary"
+        },
+        {
+          "label": "Documentation",
+          "url": "https://docs-onlyrose.hausserver.xyz",
+          "kind": "secondary"
+        }
+      ]
+    },
+    {
+      "id": "inhaus-deploylify",
+      "name": "InHaus Deploylify",
+      "type": "System",
+      "order": 5,
+      "category": "Deployment & Operations",
+      "status": "Operational control platform",
+      "summary": "A private control plane for deploying, documenting, enrolling and operating applications across managed nodes and Cloudflare routes.",
+      "description": "Deploylify manages projects, deployment packages, previews, tunnels, documentation and remote node enrolment from a controlled interface. It is an InHaus Technologies product, not the business identity.",
+      "problem": "Managing many applications across local machines, servers, containers, routes, backups and documentation becomes inconsistent when every project uses one-off deployment steps.",
+      "solution": "A private deployment control plane with repeatable project releases, standalone node enrolment, health checks, previews, documentation management, versioning and recovery-aware operations.",
+      "image": "assets/projects/deploylify.png",
+      "imageAlt": "InHaus Deploylify project screen",
+      "imageFit": "cover",
+      "imagePosition": "center",
+      "gallery": [],
+      "cardTags": [
+        "Control plane",
+        "Fleet operations",
+        "Documentation"
+      ],
+      "stack": [
+        "Node.js",
+        "Docker",
+        "Cloudflare",
+        "Caddy",
+        "Astro",
+        "Starlight",
+        "Linux",
+        "Bash"
+      ],
+      "capabilities": [
+        "Project and deployment management",
+        "Standalone node enrolment",
+        "Cloudflare tunnel and route controls",
+        "Application previews and project metadata",
+        "Versioning, upgrades and rollback paths",
+        "Integrated private and public documentation",
+        "Fleet and node administration",
+        "Backup-aware installers and diagnostics"
+      ],
+      "services": [
+        "Control-plane engineering",
+        "Deployment automation",
+        "Fleet operations",
+        "Documentation",
+        "Recovery tooling",
+        "Interface design"
+      ],
+      "links": [
+        {
+          "label": "Documentation",
+          "url": "https://docs-deploylify.inhaus.technology",
+          "kind": "primary"
+        }
+      ]
+    },
+    {
+      "id": "universal-usdc-cashier",
+      "name": "InHaus Universal USDC Cashier",
+      "type": "System",
+      "order": 1,
+      "category": "Financial Infrastructure",
+      "status": "Operational platform",
+      "summary": "A reusable multichain USDC cashier for deposits, account credits, reservations, settlement, sweeps, withdrawals and reconciliation.",
+      "description": "The Universal Cashier provides the financial operating layer repeatedly required by games, subscription products, creator platforms and transaction systems. It separates chain watchers, ledgers, execution, reconciliation and the user-facing Banker into controlled services.",
+      "problem": "Products that hold user credit need reliable deposit detection, internal balances, reserved funds, treasury movement, withdrawals and audit evidence. Rebuilding that financial plumbing inside every product creates inconsistent controls and difficult investigations.",
+      "solution": "A reusable cashier architecture with per-user deposit accounts, EVM and Solana watchers, available and reserved balances, policy-checked execution, reconciliation workers and a consistent Banker interface.",
+      "image": "assets/projects/universalusdc.png",
+      "imageAlt": "InHaus Universal USDC Cashier project screen",
+      "imageFit": "cover",
+      "imagePosition": "center",
+      "gallery": [],
+      "cardTags": [
+        "EVM + Solana",
+        "USDC ledger",
+        "Reconciliation"
+      ],
+      "stack": [
+        "Node.js",
+        "TypeScript",
+        "MongoDB",
+        "Redis",
+        "EVM",
+        "Solana",
+        "USDC",
+        "Caddy",
+        "Cloudflare"
+      ],
+      "capabilities": [
+        "Canonical USDC deposits across EVM and Solana",
+        "Per-user deposit account allocation",
+        "Available, reserved and settled balance states",
+        "Treasury-sponsored sweep execution",
+        "Signed and policy-checked withdrawals",
+        "Reconciliation and full-day operational audits",
+        "Application billing and prize settlement APIs",
+        "User-facing Banker and operator controls"
+      ],
+      "services": [
+        "Financial architecture",
+        "Ledger engineering",
+        "Multichain watchers",
+        "Execution workers",
+        "Reconciliation",
+        "Banker UI",
+        "Operations"
+      ],
+      "links": [
+        {
+          "label": "Open Universal Cashier",
+          "url": "https://banker.inhaus.technology",
+          "kind": "primary"
+        }
+      ]
+    },
+    {
+      "id": "forbidden-oasis-water",
+      "name": "Forbidden Oasis / WATER",
+      "type": "System",
+      "order": 6,
+      "category": "Token & Staking Ecosystem",
+      "status": "Mainnet product",
+      "summary": "A BNB Chain token and staking ecosystem with flexible and locked vaults, rewards, dividend handling, emergency exits and operating tools.",
+      "description": "Forbidden Oasis combines the WATER token, vault-based staking, flexible and locked positions, WATER and BNB reward handling, compounding, administrative boundaries, public documentation and supporting calculation tools.",
+      "problem": "Staking products require consistent accounting across principal, rewards, lock state, expiry, penalties, compounding and dividends while keeping maintenance roles separate from asset-control permissions.",
+      "solution": "A modular vault and controller architecture with explicit locked and flexible state, defined expiry behaviour, emergency-exit rules, maintenance-only operators and user-facing tools for inspecting outcomes.",
+      "image": "assets/projects/water.png",
+      "imageAlt": "Forbidden Oasis / WATER project screen",
+      "imageFit": "cover",
+      "imagePosition": "center",
+      "gallery": [],
+      "cardTags": [
+        "BNB Chain",
+        "Vault staking",
+        "Reward accounting"
+      ],
+      "stack": [
+        "Solidity",
+        "BNB Chain",
+        "React",
+        "Reown",
+        "Wagmi",
+        "Viem",
+        "Hardhat",
+        "Docker"
+      ],
+      "capabilities": [
+        "Flexible and locked staking vaults",
+        "WATER and BNB reward claiming",
+        "Reward compounding and lock management",
+        "Expiry movement from locked to flexible",
+        "Emergency exit and penalty accounting",
+        "Maintenance-only operator boundaries",
+        "Mainnet wallet experience",
+        "Public website, documentation and calculators"
+      ],
+      "services": [
+        "Contract architecture",
+        "Staking UI",
+        "Mainnet deployment",
+        "Wallet integration",
+        "Documentation",
+        "Testing tools"
+      ],
+      "links": [
+        {
+          "label": "Open Forbidden Oasis",
+          "url": "https://www2.forbidden-oasis.xyz",
+          "kind": "primary"
+        },
+          {
+            "label": "Open Staking App",
+            "url": "https://staking.forbidden-oasis.xyz",
+            "kind": "primary"
+          },
+            {
+              "label": "Open Documentation",
+              "url": "https://docs.forbidden-oasis.xyz",
+              "kind": "primary"
+            }
+      ]
+    },
+    {
+      "id": "cooking-solana",
+      "name": "Cooking Solana Trading System",
+      "type": "System",
+      "order": 7,
+      "category": "Trading Automation",
+      "status": "Active development",
+      "summary": "A Solana trading and automation system with connected-wallet testing, execution controls, observers, strategies and operational tooling.",
+      "description": "Cooking Solana brings quoting, execution, automation, persistent transaction observation and user-facing trading workflows into a controlled system with staged validation and recovery-aware releases.",
+      "problem": "Trading systems can appear correct in the interface while failing through quote handling, wallet sessions, transaction assembly, execution observation, API boundaries or incomplete production controls.",
+      "solution": "A layered trading system with authenticated access, controlled execution, transaction hardening, persistent observers, strategy modules, diagnostics and repeatable deployment phases.",
+      "image": "assets/projects/deviscooking.png",
+      "imageAlt": "Cooking Solana Trading System project screen",
+      "imageFit": "cover",
+      "imagePosition": "center",
+      "gallery": [],
+      "cardTags": [
+        "Solana",
+        "Execution",
+        "Automation"
+      ],
+      "stack": [
+        "Solana",
+        "React",
+        "TypeScript",
+        "Node.js",
+        "PostgreSQL",
+        "Redis",
+        "Docker",
+        "Reown"
+      ],
+      "capabilities": [
+        "Connected Solana wallet flows",
+        "Quote and execution pipelines",
+        "Persistent transaction observers",
+        "Strategy and automation modules",
+        "Allowlisted execution controls",
+        "Authenticated beta and admin access",
+        "Diagnostic and validation phases",
+        "Production deployment tooling"
+      ],
+      "services": [
+        "Trading architecture",
+        "Wallet integration",
+        "Execution engineering",
+        "Automation",
+        "Diagnostics",
+        "Deployment"
+      ],
+      "links": [
+        {
+          "label": "Open Site",
+          "url": "https://www.devis.cooking",
+          "kind": "primary"
+        },
+          {
+            "label": "Open Beta App",
+            "url": "https://betatesting.devis.cooking",
+            "kind": "primary"
+          },
+            {
+              "label": "Open Documentation",
+              "url": "https://docs.hausserver.xyz",
+              "kind": "primary"
+            }
+      ]
+    },
+    {
+      "id": "memopoly",
+      "name": "Memopoly",
+      "type": "Gaming",
+      "order": 8,
+      "category": "Multiplayer Strategy Game",
+      "status": "EVM and Solana editions",
+      "summary": "A server-authoritative multiplayer crypto property strategy game with persistent rooms, accounts, Banker balances, staked play and settlement.",
+      "description": "Memopoly implements a complete 40-space property-board economy with lobbies, reconnects, trades, auctions, cards, buildings, bankruptcy, history, administration and independent EVM and Solana funded-play systems.",
+      "problem": "A real multiplayer board game requires authoritative rules, concurrent state, reconnect behaviour, financial reservations, settlement, account security and operational controls beyond the board interface.",
+      "solution": "A tested server-authoritative game engine with persistent rooms and accounts, responsive board interfaces, protected Banker flows and separate EVM and Solana product deployments.",
+      "image": "assets/projects/memopoly.png",
+      "imageAlt": "Memopoly project screen",
+      "imageFit": "cover",
+      "imagePosition": "center",
+      "gallery": [],
+      "cardTags": [
+        "40-space board",
+        "Multiplayer",
+        "EVM + Solana"
+      ],
+      "stack": [
+        "React",
+        "TypeScript",
+        "Node.js",
+        "MongoDB",
+        "Redis",
+        "Reown",
+        "EVM",
+        "Solana",
+        "USDC"
+      ],
+      "capabilities": [
+        "Server-authoritative 40-space game engine",
+        "Multiplayer rooms, lobby and reconnect flows",
+        "Trading, auctions, buildings, cards and bankruptcy",
+        "Free Play and funded Staked Play modes",
+        "Wallet and account linking",
+        "Per-player Banker deposit accounts",
+        "Reserved seat funds and winner settlement",
+        "Hall of Fame, history and protected admin tools"
+      ],
+      "services": [
+        "Game architecture",
+        "Rule engine",
+        "Multiplayer state",
+        "Cashier integration",
+        "Responsive UI",
+        "Settlement",
+        "Operations"
+      ],
+      "links": [
+        {
+          "label": "Open Memopoly",
+          "url": "https://memopoly.hausserver.xyz",
+          "kind": "primary"
+        },
+        {
+          "label": "Solana edition",
+          "url": "https://sol.memopoly.hausserver.xyz",
+          "kind": "secondary"
+        }
+      ]
+    },
+    {
+      "id": "deal-or-no-deal",
+      "name": "Deal or No Deal",
+      "type": "Gaming",
+      "order": 9,
+      "category": "Community Game Platform",
+      "status": "Product development",
+      "summary": "A community game platform with animated case play, Banker offers, accounts, leaderboards, wallet sessions, sound and Telegram integration.",
+      "description": "The Deal or No Deal system turns the game-show format into a responsive application with case state, offer logic, account sessions, wallet and Telegram identity, cashier access, administration and a dedicated live-game stage.",
+      "problem": "A convincing game-show product needs coordinated animation, sound, game state, offer calculations, identity, balances and responsive layouts across desktop and mobile.",
+      "solution": "A purpose-built game interface and service layer with a clear game stage, Banker workflow, reusable account systems, leaderboard state and community entry paths.",
+      "image": "assets/projects/dnd.png",
+      "imageAlt": "Deal or No Deal project screen",
+      "imageFit": "cover",
+      "imagePosition": "center",
+      "gallery": [],
+      "cardTags": [
+        "Game stage",
+        "Banker offers",
+        "Telegram"
+      ],
+      "stack": [
+        "React",
+        "TypeScript",
+        "Node.js",
+        "MongoDB",
+        "Framer Motion",
+        "Reown",
+        "Viem",
+        "Telegram Web Apps"
+      ],
+      "capabilities": [
+        "Animated case-selection game stage",
+        "Banker offers and round progression",
+        "Player accounts and wallet sessions",
+        "Leaderboard and game history",
+        "Cashier and balance access",
+        "Sound and motion systems",
+        "Telegram Web App integration",
+        "Responsive mobile game controls"
+      ],
+      "services": [
+        "Game UI",
+        "State management",
+        "Account systems",
+        "Wallet integration",
+        "Animation",
+        "Sound",
+        "Administration"
+      ],
+      "links": []
+    },
+    {
+      "id": "dual-chain-roulette",
+      "name": "Dual-Chain Roulette / Spin & Win",
+      "type": "Gaming",
+      "order": 10,
+      "category": "Real-Time Roulette Game",
+      "status": "System development",
+      "summary": "A dual-chain roulette and spin platform with real-time rounds, bet validation, wallet-aware play, settlement and operator controls.",
+      "description": "The roulette system combines a live wheel and betting table with server-controlled rounds, player balances, chain-aware payment paths, result settlement, history and administrative operations.",
+      "problem": "Roulette requires synchronized timers, locked betting windows, authoritative outcomes, exact settlement, reconnect behaviour and a presentation that remains readable during live rounds.",
+      "solution": "A real-time game system separating visual wheel animation from authoritative round state, bet validation, settlement and operational controls across supported chain environments.",
+      "image": "assets/projects/spin.png",
+      "imageAlt": "Dual-Chain Roulette / Spin & Win project screen",
+      "imageFit": "cover",
+      "imagePosition": "center",
+      "gallery": [],
+      "cardTags": [
+        "Real-time rounds",
+        "Dual-chain",
+        "Settlement"
+      ],
+      "stack": [
+        "React",
+        "TypeScript",
+        "Node.js",
+        "WebSockets",
+        "PostgreSQL",
+        "Redis",
+        "EVM",
+        "Solana"
+      ],
+      "capabilities": [
+        "Real-time round and countdown state",
+        "Roulette wheel and betting-table interface",
+        "Server-authoritative bet validation",
+        "Wallet-aware player sessions",
+        "Dual-chain payment architecture",
+        "Result history and settlement records",
+        "Responsive live-game layout",
+        "Operator and diagnostic controls"
+      ],
+      "services": [
+        "Game architecture",
+        "Real-time state",
+        "Wallet flows",
+        "Settlement",
+        "Responsive UI",
+        "Operations"
+      ],
+      "links": []
+    }
+  ]
+}

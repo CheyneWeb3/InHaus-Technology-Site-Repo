@@ -1,0 +1,27 @@
+INHAUS TECHNOLOGIES BUSINESS SITE v1.6.2
+NETLIFY DEPLOYMENT CONSISTENCY FIX
+
+PASS: npm run check completed.
+PASS: Source CSS and built CSS are byte-for-byte identical.
+PASS: Source JavaScript and built JavaScript are byte-for-byte identical.
+PASS: Production HTML references content-hashed CSS and JavaScript assets.
+PASS: Production HTML contains no ./src/styles.css or ./src/main.js references.
+PASS: Netlify _headers file disables caching for HTML, projects.json and build.json.
+PASS: Content-hashed CSS and JavaScript use immutable cache headers.
+PASS: 7 main projects and 3 games validated.
+PASS: Projects appear before Games.
+PASS: InHaus Auditing Suite appears once and replaces the two obsolete separate audit entries.
+PASS: Desktop Project grid remains four columns.
+PASS: Normal content shell keeps 32px desktop side padding.
+PASS: Projects and Games use the wider controlled catalogue shell.
+PASS: Project card title, description, chip and action rows remain uniform.
+PASS: Desktop project detail modal uses almost the full viewport height.
+PASS: Real project images are read only from public/projects.json.
+PASS: Project and game image filenames are pre-wired to public/assets/projects/.
+PASS: Missing user-supplied image files are hidden cleanly until added.
+PASS: No Docker or Compose files are included.
+
+ROOT CAUSE CORRECTED:
+The earlier deployment used the same CSS and JavaScript URLs after every release. A browser or CDN could therefore combine new HTML with an older cached stylesheet. The production build now generates new content-hashed asset filenames whenever CSS or JavaScript changes.
+
+PASS: Approved hero option 4 is present: Technology built beyond the interface.

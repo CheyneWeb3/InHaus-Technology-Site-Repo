@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="64" viewBox="0 0 520 64" role="img" aria-labelledby="title">
+  <title id="title">InHaus Technologies</title>
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#8ac7ff"/>
+      <stop offset="1" stop-color="#378fff"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#g)" d="M4 29 29 7l25 22v28H37V42H21v15H4V29Zm10 4v15h3V33h24v15h3V33L29 20 14 33Z"/>
+  <circle cx="49" cy="10" r="5" fill="#8ac7ff"/>
+  <text x="70" y="42" fill="#f4f8ff" font-family="Segoe UI,Arial,sans-serif" font-size="33" font-weight="760" letter-spacing="-1.4">InHaus</text>
+  <text x="184" y="42" fill="#a9bcd4" font-family="Segoe UI,Arial,sans-serif" font-size="33" font-weight="350" letter-spacing="-1.2">Technologies</text>
+</svg>

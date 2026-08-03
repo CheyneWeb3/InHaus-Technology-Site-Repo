@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://inhaus.technology/projects.schema.json",
+  "title": "InHaus Technologies Project Catalogue",
+  "type": "object",
+  "required": ["version", "projects"],
+  "properties": {
+    "version": { "type": "string" },
+    "imageHelp": { "type": "object" },
+    "projects": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/project" }
+    }
+  },
+  "$defs": {
+    "link": {
+      "type": "object",
+      "required": ["label", "url"],
+      "properties": {
+        "label": { "type": "string" },
+        "url": { "type": "string" },
+        "kind": { "enum": ["primary", "secondary"] }
+      },
+      "additionalProperties": true
+    },
+    "galleryItem": {
+      "oneOf": [
+        { "type": "string" },
+        {
+          "type": "object",
+          "required": ["src"],
+          "properties": {
+            "src": { "type": "string" },
+            "alt": { "type": "string" },
+            "caption": { "type": "string" }
+          },
+          "additionalProperties": true
+        }
+      ]
+    },
+    "project": {
+      "type": "object",
+      "required": ["id", "name", "type", "order", "category", "summary", "description"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+        "name": { "type": "string" },
+        "type": { "enum": ["System", "Gaming"] },
+        "order": { "type": "integer", "minimum": 1 },
+        "category": { "type": "string" },
+        "status": { "type": "string" },
+        "summary": { "type": "string" },
+        "description": { "type": "string" },
+        "problem": { "type": "string" },
+        "solution": { "type": "string" },
+        "image": { "type": "string" },
+        "imageAlt": { "type": "string" },
+        "imageFit": { "enum": ["cover", "contain", "fill", "scale-down"] },
+        "imagePosition": { "type": "string" },
+        "gallery": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/galleryItem" }
+        },
+        "cardTags": { "type": "array", "items": { "type": "string" } },
+        "stack": { "type": "array", "items": { "type": "string" } },
+        "capabilities": { "type": "array", "items": { "type": "string" } },
+        "services": { "type": "array", "items": { "type": "string" } },
+        "links": { "type": "array", "items": { "$ref": "#/$defs/link" } }
+      },
+      "additionalProperties": true
+    }
+  }
+}
