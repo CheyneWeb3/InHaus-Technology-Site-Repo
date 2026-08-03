@@ -1,5 +1,12 @@
-# InHaus Technology Business Site v1.7.14
+# InHaus Technology Business Site v1.7.16
 
+
+## v1.7.16 mobile FAQ visibility
+
+- The FAQ section is no longer hidden behind the generic mobile “Read more” section control.
+- All FAQ question rows remain visible on phones and small screens.
+- Each question continues to expand and collapse independently through its existing FAQ control.
+- Other text-heavy mobile sections retain their condensed “Read more” behaviour.
 
 ## v1.7.14 modal gallery navigation
 
@@ -112,3 +119,7 @@ Drag the contents of `dist/`, or use the prepared ZIP inside `deploy/`.
 The production build includes the canonical `https://inhaus.technology/` URL, sitemap, robots file, web manifest, Organization/WebSite/WebPage/ItemList/FAQPage structured data, full Open Graph metadata and an X/Twitter `summary_large_image` card.
 
 See `SEO-AND-SOCIAL.md`.
+
+## Mobile FAQ behaviour
+
+The FAQ section is intentionally excluded from the general mobile section-condensation controls. Its heading, commercial policy panel and all question rows remain visible on mobile. Each FAQ answer is collapsed by default and opens independently through its own question row.

@@ -587,7 +587,7 @@ function setupMobileSections() {
   const targetsFor = (button) => String(button.dataset.mobileToggle || "")
     .split(/\s+/)
     .map((id) => document.getElementById(id))
-    .filter(Boolean);
+    .filter((target) => target && !target.closest("[data-mobile-always-visible=\"true\"]"));
 
   const renderButton = (button, expanded) => {
     const label = qs(".mobile-section-toggle-label", button);

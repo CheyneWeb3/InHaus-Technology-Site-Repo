@@ -1331,9 +1331,8 @@ p { color: var(--muted); }
   }
   .mobile-section-expanded { margin-top: 24px; }
   .hero-summary.mobile-section-expanded { margin-top: 0; }
-  .faq-commercial.mobile-section-expanded { margin-top: 24px; }
-  .faq-grid.mobile-section-expanded { margin-top: 16px; }
-
+  .faq-intro-layout { gap: 20px; margin-bottom: 20px; }
+  .faq-commercial { padding: 22px 20px; }
   .faq-grid { grid-template-columns: 1fr; }
   .faq-item summary { min-height: 70px; padding: 17px 18px; }
   .faq-answer { padding: 0 18px 19px; }
@@ -1452,4 +1451,22 @@ p { color: var(--muted); }
   }
   .network-canvas { display: none; }
   .reveal-pending { opacity: 1 !important; transform: none !important; filter: none !important; }
+}
+
+/* FAQ is already an accordion. On mobile the section itself always remains visible;
+   only each native <details> answer expands and collapses. */
+@media (max-width: 720px) {
+  .faq-section[data-mobile-always-visible="true"] .faq-intro-layout,
+  .faq-section[data-mobile-always-visible="true"] .faq-commercial,
+  .faq-section[data-mobile-always-visible="true"] .faq-grid {
+    display: grid;
+  }
+
+  .faq-section[data-mobile-always-visible="true"] .faq-commercial {
+    display: block;
+  }
+
+  .faq-section[data-mobile-always-visible="true"] .faq-grid {
+    grid-template-columns: 1fr;
+  }
 }

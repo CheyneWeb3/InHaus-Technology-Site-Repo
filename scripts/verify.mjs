@@ -136,13 +136,35 @@ if (!html.includes("Does InHaus Technology join project teams or work for future
 }
 if (!html.includes('data-mobile-toggle="capabilityContent"') ||
     !html.includes('data-mobile-toggle="auditModules"') ||
-    !html.includes('data-mobile-toggle="processGrid"') ||
-    !html.includes('data-mobile-toggle="faqCommercial faqGrid"')) {
+    !html.includes('data-mobile-toggle="processGrid"')) {
   throw new Error("Mobile section-condensation controls are missing");
+}
+if (html.includes('data-mobile-toggle="faqCommercial faqGrid"') ||
+    html.includes('class="faq-commercial mobile-section-target"') ||
+    html.includes('class="faq-grid mobile-section-target"')) {
+  throw new Error("FAQ rows must remain directly visible on mobile; only each FAQ answer may collapse");
+}
+if (!html.includes('id="faq" data-mobile-always-visible="true"')) {
+  throw new Error("FAQ section must be explicitly excluded from the mobile section-condensation system");
+}
+const faqSectionMatch = html.match(/<section class="section-pad faq-section"[\s\S]*?<\/section>/);
+if (!faqSectionMatch) throw new Error("FAQ section HTML could not be isolated");
+const faqSectionHtml = faqSectionMatch[0];
+if (faqSectionHtml.includes('mobile-section-toggle') ||
+    faqSectionHtml.includes('data-mobile-toggle=') ||
+    faqSectionHtml.includes('mobile-section-target') ||
+    /Read the FAQs/i.test(faqSectionHtml)) {
+  throw new Error("FAQ must not have an outer mobile Read more/collapse control");
+}
+if (/<details class="faq-item"[^>]*\sopen(?:\s|>)/.test(faqSectionHtml)) {
+  throw new Error("FAQ answers must remain individually collapsed by default");
 }
 if (!builtCss.includes(".mobile-interface-ready .mobile-section-toggle") ||
     !builtJs.includes("setupMobileSections")) {
   throw new Error("Mobile Read more interface was not included in the production build");
+}
+if (!/@media \(max-width: 720px\)[\s\S]*?\.faq-grid \{ grid-template-columns: 1fr; \}/.test(builtCss)) {
+  throw new Error("Mobile FAQ rows are not configured as a directly visible single-column list");
 }
 if (!html.includes("USDC") || !html.includes("Scope of Works")) throw new Error("Required FAQ commercial terms are missing");
 if (!html.includes("Why can a project be completed quickly when the quoted cost is substantial?") || !html.includes("23 years of technical experience")) {
@@ -217,7 +239,7 @@ const requiredInteractionMarkers = [
   'id="scrollProgress"',
   'class="hero-highlight"',
   'data-mobile-toggle="capabilityContent"',
-  'data-mobile-toggle="faqCommercial faqGrid"'
+  'id="faqGrid"'
 ];
 for (const marker of requiredInteractionMarkers) {
   if (!html.includes(marker)) throw new Error(`Required production interaction marker missing: ${marker}`);

@@ -1,4 +1,4 @@
-INHAUS TECHNOLOGY v1.7.14 VALIDATION
+INHAUS TECHNOLOGY v1.7.16 VALIDATION
 
 PASS: npm run build
 PASS: npm run verify
@@ -8,7 +8,7 @@ PASS: About details use a mobile Read more control
 PASS: Capabilities use a mobile Explore capabilities control
 PASS: Audit modules use a mobile Read more control
 PASS: Process uses a mobile Read the process control
-PASS: FAQ commercial panel and questions use a mobile Read the FAQs control
+PASS: FAQ question rows remain directly visible on mobile and each answer expands independently
 PASS: Project and game cards remain image-led on mobile
 PASS: Mobile project descriptions are clamped and tag clutter is hidden
 PASS: Desktop and tablet content remains fully expanded
