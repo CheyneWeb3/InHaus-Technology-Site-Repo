@@ -595,7 +595,7 @@
     },
     {
       "id": "dual-chain-roulette",
-      "name": "Dual-Chain Roulette / Spin & Win",
+      "name": "DeFi Spin & Win (BETA)",
       "type": "Gaming",
       "order": 10,
       "category": "Real-Time Roulette Game",
@@ -642,7 +642,14 @@
         "Responsive UI",
         "Operations"
       ],
-      "links": [],
+      "links": [
+
+          {
+            "label": "Open DeFi Spin n Win",
+            "url": "https://spin-n-win.devis.cooking",
+            "kind": "primary"
+          }
+      ],
       "imageFallback": "assets/projects/spin.png"
     }
   ]
