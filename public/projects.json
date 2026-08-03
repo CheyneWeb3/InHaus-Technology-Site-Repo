@@ -604,7 +604,7 @@
       "description": "The roulette system combines a live wheel and betting table with server-controlled rounds, player balances, chain-aware payment paths, result settlement, history and administrative operations.",
       "problem": "Roulette requires synchronized timers, locked betting windows, authoritative outcomes, exact settlement, reconnect behaviour and a presentation that remains readable during live rounds.",
       "solution": "A real-time game system separating visual wheel animation from authoritative round state, bet validation, settlement and operational controls across supported chain environments.",
-      "image": "assets/projects/spin.webp",
+      "image": "assets/projects/spinspin.png",
       "imageAlt": "Dual-Chain Roulette / Spin & Win project screen",
       "imageFit": "cover",
       "imagePosition": "center",
