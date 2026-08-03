@@ -1,4 +1,4 @@
-INHAUS TECHNOLOGIES v1.7.10 VALIDATION
+INHAUS TECHNOLOGY v1.7.12 VALIDATION
 
 PASS: npm run build
 PASS: npm run verify
@@ -13,7 +13,15 @@ PASS: Project and game cards remain image-led on mobile
 PASS: Mobile project descriptions are clamped and tag clutter is hidden
 PASS: Desktop and tablet content remains fully expanded
 PASS: Full content remains available when JavaScript is unavailable
+PASS: FAQ contains 14 visible items
+PASS: FAQPage structured data contains 14 matching Question items
+PASS: Earlier team-collaboration FAQ retained as its own item
+PASS: Future-promises policy retained as a separate additional item
 PASS: Funded engagement FAQ restored as a separate policy
+PASS: Company name is InHaus Technology throughout source and production output
+PASS: Header/footer SVG visibly reads InHaus Technology
+PASS: Social sharing card visibly reads InHaus Technology
+PASS: Obsolete plural InHaus Technologies branding is absent
 PASS: InHaus does not join teams or commit development resources for future promises alone
 PASS: External team collaboration remains available under a funded commercial agreement
 PASS: Optional success participation never replaces funded engineering fees

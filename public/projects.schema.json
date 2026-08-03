@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://inhaus.technology/projects.schema.json",
-  "title": "InHaus Technologies Project Catalogue",
+  "title": "InHaus Technology Project Catalogue",
   "type": "object",
   "required": [
     "version",

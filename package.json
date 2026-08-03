@@ -1,9 +1,9 @@
 {
-  "name": "inhaus-technologies-business-site",
-  "version": "1.7.10",
+  "name": "inhaus-technology-business-site",
+  "version": "1.7.12",
   "private": true,
   "type": "module",
-  "description": "Static JSON-driven InHaus Technologies business, project and gaming site.",
+  "description": "Static JSON-driven InHaus Technology business, project and gaming site.",
   "scripts": {
     "dev": "node scripts/serve.mjs --root . --port 49215",
     "build": "node scripts/build.mjs",

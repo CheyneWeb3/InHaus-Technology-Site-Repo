@@ -127,7 +127,7 @@ server.on("error", (error) => {
 
 server.listen(port, host, () => {
   console.log("");
-  console.log("InHaus Technologies site is running");
+  console.log("InHaus Technology site is running");
   console.log(`Open: http://localhost:${port}`);
   console.log(`Serving: ${root}`);
   console.log("Press Ctrl+C to stop.");

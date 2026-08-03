@@ -425,7 +425,7 @@
       "category": "Deployment & Operations",
       "status": "Operational control platform",
       "summary": "A private control plane for deploying, documenting, enrolling and operating applications across managed nodes and Cloudflare routes.",
-      "description": "Deploylify manages projects, deployment packages, previews, tunnels, documentation and remote node enrolment from a controlled interface. It is an InHaus Technologies product, not the business identity.",
+      "description": "Deploylify manages projects, deployment packages, previews, tunnels, documentation and remote node enrolment from a controlled interface. It is an InHaus Technology product, not the business identity.",
       "problem": "Managing many applications across local machines, servers, containers, routes, backups and documentation becomes inconsistent when every project uses one-off deployment steps.",
       "solution": "A private deployment control plane with repeatable project releases, standalone node enrolment, health checks, previews, documentation management, versioning and recovery-aware operations.",
       "image": "assets/projects/deploylify.webp",

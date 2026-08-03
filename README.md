@@ -1,9 +1,19 @@
-# InHaus Technologies Business Site v1.7.10
+# InHaus Technology Business Site v1.7.12
+
+
+## v1.7.12 FAQ preservation and company-name correction
+
+- Restores the earlier “Can InHaus Technology join our team or collaborate for future value?” FAQ as its own item.
+- Keeps the newer “Does InHaus Technology join project teams or work for future promises?” policy as a separate additional item.
+- The FAQ now contains 14 visible questions and 14 matching FAQPage structured-data entries.
+- No prior FAQ was removed or rewritten to make room for the new policy.
+- Corrects the company name throughout the site from “InHaus Technologies” to **“InHaus Technology.”**
+- Corrects the visible header/footer SVG logo, metadata, structured data, manifest, social card and repository naming.
 
 
 ## v1.7.10 funded engagement clarification
 
-- Restores the FAQ policy that InHaus Technologies does not join project teams or commit development resources for future promises alone.
+- Restores the FAQ policy that InHaus Technology does not join project teams or commit development resources for future promises alone.
 - Confirms that exposure, future token value, equity, revenue, launch proceeds or success-based compensation do not replace funded engineering fees.
 - Clarifies that InHaus can work alongside a client team as an external development and project-delivery partner.
 - Keeps optional success participation available only as a separately negotiated written addition to the retainer, Scope of Works and development fees.
@@ -27,11 +37,11 @@
 - Cards load their WebP images eagerly and only use the matching local PNG if the WebP request genuinely fails.
 - `npm run check` fails when any project image is missing, is not a valid WebP, or is absent from the production build.
 
-Static, JSON-driven InHaus Technologies company site with full editable source and a built Netlify-ready `dist/`.
+Static, JSON-driven InHaus Technology company site with full editable source and a built Netlify-ready `dist/`.
 
 ## Production presentation
 
-- Company-first InHaus Technologies identity
+- Company-first InHaus Technology identity
 - Hero: “Technology built beyond the interface.”
 - Animated technical network canvas with restrained InHaus blue motion
 - Scroll progress indicator and active navigation state

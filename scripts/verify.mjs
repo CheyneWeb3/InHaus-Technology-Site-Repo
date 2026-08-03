@@ -46,7 +46,7 @@ await access(path.join(dist, "sitemap.xml"));
 await access(path.join(dist, "site.webmanifest"));
 await access(path.join(dist, "favicon.ico"));
 await access(path.join(dist, "apple-touch-icon.png"));
-await access(path.join(dist, "assets", "social", "inhaus-technologies-social-card.png"));
+await access(path.join(dist, "assets", "social", "inhaus-technology-social-card.png"));
 
 const builtCss = await readFile(builtCssPath, "utf8");
 const builtJs = await readFile(builtJsPath, "utf8");
@@ -60,18 +60,28 @@ ${builtJs}`.toLowerCase().includes(forbiddenColour.toLowerCase())) {
 }
 if (builtJs !== sourceJs) throw new Error("Built JavaScript differs from source JavaScript");
 if (html.includes("./src/styles.css") || html.includes("./src/main.js")) throw new Error("Built HTML still references source assets");
+for (const obsoleteBrand of ["InHaus Technologies", "INHAUS TECHNOLOGIES", "inhaus-technologies"]) {
+  if (html.includes(obsoleteBrand)) throw new Error(`Obsolete plural company name remains in production HTML: ${obsoleteBrand}`);
+}
+const primaryBrandSvg = await readFile(path.join(dist, "assets", "inhaus-technology.svg"), "utf8");
+const socialBrandSvg = await readFile(path.join(dist, "assets", "social", "inhaus-technology-social-card.svg"), "utf8");
+for (const [label, svg] of [["primary logo", primaryBrandSvg], ["social card", socialBrandSvg]]) {
+  if (!svg.includes(">Technology<") || svg.includes(">Technologies<")) {
+    throw new Error(`Incorrect visible company name in ${label} SVG`);
+  }
+}
 
 const requiredSeo = [
-  '<title>InHaus Technologies | Software, Blockchain &amp; Systems</title>',
+  '<title>InHaus Technology | Software, Blockchain &amp; Systems</title>',
   '<link rel="canonical" href="https://inhaus.technology/" />',
   '<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />',
   '<meta property="og:type" content="website" />',
   '<meta property="og:url" content="https://inhaus.technology/" />',
-  '<meta property="og:image" content="https://inhaus.technology/assets/social/inhaus-technologies-social-card.png" />',
+  '<meta property="og:image" content="https://inhaus.technology/assets/social/inhaus-technology-social-card.png" />',
   '<meta property="og:image:width" content="1200" />',
   '<meta property="og:image:height" content="630" />',
   '<meta name="twitter:card" content="summary_large_image" />',
-  '<meta name="twitter:image" content="https://inhaus.technology/assets/social/inhaus-technologies-social-card.png" />',
+  '<meta name="twitter:image" content="https://inhaus.technology/assets/social/inhaus-technology-social-card.png" />',
   '"@type": "Organization"',
   '"@type": "WebSite"',
   '"@type": "WebPage"',
@@ -88,10 +98,10 @@ if (!robots.includes('Sitemap: https://inhaus.technology/sitemap.xml')) throw ne
 const sitemap = await readFile(path.join(dist, "sitemap.xml"), "utf8");
 if (!sitemap.includes('<loc>https://inhaus.technology/</loc>')) throw new Error('sitemap.xml is missing the canonical site URL');
 const manifest = JSON.parse(await readFile(path.join(dist, "site.webmanifest"), "utf8"));
-if (manifest.name !== 'InHaus Technologies' || !Array.isArray(manifest.icons) || manifest.icons.length < 2) {
+if (manifest.name !== 'InHaus Technology' || !Array.isArray(manifest.icons) || manifest.icons.length < 2) {
   throw new Error('site.webmanifest is incomplete');
 }
-const socialPng = await readFile(path.join(dist, "assets", "social", "inhaus-technologies-social-card.png"));
+const socialPng = await readFile(path.join(dist, "assets", "social", "inhaus-technology-social-card.png"));
 if (socialPng.toString('ascii', 1, 4) !== 'PNG') throw new Error('Social card is not a PNG');
 const socialWidth = socialPng.readUInt32BE(16);
 const socialHeight = socialPng.readUInt32BE(20);
@@ -114,12 +124,12 @@ if (!html.includes("Current projects.")) throw new Error("Current projects headi
 if (!html.includes('id="faq"') || !html.includes("Funded engineering first. Optional participation by agreement.")) {
   throw new Error("FAQ section or updated commercial engagement statement is missing");
 }
-if (!html.includes("Does InHaus Technologies request a participation in projects it helps build?") ||
+if (!html.includes("Does InHaus Technology request a participation in projects it helps build?") ||
     !html.includes("There is <strong>no obligation to accept</strong>") ||
     !html.includes("separate from the retainer, Scope of Works and development fees")) {
   throw new Error("Optional project-participation FAQ is missing or incomplete");
 }
-if (!html.includes("Does InHaus Technologies join project teams or work for future promises?") ||
+if (!html.includes("Does InHaus Technology join project teams or work for future promises?") ||
     !html.includes("does not join project teams or commit development resources") ||
     !html.includes("never a replacement for—funded engineering fees")) {
   throw new Error("Funded engagement and no-future-promises FAQ is missing or incomplete");
@@ -138,7 +148,7 @@ if (!html.includes("USDC") || !html.includes("Scope of Works")) throw new Error(
 if (!html.includes("Why can a project be completed quickly when the quoted cost is substantial?") || !html.includes("23 years of technical experience")) {
   throw new Error("FAQ value and delivery-speed explanation is missing");
 }
-if (!html.includes("Does InHaus Technologies use AI?") || !html.includes("AI is like a baseball bat")) {
+if (!html.includes("Does InHaus Technology use AI?") || !html.includes("AI is like a baseball bat")) {
   throw new Error("FAQ AI-use explanation or analogy is missing");
 }
 if (html.includes("Systems and products.")) throw new Error("Obsolete products wording remains");
@@ -218,4 +228,12 @@ console.log(`${systems.length} projects, ${games.length} games`);
 console.log("All 10 project and game cards reference valid content-hashed WebP files with local fallbacks.");
 console.log("Project order is locked; Projects precede Games; projects.json is the single catalogue source.");
 console.log("SEO verified: canonical, robots, sitemap, manifest, structured data, Open Graph and X/Twitter 1200x630 card.");
+
+if (!html.includes('Does InHaus Technology join project teams or work for future promises?')) fail('Funded engagement FAQ missing from production HTML');
+if (!html.includes('Can InHaus Technology join our team or collaborate for future value?')) fail('Earlier team collaboration FAQ missing from production HTML');
+const visibleFaqCount = (html.match(/<details class="faq-item">/g) || []).length;
+if (visibleFaqCount !== 14) fail(`Expected 14 visible FAQ items, found ${visibleFaqCount}`);
+const faqQuestionCount = (html.match(/"@type": "Question"/g) || []).length;
+if (faqQuestionCount !== 14) fail(`Expected 14 FAQPage Question entries, found ${faqQuestionCount}`);
+
 console.log("Production interactions verified: canvas network, reveals, pointer highlights, scroll progress and responsive modal scrolling.");

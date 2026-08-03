@@ -11,10 +11,10 @@ const required = [
   "src/styles.css",
   "public/projects.json",
   "public/projects.schema.json",
-  "public/assets/inhaus-technologies.svg",
+  "public/assets/inhaus-technology.svg",
   "public/assets/inhaus-mark.svg",
   "public/assets/projects/README.txt",
-  "public/assets/social/inhaus-technologies-social-card.png",
+  "public/assets/social/inhaus-technology-social-card.png",
   "public/site.webmanifest",
   "public/sitemap.xml",
   "public/robots.txt",
@@ -143,7 +143,7 @@ const projectSchema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
   "@id": "https://inhaus.technology/#current-projects",
-  name: "Current InHaus Technologies projects",
+  name: "Current InHaus Technology projects",
   numberOfItems: sortedCatalogue.length,
   itemListElement: sortedCatalogue.map((project, index) => ({
     "@type": "ListItem",
@@ -170,7 +170,7 @@ builtHtml = builtHtml.replace(
 );
 builtHtml = builtHtml.replace(
   "</head>",
-  `  <meta name="inhaus-build" content="1.7.10-${digest(sourceCss + sourceJs)}" />\n</head>`
+  `  <meta name="inhaus-build" content="1.7.12-${digest(sourceCss + sourceJs)}" />\n</head>`
 );
 
 if (builtHtml.includes("./src/styles.css") || builtHtml.includes("./src/main.js")) {
@@ -214,8 +214,8 @@ await writeFile(path.join(dist, "_headers"), `
 `.trimStart());
 
 const build = {
-  name: "InHaus Technologies Business Site",
-  version: "1.7.10",
+  name: "InHaus Technology Business Site",
+  version: "1.7.12",
   builtAt: new Date().toISOString(),
   entries: catalogue.projects.length,
   projects: catalogue.projects.filter((project) => project.type === "System").length,
