@@ -88,7 +88,7 @@
       "description": "Forbidden Oasis combines the WATER token, vault-based staking, flexible and locked positions, WATER and BNB reward handling, compounding, administrative boundaries, public documentation and supporting calculation tools.",
       "problem": "Staking products require consistent accounting across principal, rewards, lock state, expiry, penalties, compounding and dividends while keeping maintenance roles separate from asset-control permissions.",
       "solution": "A modular vault and controller architecture with explicit locked and flexible state, defined expiry behaviour, emergency-exit rules, maintenance-only operators and user-facing tools for inspecting outcomes.",
-      "image": "assets/projects/water.webp",
+      "image": "assets/projects/water.png",
       "imageAlt": "Forbidden Oasis / WATER project screen",
       "imageFit": "cover",
       "imagePosition": "center",
