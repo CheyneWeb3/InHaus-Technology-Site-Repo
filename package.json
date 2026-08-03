@@ -1,6 +1,6 @@
 {
   "name": "inhaus-technologies-business-site",
-  "version": "1.6.2",
+  "version": "1.6.3",
   "private": true,
   "type": "module",
   "description": "Static JSON-driven InHaus Technologies business, project and gaming site.",

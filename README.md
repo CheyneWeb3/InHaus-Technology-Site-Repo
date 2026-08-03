@@ -1,4 +1,4 @@
-# InHaus Technologies Business Site v1.6.2
+# InHaus Technologies Business Site v1.6.3
 
 This is the maintained v1.6 site with the approved hero option 4, deployment-safe hashed assets, and JSON-wired project and game image filenames. The page structure, Projects, Games, capabilities, footer and InHaus Auditing Suite remain unchanged.
 

@@ -1,5 +1,5 @@
 {
-  "version": "1.6.0",
+  "version": "1.6.3",
   "imageHelp": {
     "localExample": "assets/projects/project-name.webp",
     "externalExample": "https://example.com/project-screen.webp",
@@ -13,7 +13,6 @@
     ]
   },
   "projects": [
-
     {
       "id": "foxyswap-trade",
       "name": "FoxySwap Trade",
@@ -166,7 +165,7 @@
       "description": "Rose extends beyond a simple NFT gallery into collection creation, mint configuration, marketplace activity, creator channels, paid access, private media, community features and cashier-backed subscription flows.",
       "problem": "Creators and NFT projects commonly depend on separate mint sites, marketplaces, subscription tools, chats, payment systems and administrative dashboards that do not share one identity or operating model.",
       "solution": "A unified creator and NFT platform with wallet-aware access, collections, minting, marketplace features, subscriber channels, treasury fee handling and administrative controls.",
-      "image": "assets/projects/rose2.png",
+      "image": "assets/projects/rose.webp",
       "imageAlt": "Rose / OnlyRose project screen",
       "imageFit": "cover",
       "imagePosition": "center",
@@ -390,16 +389,16 @@
           "url": "https://www2.forbidden-oasis.xyz",
           "kind": "primary"
         },
-          {
-            "label": "Open Staking App",
-            "url": "https://staking.forbidden-oasis.xyz",
-            "kind": "primary"
-          },
-            {
-              "label": "Open Documentation",
-              "url": "https://docs.forbidden-oasis.xyz",
-              "kind": "primary"
-            }
+        {
+          "label": "Open Staking App",
+          "url": "https://staking.forbidden-oasis.xyz",
+          "kind": "primary"
+        },
+        {
+          "label": "Open Documentation",
+          "url": "https://docs.forbidden-oasis.xyz",
+          "kind": "primary"
+        }
       ]
     },
     {
@@ -457,16 +456,16 @@
           "url": "https://www.devis.cooking",
           "kind": "primary"
         },
-          {
-            "label": "Open Beta App",
-            "url": "https://betatesting.devis.cooking",
-            "kind": "primary"
-          },
-            {
-              "label": "Open Documentation",
-              "url": "https://docs.hausserver.xyz",
-              "kind": "primary"
-            }
+        {
+          "label": "Open Beta App",
+          "url": "https://betatesting.devis.cooking",
+          "kind": "primary"
+        },
+        {
+          "label": "Open Documentation",
+          "url": "https://docs.hausserver.xyz",
+          "kind": "primary"
+        }
       ]
     },
     {

@@ -1,8 +1,7 @@
 node_modules/
 .DS_Store
 *.log
-deploy/InHaus-Technologies-v1.6.2-NETLIFY-DIST.zip
-/dist
-BUILD-AND-PREVIEW.bat
+/deploy
 current site.zip
-deploy/InHaus-Technologies-v1.6.2-NETLIFY-DIST.sha256
+BUILD-AND-PREVIEW.bat
+/dist
