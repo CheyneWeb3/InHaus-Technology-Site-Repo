@@ -1,4 +1,14 @@
-# InHaus Technology Business Site v1.7.12
+# InHaus Technology Business Site v1.7.13
+
+
+## v1.7.13 roulette link and verifier correction
+
+- Preserves the user-edited game name **DeFi Spin & Win (BETA)**.
+- Adds the public game link `https://spin-n-win.devis.cooking`.
+- Fixes the Netlify failure caused by `verify.mjs` comparing editable display names instead of stable project IDs.
+- Project and game order is now validated by the permanent `id` fields and numeric `order` values.
+- Removes the obsolete Yarn lockfile so Netlify uses the committed npm lockfile without mixed-package-manager warnings.
+- Repairs the FAQ-count checks so they throw normal verification errors instead of calling an undefined helper.
 
 
 ## v1.7.12 FAQ preservation and company-name correction
@@ -73,7 +83,7 @@ Games remain separate and follow Projects:
 
 1. Memopoly
 2. Deal or No Deal
-3. Dual-Chain Roulette / Spin & Win
+3. DeFi Spin & Win (BETA)
 
 ## Run
 

@@ -1,4 +1,4 @@
-INHAUS TECHNOLOGY v1.7.12 VALIDATION
+INHAUS TECHNOLOGY v1.7.13 VALIDATION
 
 PASS: npm run build
 PASS: npm run verify
@@ -46,6 +46,11 @@ PASS: 7 project order locked:
   6 InHaus Auditing Suite
   7 InHaus Deploylify
 PASS: Games remain separate after Projects
+PASS: Game ordering validated by stable IDs rather than editable display names
+PASS: DeFi Spin & Win (BETA) name preserved
+PASS: DeFi Spin & Win public link preserved
+PASS: Netlify uses npm only; obsolete Yarn lockfile removed
+PASS: FAQ count checks use defined verification errors
 PASS: projects.json is the single catalogue source
 PASS: 10/10 project and game cards use valid WebP primary images
 PASS: Production projects.json references content-hashed WebP filenames

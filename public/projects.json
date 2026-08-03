@@ -1,5 +1,5 @@
 {
-  "version": "1.7.9",
+  "version": "1.7.13",
   "imageHelp": {
     "localExample": "assets/projects/project-name.webp",
     "externalExample": "https://example.com/project-screen.webp",
@@ -642,7 +642,6 @@
         "Responsive UI",
         "Operations"
       ],
-
       "links": [
         {
           "label": "Open DeFi Spin n Win",

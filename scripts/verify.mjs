@@ -165,24 +165,30 @@ for (const oldName of ["Blockchain Time Machine & Replay Laboratory", "Audit & I
 }
 
 const expectedProjectOrder = [
-  "Rose / OnlyRose",
-  "Forbidden Oasis / WATER",
-  "Cooking Solana Trading System",
-  "FoxySwap Trade",
-  "InHaus Universal USDC Cashier",
-  "InHaus Auditing Suite",
-  "InHaus Deploylify"
+  "rose-onlyrose",
+  "forbidden-oasis-water",
+  "cooking-solana",
+  "foxyswap-trade",
+  "universal-usdc-cashier",
+  "inhaus-auditing-suite",
+  "inhaus-deploylify"
 ];
 const actualProjectOrder = [...systems]
   .sort((a, b) => a.order - b.order)
-  .map((project) => project.name);
+  .map((project) => project.id);
 if (JSON.stringify(actualProjectOrder) !== JSON.stringify(expectedProjectOrder)) {
-  throw new Error(`Incorrect project order: ${actualProjectOrder.join(" -> ")}`);
+  throw new Error(`Incorrect project order by stable ID: ${actualProjectOrder.join(" -> ")}`);
 }
-const expectedGameOrder = ["Memopoly", "Deal or No Deal", "Dual-Chain Roulette / Spin & Win"];
-const actualGameOrder = [...games].sort((a, b) => a.order - b.order).map((project) => project.name);
+const expectedGameOrder = ["memopoly", "deal-or-no-deal", "dual-chain-roulette"];
+const actualGameOrder = [...games]
+  .sort((a, b) => a.order - b.order)
+  .map((project) => project.id);
 if (JSON.stringify(actualGameOrder) !== JSON.stringify(expectedGameOrder)) {
-  throw new Error(`Incorrect game order: ${actualGameOrder.join(" -> ")}`);
+  throw new Error(`Incorrect game order by stable ID: ${actualGameOrder.join(" -> ")}`);
+}
+const roulette = catalogue.projects.find((project) => project.id === "dual-chain-roulette");
+if (!roulette?.links?.some((link) => link.url === "https://spin-n-win.devis.cooking")) {
+  throw new Error("DeFi Spin & Win public link is missing from the roulette project entry");
 }
 if (html.includes('id="projectCatalogue"')) throw new Error("Built HTML still embeds a duplicate project catalogue");
 if (!builtJs.includes('fetch("./projects.json"')) throw new Error("Built JavaScript does not load projects.json as the single source");
@@ -220,20 +226,23 @@ for (const marker of ["setupHeroNetwork", "setupRevealElements", "setupPointerGl
   if (!builtJs.includes(marker)) throw new Error(`Required production interaction code missing: ${marker}`);
 }
 
+if (!html.includes('Does InHaus Technology join project teams or work for future promises?')) {
+  throw new Error('Funded engagement FAQ missing from production HTML');
+}
+if (!html.includes('Can InHaus Technology join our team or collaborate for future value?')) {
+  throw new Error('Earlier team collaboration FAQ missing from production HTML');
+}
+const visibleFaqCount = (html.match(/<details class="faq-item">/g) || []).length;
+if (visibleFaqCount !== 14) throw new Error(`Expected 14 visible FAQ items, found ${visibleFaqCount}`);
+const faqQuestionCount = (html.match(/"@type": "Question"/g) || []).length;
+if (faqQuestionCount !== 14) throw new Error(`Expected 14 FAQPage Question entries, found ${faqQuestionCount}`);
+
 const sha = (text) => createHash("sha256").update(text).digest("hex").slice(0, 12);
 console.log("DIST VERIFICATION PASSED");
 console.log(`CSS ${cssMatch[1]} (${sha(builtCss)})`);
 console.log(`JS  ${jsMatch[1]} (${sha(builtJs)})`);
 console.log(`${systems.length} projects, ${games.length} games`);
 console.log("All 10 project and game cards reference valid content-hashed WebP files with local fallbacks.");
-console.log("Project order is locked; Projects precede Games; projects.json is the single catalogue source.");
+console.log("Project and game order is verified by stable IDs; display names and links can be edited without false order failures.");
 console.log("SEO verified: canonical, robots, sitemap, manifest, structured data, Open Graph and X/Twitter 1200x630 card.");
-
-if (!html.includes('Does InHaus Technology join project teams or work for future promises?')) fail('Funded engagement FAQ missing from production HTML');
-if (!html.includes('Can InHaus Technology join our team or collaborate for future value?')) fail('Earlier team collaboration FAQ missing from production HTML');
-const visibleFaqCount = (html.match(/<details class="faq-item">/g) || []).length;
-if (visibleFaqCount !== 14) fail(`Expected 14 visible FAQ items, found ${visibleFaqCount}`);
-const faqQuestionCount = (html.match(/"@type": "Question"/g) || []).length;
-if (faqQuestionCount !== 14) fail(`Expected 14 FAQPage Question entries, found ${faqQuestionCount}`);
-
 console.log("Production interactions verified: canvas network, reveals, pointer highlights, scroll progress and responsive modal scrolling.");
