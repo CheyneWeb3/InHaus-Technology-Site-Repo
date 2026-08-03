@@ -1,4 +1,14 @@
-# InHaus Technologies Business Site v1.7.8
+# InHaus Technologies Business Site v1.7.9
+
+
+## v1.7.9 mobile interface condensation
+
+- Mobile visitors see the heading and a short summary first instead of every detail at once.
+- Hero services, About details, Capabilities, Audit modules, Process and the full FAQ expand through accessible Read more controls.
+- Project and game cards remain visible and image-led, with shorter mobile summaries and hidden tag clutter.
+- Desktop and tablet layouts remain fully expanded.
+- The complete content remains visible when JavaScript is unavailable.
+- Commercial FAQ now explains that InHaus may propose an optional success participation on any project; acceptance is never automatic and all figures remain negotiable.
 
 
 ## v1.7.8 project image correction

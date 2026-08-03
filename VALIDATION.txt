@@ -1,7 +1,21 @@
-INHAUS TECHNOLOGIES v1.7.8 VALIDATION
+INHAUS TECHNOLOGIES v1.7.9 VALIDATION
 
 PASS: npm run build
 PASS: npm run verify
+PASS: Mobile interface condensed below 720px
+PASS: Hero services use an accessible mobile reveal control
+PASS: About details use a mobile Read more control
+PASS: Capabilities use a mobile Explore capabilities control
+PASS: Audit modules use a mobile Read more control
+PASS: Process uses a mobile Read the process control
+PASS: FAQ commercial panel and questions use a mobile Read the FAQs control
+PASS: Project and game cards remain image-led on mobile
+PASS: Mobile project descriptions are clamped and tag clutter is hidden
+PASS: Desktop and tablet content remains fully expanded
+PASS: Full content remains available when JavaScript is unavailable
+PASS: Optional success participation FAQ added
+PASS: Participation is expressly no-obligation and negotiable
+PASS: Participation remains separate from retainer, Scope of Works and development fees
 PASS: Technology built beyond the interface hero retained
 PASS: HTML5 canvas network animation
 PASS: Scroll progress and active navigation
@@ -9,10 +23,8 @@ PASS: Staggered reveal animations
 PASS: Pointer-aware card highlights and image motion
 PASS: Reduced-motion accessibility
 PASS: Small-screen and short-height modal scrolling
-PASS: Commercial FAQ section with payments, retainer, scope, delivery, value versus speed, AI use, ethics and partnership policy
-PASS: Paid engineering, not speculative participation statement
 PASS: Blue-only interface palette; no mint/green UI token
-PASS: Current Projects heading replaces products wording
+PASS: Current Projects heading retained
 PASS: 7 project order locked:
   1 Rose / OnlyRose
   2 Forbidden Oasis / WATER
@@ -23,21 +35,14 @@ PASS: 7 project order locked:
   7 InHaus Deploylify
 PASS: Games remain separate after Projects
 PASS: projects.json is the single catalogue source
+PASS: 10/10 project and game cards use valid WebP primary images
+PASS: Production projects.json references content-hashed WebP filenames
+PASS: Each card includes a matching local fallback
 PASS: canonical https://inhaus.technology/
 PASS: robots index/follow directive
-PASS: robots.txt with absolute sitemap URL
-PASS: sitemap.xml
+PASS: robots.txt and sitemap.xml
 PASS: Web app manifest and browser icons
 PASS: Organization, WebSite, WebPage, ItemList and FAQPage JSON-LD
-PASS: Open Graph large image metadata
-PASS: X/Twitter summary_large_image metadata
-PASS: Social card is a 1200 x 630 PNG
-PASS: Hashed production CSS and JavaScript
+PASS: Open Graph and X/Twitter 1200x630 social card
+PASS: Hashed production CSS, JavaScript and project media
 PASS: Netlify cache-control headers
-
-
-WEBP PROJECT MEDIA
-- 10/10 project and game cards use valid WebP primary images.
-- Production projects.json references content-hashed WebP filenames.
-- Each card includes a matching local PNG fallback.
-- HTTP verification: every content-hashed WebP returned 200 image/webp.

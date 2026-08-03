@@ -528,77 +528,6 @@ function openFromHash() {
   if (match) openProject(match[1], false);
 }
 
-function setupMobileSections() {
-  const buttons = qsa("[data-mobile-toggle]");
-  if (!buttons.length) return;
-
-  const mobileQuery = window.matchMedia("(max-width: 720px)");
-  document.documentElement.classList.add("mobile-interface-ready");
-
-  const targetsFor = (button) => String(button.dataset.mobileToggle || "")
-    .split(/\s+/)
-    .map((id) => document.getElementById(id))
-    .filter(Boolean);
-
-  const renderButton = (button, expanded) => {
-    const label = qs(".mobile-section-toggle-label", button);
-    const icon = qs(".mobile-section-toggle-icon", button);
-    const collapsedLabel = button.dataset.collapsedLabel || "Read more";
-    const expandedLabel = button.dataset.expandedLabel || "Show less";
-
-    button.setAttribute("aria-expanded", String(expanded));
-    if (label) label.textContent = expanded ? expandedLabel : collapsedLabel;
-    if (icon) icon.textContent = expanded ? "−" : "+";
-    button.classList.toggle("is-expanded", expanded);
-  };
-
-  const applyState = (button, expanded, animate = false) => {
-    button.dataset.mobileExpanded = String(expanded);
-    renderButton(button, expanded);
-
-    targetsFor(button).forEach((target) => {
-      if (!mobileQuery.matches) {
-        target.hidden = false;
-        target.classList.remove("mobile-section-expanded", "mobile-section-reveal");
-        return;
-      }
-
-      target.hidden = !expanded;
-      target.classList.toggle("mobile-section-expanded", expanded);
-      if (expanded && animate) {
-        target.classList.remove("mobile-section-reveal");
-        requestAnimationFrame(() => target.classList.add("mobile-section-reveal"));
-      } else {
-        target.classList.remove("mobile-section-reveal");
-      }
-    });
-  };
-
-  buttons.forEach((button) => {
-    button.dataset.mobileExpanded = "false";
-    button.addEventListener("click", () => {
-      if (!mobileQuery.matches) return;
-      const expanded = button.dataset.mobileExpanded === "true";
-      applyState(button, !expanded, true);
-    });
-  });
-
-  const sync = () => {
-    buttons.forEach((button) => {
-      const expanded = button.dataset.mobileExpanded === "true";
-      applyState(button, expanded, false);
-    });
-  };
-
-  if (typeof mobileQuery.addEventListener === "function") {
-    mobileQuery.addEventListener("change", sync);
-  } else {
-    mobileQuery.addListener(sync);
-  }
-
-  sync();
-}
-
 function setupNavigation() {
   const button = qs("#menuButton");
   const nav = qs("#siteNav");
@@ -642,7 +571,6 @@ function setupControls() {
 async function start() {
   qs("#year").textContent = String(new Date().getFullYear());
   setupNavigation();
-  setupMobileSections();
   setupControls();
   setupScrollEffects();
   setupActiveNavigation();

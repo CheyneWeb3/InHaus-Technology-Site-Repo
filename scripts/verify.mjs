@@ -111,7 +111,24 @@ if (!/scroll-padding-top:\s*var\(--anchor-offset\)/.test(builtCss) || !/scroll-m
 }
 
 if (!html.includes("Current projects.")) throw new Error("Current projects heading is missing");
-if (!html.includes('id="faq"') || !html.includes("Paid engineering, not speculative participation.")) throw new Error("FAQ section or commercial engagement statement is missing");
+if (!html.includes('id="faq"') || !html.includes("Funded engineering first. Optional participation by agreement.")) {
+  throw new Error("FAQ section or updated commercial engagement statement is missing");
+}
+if (!html.includes("Does InHaus Technologies request a participation in projects it helps build?") ||
+    !html.includes("There is <strong>no obligation to accept</strong>") ||
+    !html.includes("separate from the retainer, Scope of Works and development fees")) {
+  throw new Error("Optional project-participation FAQ is missing or incomplete");
+}
+if (!html.includes('data-mobile-toggle="capabilityContent"') ||
+    !html.includes('data-mobile-toggle="auditModules"') ||
+    !html.includes('data-mobile-toggle="processGrid"') ||
+    !html.includes('data-mobile-toggle="faqCommercial faqGrid"')) {
+  throw new Error("Mobile section-condensation controls are missing");
+}
+if (!builtCss.includes(".mobile-interface-ready .mobile-section-toggle") ||
+    !builtJs.includes("setupMobileSections")) {
+  throw new Error("Mobile Read more interface was not included in the production build");
+}
 if (!html.includes("USDC") || !html.includes("Scope of Works")) throw new Error("Required FAQ commercial terms are missing");
 if (!html.includes("Why can a project be completed quickly when the quoted cost is substantial?") || !html.includes("23 years of technical experience")) {
   throw new Error("FAQ value and delivery-speed explanation is missing");
@@ -166,7 +183,9 @@ const requiredCss = [
   /@media \(max-width: 900px\), \(max-height: 820px\)[\s\S]*?\.project-detail\s*\{[\s\S]*?overflow-y:\s*auto/,
   /\.faq-grid\s*\{[^}]*grid-template-columns:\s*repeat\(2/s,
   /\.faq-item summary\s*\{/,
-  /@media \(prefers-reduced-motion: reduce\)/
+  /@media \(prefers-reduced-motion: reduce\)/,
+  /\.mobile-interface-ready \.mobile-section-toggle/,
+  /-webkit-line-clamp:\s*3/
 ];
 for (const rule of requiredCss) {
   if (!rule.test(builtCss)) throw new Error(`Required layout rule missing: ${rule}`);
@@ -175,12 +194,14 @@ for (const rule of requiredCss) {
 const requiredInteractionMarkers = [
   'id="networkCanvas"',
   'id="scrollProgress"',
-  'class="hero-highlight"'
+  'class="hero-highlight"',
+  'data-mobile-toggle="capabilityContent"',
+  'data-mobile-toggle="faqCommercial faqGrid"'
 ];
 for (const marker of requiredInteractionMarkers) {
   if (!html.includes(marker)) throw new Error(`Required production interaction marker missing: ${marker}`);
 }
-for (const marker of ["setupHeroNetwork", "setupRevealElements", "setupPointerGlow", "setupScrollEffects"]) {
+for (const marker of ["setupHeroNetwork", "setupRevealElements", "setupPointerGlow", "setupScrollEffects", "setupMobileSections"]) {
   if (!builtJs.includes(marker)) throw new Error(`Required production interaction code missing: ${marker}`);
 }
 
