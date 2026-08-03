@@ -642,13 +642,13 @@
         "Responsive UI",
         "Operations"
       ],
-      "links": [
 
-          {
-            "label": "Open DeFi Spin n Win",
-            "url": "https://spin-n-win.devis.cooking",
-            "kind": "primary"
-          }
+      "links": [
+        {
+          "label": "Open DeFi Spin n Win",
+          "url": "https://spin-n-win.devis.cooking",
+          "kind": "primary"
+        }
       ],
       "imageFallback": "assets/projects/spin.png"
     }
