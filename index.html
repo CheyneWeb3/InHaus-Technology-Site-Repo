@@ -4,18 +4,105 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#06111f" />
-  <meta name="description" content="InHaus Technologies designs, builds, audits and improves applications, blockchain systems, financial infrastructure, deployment platforms and interactive products." />
-  <meta property="og:title" content="InHaus Technologies" />
-  <meta property="og:description" content="Applications, infrastructure, auditing and technical investigation built as complete operating systems." />
+  <meta name="application-name" content="InHaus Technologies" />
+  <meta name="description" content="InHaus Technologies designs, develops, audits and improves software, blockchain, financial infrastructure, deployment and real-time systems." />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <link rel="canonical" href="https://inhaus.technology/" />
+  <link rel="alternate" hreflang="en-AU" href="https://inhaus.technology/" />
+  <link rel="alternate" hreflang="x-default" href="https://inhaus.technology/" />
+
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="./assets/inhaus-mark.svg" />
-  <meta name="twitter:card" content="summary" />
+  <meta property="og:locale" content="en_AU" />
+  <meta property="og:site_name" content="InHaus Technologies" />
+  <meta property="og:url" content="https://inhaus.technology/" />
+  <meta property="og:title" content="Technology built beyond the interface. | InHaus Technologies" />
+  <meta property="og:description" content="Software, blockchain, auditing and infrastructure engineering across complete digital systems." />
+  <meta property="og:image" content="https://inhaus.technology/assets/social/inhaus-technologies-social-card.png" />
+  <meta property="og:image:secure_url" content="https://inhaus.technology/assets/social/inhaus-technologies-social-card.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="InHaus Technologies — Technology built beyond the interface." />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Technology built beyond the interface. | InHaus Technologies" />
+  <meta name="twitter:description" content="Software, blockchain, auditing and infrastructure engineering across complete digital systems." />
+  <meta name="twitter:image" content="https://inhaus.technology/assets/social/inhaus-technologies-social-card.png" />
+  <meta name="twitter:image:alt" content="InHaus Technologies — Technology built beyond the interface." />
+
+  <link rel="icon" href="./favicon.ico" sizes="any" />
   <link rel="icon" href="./assets/inhaus-mark.svg" type="image/svg+xml" />
+  <link rel="icon" href="./favicon-32x32.png" type="image/png" sizes="32x32" />
+  <link rel="icon" href="./favicon-16x16.png" type="image/png" sizes="16x16" />
+  <link rel="apple-touch-icon" href="./apple-touch-icon.png" sizes="180x180" />
+  <link rel="manifest" href="./site.webmanifest" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://inhaus.technology/#organization",
+        "name": "InHaus Technologies",
+        "url": "https://inhaus.technology/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://inhaus.technology/assets/inhaus-mark.svg"
+        },
+        "image": "https://inhaus.technology/assets/social/inhaus-technologies-social-card.png",
+        "email": "inhausdevs@gmail.com",
+        "sameAs": [
+          "https://github.com/cheyneweb3"
+        ],
+        "description": "InHaus Technologies designs, develops, audits and improves software, blockchain, financial infrastructure, deployment and real-time systems.",
+        "knowsAbout": [
+          "Full-stack software engineering",
+          "Blockchain applications",
+          "Smart contracts",
+          "Financial infrastructure",
+          "Technical auditing",
+          "Blockchain replay and simulation",
+          "Deployment systems",
+          "Real-time gaming systems"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://inhaus.technology/#website",
+        "url": "https://inhaus.technology/",
+        "name": "InHaus Technologies",
+        "publisher": { "@id": "https://inhaus.technology/#organization" },
+        "inLanguage": "en-AU"
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://inhaus.technology/#webpage",
+        "url": "https://inhaus.technology/",
+        "name": "InHaus Technologies | Software, Blockchain & Systems",
+        "isPartOf": { "@id": "https://inhaus.technology/#website" },
+        "about": { "@id": "https://inhaus.technology/#organization" },
+        "primaryImageOfPage": {
+          "@type": "ImageObject",
+          "url": "https://inhaus.technology/assets/social/inhaus-technologies-social-card.png",
+          "width": 1200,
+          "height": 630
+        },
+        "description": "Software, blockchain, auditing and infrastructure engineering across complete digital systems.",
+        "inLanguage": "en-AU"
+      }
+    ]
+  }
+  </script>
+  <!-- BUILD:PROJECT_SCHEMA -->
+
   <link rel="stylesheet" href="./src/styles.css" />
-  <title>InHaus Technologies</title>
+  <title>InHaus Technologies | Software, Blockchain &amp; Systems</title>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
   <header class="site-header" id="top">
     <div class="header-shell">
@@ -40,10 +127,12 @@
 
   <main id="main">
     <section class="hero section-pad">
+      <canvas class="network-canvas" id="networkCanvas" aria-hidden="true"></canvas>
+      <div class="hero-grid" aria-hidden="true"></div>
       <div class="content-shell hero-layout">
         <div class="hero-copy">
           <p class="eyebrow">INHAUS TECHNOLOGIES</p>
-          <h1>Technology built beyond the interface.</h1>
+          <h1>Technology built <span class="hero-highlight">beyond the interface.</span></h1>
           <p class="hero-lead">InHaus Technologies develops the services, infrastructure, contracts, controls and operational systems behind complete products.</p>
           <div class="hero-actions">
             <a class="button button-primary" href="#projects">View Projects</a>
@@ -152,9 +241,9 @@
       <div class="catalogue-shell">
         <div class="catalogue-heading">
           <div>
-            <p class="eyebrow">PROJECTS</p>
-            <h2>Systems and products.</h2>
-            <p>Selected InHaus Technologies platforms and systems, presented by their operating purpose and delivery scope.</p>
+            <p class="eyebrow">CURRENT PROJECTS</p>
+            <h2>Current projects.</h2>
+            <p>Selected projects built by InHaus Technologies, presented by their purpose, engineering scope and delivery.</p>
           </div>
           <label class="search-control">
             <span class="sr-only">Search projects</span>
@@ -176,8 +265,8 @@
         <div class="catalogue-heading games-heading">
           <div>
             <p class="eyebrow">GAMES</p>
-            <h2>Gaming products and real-time systems.</h2>
-            <p>A separate catalogue of multiplayer, community and real-time gaming systems developed as complete products.</p>
+            <h2>Gaming projects and real-time systems.</h2>
+            <p>A separate catalogue of multiplayer, community and real-time gaming projects developed as complete systems.</p>
           </div>
         </div>
 
@@ -254,7 +343,7 @@
     </div>
   </footer>
 
-  <dialog class="project-dialog" id="projectDialog" aria-labelledby="dialogTitle">
+  <dialog class="project-dialog" id="projectDialog" aria-labelledby="dialogTitle" aria-modal="true">
     <article class="project-detail" id="projectDetail"></article>
     <button class="dialog-close" id="dialogClose" type="button" aria-label="Close project details">×</button>
   </dialog>

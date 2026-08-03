@@ -7,6 +7,228 @@ const state = {
   query: ""
 };
 
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+let revealObserver;
+
+function setupScrollEffects() {
+  const progress = qs("#scrollProgress");
+  const header = qs(".site-header");
+  let scheduled = false;
+
+  const update = () => {
+    const scrollable = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    const ratio = Math.min(1, Math.max(0, window.scrollY / scrollable));
+    progress?.style.setProperty("transform", `scaleX(${ratio})`);
+    header?.classList.toggle("is-scrolled", window.scrollY > 18);
+    scheduled = false;
+  };
+
+  const requestUpdate = () => {
+    if (scheduled) return;
+    scheduled = true;
+    requestAnimationFrame(update);
+  };
+
+  update();
+  window.addEventListener("scroll", requestUpdate, { passive: true });
+  window.addEventListener("resize", requestUpdate, { passive: true });
+}
+
+function setupRevealElements(root = document) {
+  if (reduceMotion.matches || !("IntersectionObserver" in window)) return;
+
+  if (!revealObserver) {
+    revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.remove("reveal-pending");
+        entry.target.classList.add("reveal-visible");
+        observer.unobserve(entry.target);
+      });
+    }, { rootMargin: "0px 0px -8%", threshold: 0.08 });
+  }
+
+  const candidates = qsa([
+    ".about-layout > *",
+    ".section-heading",
+    ".audit-intro",
+    ".capability-card",
+    ".audit-module-grid article",
+    ".project-card",
+    ".game-card",
+    ".process-grid article",
+    ".contact-layout > *",
+    ".footer-main > *"
+  ].join(","), root);
+
+  candidates.forEach((element, index) => {
+    if (element.dataset.revealReady === "true") return;
+    element.dataset.revealReady = "true";
+    element.style.setProperty("--reveal-delay", `${Math.min(index % 4, 3) * 65}ms`);
+    element.classList.add("reveal-pending");
+    revealObserver.observe(element);
+  });
+}
+
+function setupPointerGlow(root = document) {
+  if (reduceMotion.matches) return;
+  const candidates = qsa([
+    ".capability-card",
+    ".audit-module-grid article",
+    ".project-card",
+    ".game-card",
+    ".process-grid article",
+    ".contact-panel"
+  ].join(","), root);
+
+  candidates.forEach((element) => {
+    if (element.dataset.pointerGlow === "true") return;
+    element.dataset.pointerGlow = "true";
+    element.classList.add("pointer-glow");
+    element.addEventListener("pointermove", (event) => {
+      const bounds = element.getBoundingClientRect();
+      element.style.setProperty("--glow-x", `${event.clientX - bounds.left}px`);
+      element.style.setProperty("--glow-y", `${event.clientY - bounds.top}px`);
+    }, { passive: true });
+  });
+}
+
+function setupActiveNavigation() {
+  if (!("IntersectionObserver" in window)) return;
+  const links = qsa('.site-nav a[href^="#"]');
+  const sections = links
+    .map((link) => qs(link.getAttribute("href")))
+    .filter(Boolean);
+
+  const byId = new Map(links.map((link) => [link.getAttribute("href").slice(1), link]));
+  const observer = new IntersectionObserver((entries) => {
+    const visible = entries
+      .filter((entry) => entry.isIntersecting)
+      .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+    if (!visible) return;
+    links.forEach((link) => link.classList.remove("active"));
+    const active = byId.get(visible.target.id);
+    active?.classList.add("active");
+  }, { rootMargin: "-24% 0px -62%", threshold: [0.05, 0.2, 0.45] });
+
+  sections.forEach((section) => observer.observe(section));
+}
+
+function setupHeroNetwork() {
+  const canvas = qs("#networkCanvas");
+  const hero = qs(".hero");
+  if (!canvas || !hero) return;
+  const context = canvas.getContext("2d");
+  if (!context) return;
+
+  let width = 0;
+  let height = 0;
+  let dpr = 1;
+  let points = [];
+  let frame = 0;
+  let visible = true;
+  const pointer = { x: 0, y: 0, active: false };
+
+  const createPoints = () => {
+    const count = Math.max(18, Math.min(54, Math.round((width * height) / 30000)));
+    points = Array.from({ length: count }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      vx: (Math.random() - 0.5) * 0.18,
+      vy: (Math.random() - 0.5) * 0.18,
+      size: 0.7 + Math.random() * 1.35
+    }));
+  };
+
+  const resize = () => {
+    const bounds = hero.getBoundingClientRect();
+    width = Math.max(1, bounds.width);
+    height = Math.max(1, bounds.height);
+    dpr = Math.min(window.devicePixelRatio || 1, 1.6);
+    canvas.width = Math.round(width * dpr);
+    canvas.height = Math.round(height * dpr);
+    canvas.style.width = `${width}px`;
+    canvas.style.height = `${height}px`;
+    context.setTransform(dpr, 0, 0, dpr, 0, 0);
+    createPoints();
+  };
+
+  const draw = () => {
+    context.clearRect(0, 0, width, height);
+    for (let i = 0; i < points.length; i += 1) {
+      const point = points[i];
+      if (!reduceMotion.matches) {
+        point.x += point.vx;
+        point.y += point.vy;
+        if (point.x < -10) point.x = width + 10;
+        if (point.x > width + 10) point.x = -10;
+        if (point.y < -10) point.y = height + 10;
+        if (point.y > height + 10) point.y = -10;
+      }
+
+      for (let j = i + 1; j < points.length; j += 1) {
+        const other = points[j];
+        const dx = point.x - other.x;
+        const dy = point.y - other.y;
+        const distance = Math.hypot(dx, dy);
+        if (distance > 145) continue;
+        context.strokeStyle = `rgba(92, 171, 255, ${0.11 * (1 - distance / 145)})`;
+        context.lineWidth = 0.8;
+        context.beginPath();
+        context.moveTo(point.x, point.y);
+        context.lineTo(other.x, other.y);
+        context.stroke();
+      }
+
+      if (pointer.active) {
+        const distance = Math.hypot(point.x - pointer.x, point.y - pointer.y);
+        if (distance < 190) {
+          context.strokeStyle = `rgba(101, 243, 177, ${0.22 * (1 - distance / 190)})`;
+          context.lineWidth = 1;
+          context.beginPath();
+          context.moveTo(point.x, point.y);
+          context.lineTo(pointer.x, pointer.y);
+          context.stroke();
+        }
+      }
+
+      context.fillStyle = `rgba(142, 202, 255, ${0.38 + point.size * 0.1})`;
+      context.beginPath();
+      context.arc(point.x, point.y, point.size, 0, Math.PI * 2);
+      context.fill();
+    }
+  };
+
+  const animate = () => {
+    if (visible && document.visibilityState === "visible") draw();
+    frame = requestAnimationFrame(animate);
+  };
+
+  hero.addEventListener("pointermove", (event) => {
+    const bounds = hero.getBoundingClientRect();
+    pointer.x = event.clientX - bounds.left;
+    pointer.y = event.clientY - bounds.top;
+    pointer.active = true;
+  }, { passive: true });
+  hero.addEventListener("pointerleave", () => { pointer.active = false; }, { passive: true });
+
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; }, { threshold: 0 });
+    observer.observe(hero);
+  }
+
+  resize();
+  draw();
+  if (!reduceMotion.matches) animate();
+  window.addEventListener("resize", resize, { passive: true });
+  window.addEventListener("beforeunload", () => cancelAnimationFrame(frame), { once: true });
+}
+
+function enhanceInterface(root = document) {
+  setupRevealElements(root);
+  setupPointerGlow(root);
+}
+
 function escapeHtml(value = "") {
   return String(value)
     .replaceAll("&", "&amp;")
@@ -161,6 +383,8 @@ function renderCatalogues() {
 
   bindCards(projectGrid);
   bindCards(gameGrid);
+  enhanceInterface(projectGrid);
+  enhanceInterface(gameGrid);
 
   const projectMore = qs("#projectMore");
   projectMore.hidden = Boolean(state.query) || allSystems.length <= 4;
@@ -323,6 +547,10 @@ async function start() {
   qs("#year").textContent = String(new Date().getFullYear());
   setupNavigation();
   setupControls();
+  setupScrollEffects();
+  setupActiveNavigation();
+  setupHeroNetwork();
+  enhanceInterface(document);
 
   try {
     state.projects = await loadCatalogue();

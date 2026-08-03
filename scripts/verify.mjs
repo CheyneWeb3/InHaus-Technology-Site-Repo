@@ -19,13 +19,58 @@ const builtJsPath = path.join(dist, "assets", jsMatch[1]);
 await access(builtCssPath);
 await access(builtJsPath);
 await access(path.join(dist, "_headers"));
+await access(path.join(dist, "robots.txt"));
+await access(path.join(dist, "sitemap.xml"));
+await access(path.join(dist, "site.webmanifest"));
+await access(path.join(dist, "favicon.ico"));
+await access(path.join(dist, "apple-touch-icon.png"));
+await access(path.join(dist, "assets", "social", "inhaus-technologies-social-card.png"));
 
 const builtCss = await readFile(builtCssPath, "utf8");
 const builtJs = await readFile(builtJsPath, "utf8");
 if (builtCss !== sourceCss) throw new Error("Built CSS differs from source CSS");
 if (builtJs !== sourceJs) throw new Error("Built JavaScript differs from source JavaScript");
 if (html.includes("./src/styles.css") || html.includes("./src/main.js")) throw new Error("Built HTML still references source assets");
+
+const requiredSeo = [
+  '<title>InHaus Technologies | Software, Blockchain &amp; Systems</title>',
+  '<link rel="canonical" href="https://inhaus.technology/" />',
+  '<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />',
+  '<meta property="og:type" content="website" />',
+  '<meta property="og:url" content="https://inhaus.technology/" />',
+  '<meta property="og:image" content="https://inhaus.technology/assets/social/inhaus-technologies-social-card.png" />',
+  '<meta property="og:image:width" content="1200" />',
+  '<meta property="og:image:height" content="630" />',
+  '<meta name="twitter:card" content="summary_large_image" />',
+  '<meta name="twitter:image" content="https://inhaus.technology/assets/social/inhaus-technologies-social-card.png" />',
+  '"@type": "Organization"',
+  '"@type": "WebSite"',
+  '"@type": "WebPage"',
+  '"@type": "ItemList"'
+];
+for (const marker of requiredSeo) {
+  if (!html.includes(marker)) throw new Error(`Required SEO marker missing: ${marker}`);
+}
+if (html.includes('<!-- BUILD:PROJECT_SCHEMA -->')) throw new Error('Project schema placeholder was not replaced');
+
+const robots = await readFile(path.join(dist, "robots.txt"), "utf8");
+if (!robots.includes('Sitemap: https://inhaus.technology/sitemap.xml')) throw new Error('robots.txt is missing the absolute sitemap URL');
+const sitemap = await readFile(path.join(dist, "sitemap.xml"), "utf8");
+if (!sitemap.includes('<loc>https://inhaus.technology/</loc>')) throw new Error('sitemap.xml is missing the canonical site URL');
+const manifest = JSON.parse(await readFile(path.join(dist, "site.webmanifest"), "utf8"));
+if (manifest.name !== 'InHaus Technologies' || !Array.isArray(manifest.icons) || manifest.icons.length < 2) {
+  throw new Error('site.webmanifest is incomplete');
+}
+const socialPng = await readFile(path.join(dist, "assets", "social", "inhaus-technologies-social-card.png"));
+if (socialPng.toString('ascii', 1, 4) !== 'PNG') throw new Error('Social card is not a PNG');
+const socialWidth = socialPng.readUInt32BE(16);
+const socialHeight = socialPng.readUInt32BE(20);
+if (socialWidth !== 1200 || socialHeight !== 630) throw new Error(`Incorrect social card dimensions: ${socialWidth}x${socialHeight}`);
+
 if (html.indexOf('id="projects"') > html.indexOf('id="games"')) throw new Error("Games appears before Projects");
+
+if (!html.includes("Current projects.")) throw new Error("Current projects heading is missing");
+if (html.includes("Systems and products.")) throw new Error("Obsolete products wording remains");
 
 const systems = catalogue.projects.filter((project) => project.type === "System");
 const games = catalogue.projects.filter((project) => project.type === "Gaming");
@@ -65,10 +110,27 @@ const requiredCss = [
   /\.project-grid\s*\{[^}]*grid-template-columns:\s*repeat\(4/s,
   /calc\(100% - 64px\)/,
   /grid-template-rows:\s*46px minmax\(58px, auto\) minmax\(118px, 1fr\) 72px 52px/,
-  /height:\s*min\(940px, calc\(100dvh - 24px\)\)/
+  /height:\s*min\(940px, calc\(100dvh - 24px\)\)/,
+  /\.scroll-progress\s*\{/,
+  /\.network-canvas\s*[,\{]/,
+  /@keyframes revealIn/,
+  /@media \(max-width: 900px\), \(max-height: 820px\)[\s\S]*?\.project-detail\s*\{[\s\S]*?overflow-y:\s*auto/,
+  /@media \(prefers-reduced-motion: reduce\)/
 ];
 for (const rule of requiredCss) {
   if (!rule.test(builtCss)) throw new Error(`Required layout rule missing: ${rule}`);
+}
+
+const requiredInteractionMarkers = [
+  'id="networkCanvas"',
+  'id="scrollProgress"',
+  'class="hero-highlight"'
+];
+for (const marker of requiredInteractionMarkers) {
+  if (!html.includes(marker)) throw new Error(`Required production interaction marker missing: ${marker}`);
+}
+for (const marker of ["setupHeroNetwork", "setupRevealElements", "setupPointerGlow", "setupScrollEffects"]) {
+  if (!builtJs.includes(marker)) throw new Error(`Required production interaction code missing: ${marker}`);
 }
 
 const sha = (text) => createHash("sha256").update(text).digest("hex").slice(0, 12);
@@ -77,3 +139,5 @@ console.log(`CSS ${cssMatch[1]} (${sha(builtCss)})`);
 console.log(`JS  ${jsMatch[1]} (${sha(builtJs)})`);
 console.log(`${systems.length} projects, ${games.length} games`);
 console.log("Project order is locked; Projects precede Games; projects.json is the single catalogue source.");
+console.log("SEO verified: canonical, robots, sitemap, manifest, structured data, Open Graph and X/Twitter 1200x630 card.");
+console.log("Production interactions verified: canvas network, reveals, pointer highlights, scroll progress and responsive modal scrolling.");

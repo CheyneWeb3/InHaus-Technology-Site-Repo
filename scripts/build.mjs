@@ -13,7 +13,15 @@ const required = [
   "public/projects.schema.json",
   "public/assets/inhaus-technologies.svg",
   "public/assets/inhaus-mark.svg",
-  "public/assets/projects/README.txt"
+  "public/assets/projects/README.txt",
+  "public/assets/social/inhaus-technologies-social-card.png",
+  "public/site.webmanifest",
+  "public/sitemap.xml",
+  "public/robots.txt",
+  "public/favicon.ico",
+  "public/apple-touch-icon.png",
+  "public/icon-192.png",
+  "public/icon-512.png"
 ];
 
 for (const file of required) await access(path.join(root, file));
@@ -67,7 +75,7 @@ const publicText = `${sourceHtml}\n${catalogueText}`;
 for (const forbidden of ["Hayworth", "parent company", "About Cheyne", "Lego", "LEGO", "Discuss a system"]) {
   if (publicText.includes(forbidden)) throw new Error(`Forbidden public wording found: ${forbidden}`);
 }
-for (const requiredText of ["Let&apos;s Discuss", "id=\"projects\"", "id=\"games\"", "Engineering across the product", "InHaus Auditing Suite"]) {
+for (const requiredText of ["Let&apos;s Discuss", "id=\"projects\"", "id=\"games\"", "Engineering across the product", "InHaus Auditing Suite", "Current projects.", "summary_large_image", "https://inhaus.technology/"]) {
   if (!publicText.includes(requiredText)) throw new Error(`Required site content missing: ${requiredText}`);
 }
 
@@ -86,7 +94,23 @@ await cp(path.join(root, "public"), dist, { recursive: true });
 await writeFile(path.join(assetsDir, cssName), sourceCss);
 await writeFile(path.join(assetsDir, jsName), sourceJs);
 
-const safeCatalogue = catalogueText.replaceAll("<", "\\u003c");
+const sortedCatalogue = [...catalogue.projects].sort((a, b) => a.order - b.order);
+const projectSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "@id": "https://inhaus.technology/#current-projects",
+  name: "Current InHaus Technologies projects",
+  numberOfItems: sortedCatalogue.length,
+  itemListElement: sortedCatalogue.map((project, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: project.name,
+    description: project.summary || project.description || "",
+    url: `https://inhaus.technology/#${project.type === "Gaming" ? "games" : "projects"}`
+  }))
+};
+const projectSchemaTag = `  <script type="application/ld+json">\n${JSON.stringify(projectSchema, null, 2).replaceAll("<", "\\u003c")}\n  </script>`;
+
 let builtHtml = sourceHtml;
 builtHtml = builtHtml.replace(
   '<link rel="stylesheet" href="./src/styles.css" />',
@@ -97,8 +121,12 @@ builtHtml = builtHtml.replace(
   `  <script type="module" src="./assets/${jsName}"></script>`
 );
 builtHtml = builtHtml.replace(
+  "  <!-- BUILD:PROJECT_SCHEMA -->",
+  projectSchemaTag
+);
+builtHtml = builtHtml.replace(
   "</head>",
-  `  <meta name="inhaus-build" content="1.6.4-${digest(sourceCss + sourceJs)}" />\n</head>`
+  `  <meta name="inhaus-build" content="1.7.0-${digest(sourceCss + sourceJs)}" />\n</head>`
 );
 
 if (builtHtml.includes("./src/styles.css") || builtHtml.includes("./src/main.js")) {
@@ -127,11 +155,23 @@ await writeFile(path.join(dist, "_headers"), `
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
   X-Content-Type-Options: nosniff
+
+/sitemap.xml
+  Cache-Control: public, max-age=3600
+  Content-Type: application/xml; charset=UTF-8
+
+/robots.txt
+  Cache-Control: public, max-age=3600
+  Content-Type: text/plain; charset=UTF-8
+
+/site.webmanifest
+  Cache-Control: public, max-age=3600
+  Content-Type: application/manifest+json; charset=UTF-8
 `.trimStart());
 
 const build = {
   name: "InHaus Technologies Business Site",
-  version: "1.6.4",
+  version: "1.7.0",
   builtAt: new Date().toISOString(),
   entries: catalogue.projects.length,
   projects: catalogue.projects.filter((project) => project.type === "System").length,
@@ -150,3 +190,4 @@ console.log(`CSS: ${build.css}`);
 console.log(`JS:  ${build.javascript}`);
 console.log("Netlify cache mixing is prevented by content-hashed production assets.");
 console.log("projects.json is the single runtime catalogue source.");
+console.log("SEO: canonical URL, sitemap, robots, structured data, Open Graph and X/Twitter large card included.");

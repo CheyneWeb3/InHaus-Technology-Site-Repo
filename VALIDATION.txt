@@ -1,27 +1,33 @@
-INHAUS TECHNOLOGIES BUSINESS SITE v1.6.3
-NETLIFY DEPLOYMENT CONSISTENCY FIX
+INHAUS TECHNOLOGIES v1.7.0 VALIDATION
 
-PASS: npm run check completed.
-PASS: Source CSS and built CSS are byte-for-byte identical.
-PASS: Source JavaScript and built JavaScript are byte-for-byte identical.
-PASS: Production HTML references content-hashed CSS and JavaScript assets.
-PASS: Production HTML contains no ./src/styles.css or ./src/main.js references.
-PASS: Netlify _headers file disables caching for HTML, projects.json and build.json.
-PASS: Content-hashed CSS and JavaScript use immutable cache headers.
-PASS: 7 main projects and 3 games validated.
-PASS: Projects appear before Games.
-PASS: InHaus Auditing Suite appears once and replaces the two obsolete separate audit entries.
-PASS: Desktop Project grid remains four columns.
-PASS: Normal content shell keeps 32px desktop side padding.
-PASS: Projects and Games use the wider controlled catalogue shell.
-PASS: Project card title, description, chip and action rows remain uniform.
-PASS: Desktop project detail modal uses almost the full viewport height.
-PASS: Real project images are read only from public/projects.json.
-PASS: Project and game image filenames are pre-wired to public/assets/projects/.
-PASS: Missing user-supplied image files are hidden cleanly until added.
-PASS: No Docker or Compose files are included.
-
-ROOT CAUSE CORRECTED:
-The earlier deployment used the same CSS and JavaScript URLs after every release. A browser or CDN could therefore combine new HTML with an older cached stylesheet. The production build now generates new content-hashed asset filenames whenever CSS or JavaScript changes.
-
-PASS: Approved hero option 4 is present: Technology built beyond the interface.
+PASS: npm run build
+PASS: npm run verify
+PASS: Technology built beyond the interface hero retained
+PASS: HTML5 canvas network animation
+PASS: Scroll progress and active navigation
+PASS: Staggered reveal animations
+PASS: Pointer-aware card highlights and image motion
+PASS: Reduced-motion accessibility
+PASS: Small-screen and short-height modal scrolling
+PASS: Current Projects heading replaces products wording
+PASS: 7 project order locked:
+  1 Rose / OnlyRose
+  2 Forbidden Oasis / WATER
+  3 Cooking Solana Trading System
+  4 FoxySwap Trade
+  5 InHaus Universal USDC Cashier
+  6 InHaus Auditing Suite
+  7 InHaus Deploylify
+PASS: Games remain separate after Projects
+PASS: projects.json is the single catalogue source
+PASS: canonical https://inhaus.technology/
+PASS: robots index/follow directive
+PASS: robots.txt with absolute sitemap URL
+PASS: sitemap.xml
+PASS: Web app manifest and browser icons
+PASS: Organization, WebSite, WebPage and ItemList JSON-LD
+PASS: Open Graph large image metadata
+PASS: X/Twitter summary_large_image metadata
+PASS: Social card is a 1200 x 630 PNG
+PASS: Hashed production CSS and JavaScript
+PASS: Netlify cache-control headers
