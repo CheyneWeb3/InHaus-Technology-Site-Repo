@@ -268,6 +268,27 @@ function projectImage(project) {
   return typeof project.image === "string" ? project.image.trim() : "";
 }
 
+function projectImageFallback(project) {
+  return typeof project.imageFallback === "string" ? project.imageFallback.trim() : "";
+}
+
+function imageFallbackAttribute(project) {
+  const fallback = projectImageFallback(project);
+  return fallback ? ` data-fallback-src="${escapeHtml(mediaUrl(fallback))}"` : "";
+}
+
+function bindImageFallback(image, onFinalFailure) {
+  image.addEventListener("error", () => {
+    const fallback = image.dataset.fallbackSrc;
+    if (fallback && image.src !== new URL(fallback, location.href).href) {
+      image.removeAttribute("data-fallback-src");
+      image.src = fallback;
+      return;
+    }
+    onFinalFailure?.(image);
+  });
+}
+
 function normalizedGallery(project) {
   return (Array.isArray(project.gallery) ? project.gallery : [])
     .map((entry) => {
@@ -320,7 +341,7 @@ function imageMarkup(project, className) {
   if (!source) return "";
   return `
     <div class="${className}" style="--media-fit:${escapeHtml(mediaFit(project))};--media-position:${escapeHtml(mediaPosition(project))}">
-      <img src="${escapeHtml(mediaUrl(source))}" alt="${escapeHtml(project.imageAlt || `${project.name} project image`)}" loading="lazy" />
+      <img src="${escapeHtml(mediaUrl(source))}"${imageFallbackAttribute(project)} alt="${escapeHtml(project.imageAlt || `${project.name} project image`)}" loading="eager" decoding="async" />
     </div>`;
 }
 
@@ -361,11 +382,11 @@ function bindCards(root) {
   });
 
   qsa(".project-media img, .game-media img", root).forEach((image) => {
-    image.addEventListener("error", () => {
-      const card = image.closest(".project-card, .game-card");
-      image.parentElement?.remove();
+    bindImageFallback(image, (failedImage) => {
+      const card = failedImage.closest(".project-card, .game-card");
+      failedImage.parentElement?.remove();
       card?.classList.add("no-image");
-    }, { once: true });
+    });
   });
 }
 
@@ -408,7 +429,7 @@ function detailImage(project) {
   if (!source) return "";
   return `
     <div class="detail-media" style="--detail-fit:${escapeHtml(mediaFit(project))};--detail-position:${escapeHtml(mediaPosition(project))}">
-      <img src="${escapeHtml(mediaUrl(source))}" alt="${escapeHtml(project.imageAlt || `${project.name} project image`)}" />
+      <img src="${escapeHtml(mediaUrl(source))}"${imageFallbackAttribute(project)} alt="${escapeHtml(project.imageAlt || `${project.name} project image`)}" decoding="async" />
     </div>`;
 }
 
@@ -483,7 +504,7 @@ function openProject(id, updateHash = true) {
     </div>`;
 
   qsa(".detail-media img, .detail-gallery img", detail).forEach((image) => {
-    image.addEventListener("error", () => image.closest(".detail-media, figure")?.remove(), { once: true });
+    bindImageFallback(image, (failedImage) => failedImage.closest(".detail-media, figure")?.remove());
   });
 
   const dialog = qs("#projectDialog");

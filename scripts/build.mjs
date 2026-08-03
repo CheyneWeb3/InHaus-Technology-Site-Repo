@@ -47,14 +47,19 @@ for (const project of catalogue.projects) {
 
   if (!["System", "Gaming"].includes(project.type)) throw new Error(`Invalid project type: ${project.id}`);
 
+  if (!project.image || !String(project.image).toLowerCase().endsWith(".webp")) {
+    throw new Error(`Every project card must use a WebP primary image: ${project.id}`);
+  }
+
   const media = [
     project.image,
+    project.imageFallback,
     ...(project.gallery || []).map((item) => typeof item === "string" ? item : item?.src)
   ].filter(Boolean);
 
   for (const source of media) {
     if (/^(https?:|data:)/i.test(source)) continue;
-    const clean = String(source).replace(/^\.\//, "").replace(/^\//, "");
+    const clean = String(source).split(/[?#]/, 1)[0].replace(/^\.\//, "").replace(/^\//, "");
     const localPath = path.join(root, "public", clean);
     const details = await stat(localPath).catch(() => null);
     if (!details?.isFile()) throw new Error(`Missing project image for ${project.id}: ${source}`);
@@ -88,6 +93,45 @@ await mkdir(assetsDir, { recursive: true });
 
 // Copy public files to the deployment root. Real user-supplied project images remain untouched.
 await cp(path.join(root, "public"), dist, { recursive: true });
+
+// Build a deployment catalogue with content-hashed media URLs. The source catalogue stays
+// human-editable, while every deployment receives fresh image filenames that cannot be mixed
+// with stale CDN or browser cache entries from an earlier upload.
+const deploymentCatalogue = structuredClone(catalogue);
+const fingerprintedMedia = new Map();
+
+async function fingerprintMedia(source) {
+  if (!source || /^(https?:|data:|blob:)/i.test(source)) return source;
+  if (fingerprintedMedia.has(source)) return fingerprintedMedia.get(source);
+
+  const clean = String(source).split(/[?#]/, 1)[0].replace(/^\.\//, "").replace(/^\//, "");
+  const inputPath = path.join(root, "public", clean);
+  const bytes = await readFile(inputPath);
+  const extension = path.extname(clean);
+  const stem = clean.slice(0, -extension.length);
+  const fingerprinted = `${stem}.${digest(bytes)}${extension}`;
+  const outputPath = path.join(dist, fingerprinted);
+
+  await mkdir(path.dirname(outputPath), { recursive: true });
+  await writeFile(outputPath, bytes);
+  fingerprintedMedia.set(source, fingerprinted);
+  return fingerprinted;
+}
+
+for (const project of deploymentCatalogue.projects) {
+  project.image = await fingerprintMedia(project.image);
+  if (project.imageFallback) project.imageFallback = await fingerprintMedia(project.imageFallback);
+  if (Array.isArray(project.gallery)) {
+    project.gallery = await Promise.all(project.gallery.map(async (entry) => {
+      if (typeof entry === "string") return fingerprintMedia(entry);
+      if (!entry || typeof entry !== "object") return entry;
+      return { ...entry, src: await fingerprintMedia(entry.src || entry.image || "") };
+    }));
+  }
+}
+
+await writeFile(path.join(dist, "projects.json"), `${JSON.stringify(deploymentCatalogue, null, 2)}
+`);
 
 // Replace stable CSS/JS URLs with content-hashed assets. This prevents Netlify or browser
 // caches from mixing a new HTML file with an older stylesheet or script after redeployment.
@@ -126,7 +170,7 @@ builtHtml = builtHtml.replace(
 );
 builtHtml = builtHtml.replace(
   "</head>",
-  `  <meta name="inhaus-build" content="1.7.7-${digest(sourceCss + sourceJs)}" />\n</head>`
+  `  <meta name="inhaus-build" content="1.7.8-${digest(sourceCss + sourceJs)}" />\n</head>`
 );
 
 if (builtHtml.includes("./src/styles.css") || builtHtml.includes("./src/main.js")) {
@@ -152,10 +196,6 @@ await writeFile(path.join(dist, "_headers"), `
 /build.json
   Cache-Control: no-cache, no-store, must-revalidate
 
-/assets/projects/*
-  Cache-Control: public, max-age=0, must-revalidate
-  X-Content-Type-Options: nosniff
-
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
   X-Content-Type-Options: nosniff
@@ -175,7 +215,7 @@ await writeFile(path.join(dist, "_headers"), `
 
 const build = {
   name: "InHaus Technologies Business Site",
-  version: "1.7.7",
+  version: "1.7.8",
   builtAt: new Date().toISOString(),
   entries: catalogue.projects.length,
   projects: catalogue.projects.filter((project) => project.type === "System").length,
@@ -184,7 +224,7 @@ const build = {
   javascript: `assets/${jsName}`,
   runtime: "Static HTML, CSS and JavaScript",
   deployment: "Drag the dist folder contents or prepared deploy ZIP into Netlify Drop",
-  cacheStrategy: "No-cache HTML and JSON; immutable content-hashed CSS and JavaScript"
+  cacheStrategy: "No-cache HTML and JSON; immutable content-hashed CSS, JavaScript and project media"
 };
 
 await writeFile(path.join(dist, "build.json"), `${JSON.stringify(build, null, 2)}\n`);
@@ -192,6 +232,6 @@ console.log(`Build complete: ${path.relative(root, dist)}/`);
 console.log(`Validated ${build.entries} entries (${build.projects} projects, ${build.games} games).`);
 console.log(`CSS: ${build.css}`);
 console.log(`JS:  ${build.javascript}`);
-console.log("Netlify cache mixing is prevented by content-hashed production assets.");
+console.log("Netlify cache mixing is prevented by content-hashed CSS, JavaScript and project media.");
 console.log("projects.json is the single runtime catalogue source.");
 console.log("SEO: canonical URL, sitemap, robots, structured data, Open Graph and X/Twitter large card included.");

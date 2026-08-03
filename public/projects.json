@@ -1,8 +1,8 @@
 {
-  "version": "1.7.7",
+  "version": "1.7.8",
   "imageHelp": {
-    "localExample": "assets/projects/project-name.png",
-    "externalExample": "https://example.com/project-screen.png",
+    "localExample": "assets/projects/project-name.webp",
+    "externalExample": "https://example.com/project-screen.webp",
     "localFolder": "Place local images in public/assets/projects/. Use the image and gallery fields below. The build copies them to dist/assets/projects/.",
     "supportedFields": [
       "image",
@@ -75,7 +75,8 @@
           "url": "https://docs-onlyrose.hausserver.xyz",
           "kind": "secondary"
         }
-      ]
+      ],
+      "imageFallback": "assets/projects/rose.png"
     },
     {
       "id": "forbidden-oasis-water",
@@ -88,7 +89,7 @@
       "description": "Forbidden Oasis combines the WATER token, vault-based staking, flexible and locked positions, WATER and BNB reward handling, compounding, administrative boundaries, public documentation and supporting calculation tools.",
       "problem": "Staking products require consistent accounting across principal, rewards, lock state, expiry, penalties, compounding and dividends while keeping maintenance roles separate from asset-control permissions.",
       "solution": "A modular vault and controller architecture with explicit locked and flexible state, defined expiry behaviour, emergency-exit rules, maintenance-only operators and user-facing tools for inspecting outcomes.",
-      "image": "assets/projects/water.png",
+      "image": "assets/projects/water.webp",
       "imageAlt": "Forbidden Oasis / WATER project screen",
       "imageFit": "cover",
       "imagePosition": "center",
@@ -142,7 +143,8 @@
           "url": "https://docs.forbidden-oasis.xyz",
           "kind": "primary"
         }
-      ]
+      ],
+      "imageFallback": "assets/projects/water.png"
     },
     {
       "id": "cooking-solana",
@@ -155,7 +157,7 @@
       "description": "Cooking Solana brings quoting, execution, automation, persistent transaction observation and user-facing trading workflows into a controlled system with staged validation and recovery-aware releases.",
       "problem": "Trading systems can appear correct in the interface while failing through quote handling, wallet sessions, transaction assembly, execution observation, API boundaries or incomplete production controls.",
       "solution": "A layered trading system with authenticated access, controlled execution, transaction hardening, persistent observers, strategy modules, diagnostics and repeatable deployment phases.",
-      "image": "assets/projects/deviscooking.png",
+      "image": "assets/projects/deviscooking.webp",
       "imageAlt": "Cooking Solana Trading System project screen",
       "imageFit": "cover",
       "imagePosition": "center",
@@ -209,7 +211,8 @@
           "url": "https://docs.hausserver.xyz",
           "kind": "primary"
         }
-      ]
+      ],
+      "imageFallback": "assets/projects/deviscooking.png"
     },
     {
       "id": "foxyswap-trade",
@@ -222,7 +225,7 @@
       "description": "FoxySwap Trade combines wallet connection, token discovery, quoting, route presentation, fee handling, execution and embeddable widget delivery in one configurable platform across EVM and Solana product flows.",
       "problem": "Projects often assemble wallet libraries, token catalogues, aggregators, fee logic, embeds and operational tooling as separate pieces without one coherent product or support model.",
       "solution": "A managed application, API and widget layer that separates same-chain routing from cross-chain execution while giving projects control over branding, token lists, fees and hosted interfaces.",
-      "image": "assets/projects/foxytrade.png",
+      "image": "assets/projects/foxytrade.webp",
       "imageAlt": "FoxySwap Trade project screen",
       "imageFit": "cover",
       "imagePosition": "center",
@@ -270,7 +273,8 @@
           "url": "https://swap-saas.inhaus.technology",
           "kind": "primary"
         }
-      ]
+      ],
+      "imageFallback": "assets/projects/foxytrade.png"
     },
     {
       "id": "universal-usdc-cashier",
@@ -283,7 +287,7 @@
       "description": "The Universal Cashier provides the financial operating layer repeatedly required by games, subscription products, creator platforms and transaction systems. It separates chain watchers, ledgers, execution, reconciliation and the user-facing Banker into controlled services.",
       "problem": "Products that hold user credit need reliable deposit detection, internal balances, reserved funds, treasury movement, withdrawals and audit evidence. Rebuilding that financial plumbing inside every product creates inconsistent controls and difficult investigations.",
       "solution": "A reusable cashier architecture with per-user deposit accounts, EVM and Solana watchers, available and reserved balances, policy-checked execution, reconciliation workers and a consistent Banker interface.",
-      "image": "assets/projects/universalusdc.png",
+      "image": "assets/projects/universalusdc.webp",
       "imageAlt": "InHaus Universal USDC Cashier project screen",
       "imageFit": "cover",
       "imagePosition": "center",
@@ -329,7 +333,8 @@
           "url": "https://banker.inhaus.technology",
           "kind": "primary"
         }
-      ]
+      ],
+      "imageFallback": "assets/projects/universalusdc.png"
     },
     {
       "id": "inhaus-auditing-suite",
@@ -342,7 +347,7 @@
       "description": "The InHaus Auditing Suite brings historical blockchain replay, smart-contract and business-system auditing, wallet and token forensics, future-state simulation, reconciliation and operational evidence into one controlled investigation environment.",
       "problem": "Complex failures rarely exist in one contract or one screen. Evidence can be distributed across blocks, wallets, tokens, application services, workers, permissions, ledgers, deployment state and operator actions.",
       "solution": "One investigation suite that reconstructs historical state, replays events deterministically, slows or accelerates time, compares expected and actual outcomes, tests alternative futures and produces evidence-backed remediation paths.",
-      "image": "assets/projects/replay.png",
+      "image": "assets/projects/replay.webp",
       "imageAlt": "InHaus Auditing Suite project screen",
       "imageFit": "cover",
       "imagePosition": "center",
@@ -409,7 +414,8 @@
           "description": "Replay billing, settlement, rewards, expiry, renewals and administrative actions."
         }
       ],
-      "links": []
+      "links": [],
+      "imageFallback": "assets/projects/replay.png"
     },
     {
       "id": "inhaus-deploylify",
@@ -422,7 +428,7 @@
       "description": "Deploylify manages projects, deployment packages, previews, tunnels, documentation and remote node enrolment from a controlled interface. It is an InHaus Technologies product, not the business identity.",
       "problem": "Managing many applications across local machines, servers, containers, routes, backups and documentation becomes inconsistent when every project uses one-off deployment steps.",
       "solution": "A private deployment control plane with repeatable project releases, standalone node enrolment, health checks, previews, documentation management, versioning and recovery-aware operations.",
-      "image": "assets/projects/deploylify.png",
+      "image": "assets/projects/deploylify.webp",
       "imageAlt": "InHaus Deploylify project screen",
       "imageFit": "cover",
       "imagePosition": "center",
@@ -466,7 +472,8 @@
           "url": "https://docs-deploylify.inhaus.technology",
           "kind": "primary"
         }
-      ]
+      ],
+      "imageFallback": "assets/projects/deploylify.png"
     },
     {
       "id": "memopoly",
@@ -479,7 +486,7 @@
       "description": "Memopoly implements a complete 40-space property-board economy with lobbies, reconnects, trades, auctions, cards, buildings, bankruptcy, history, administration and independent EVM and Solana funded-play systems.",
       "problem": "A real multiplayer board game requires authoritative rules, concurrent state, reconnect behaviour, financial reservations, settlement, account security and operational controls beyond the board interface.",
       "solution": "A tested server-authoritative game engine with persistent rooms and accounts, responsive board interfaces, protected Banker flows and separate EVM and Solana product deployments.",
-      "image": "assets/projects/memopoly.png",
+      "image": "assets/projects/memopoly.webp",
       "imageAlt": "Memopoly project screen",
       "imageFit": "cover",
       "imagePosition": "center",
@@ -530,7 +537,8 @@
           "url": "https://sol.memopoly.hausserver.xyz",
           "kind": "secondary"
         }
-      ]
+      ],
+      "imageFallback": "assets/projects/memopoly.png"
     },
     {
       "id": "deal-or-no-deal",
@@ -543,7 +551,7 @@
       "description": "The Deal or No Deal system turns the game-show format into a responsive application with case state, offer logic, account sessions, wallet and Telegram identity, cashier access, administration and a dedicated live-game stage.",
       "problem": "A convincing game-show product needs coordinated animation, sound, game state, offer calculations, identity, balances and responsive layouts across desktop and mobile.",
       "solution": "A purpose-built game interface and service layer with a clear game stage, Banker workflow, reusable account systems, leaderboard state and community entry paths.",
-      "image": "assets/projects/dnd.png",
+      "image": "assets/projects/dnd.webp",
       "imageAlt": "Deal or No Deal project screen",
       "imageFit": "cover",
       "imagePosition": "center",
@@ -582,7 +590,8 @@
         "Sound",
         "Administration"
       ],
-      "links": []
+      "links": [],
+      "imageFallback": "assets/projects/dnd.png"
     },
     {
       "id": "dual-chain-roulette",
@@ -595,7 +604,7 @@
       "description": "The roulette system combines a live wheel and betting table with server-controlled rounds, player balances, chain-aware payment paths, result settlement, history and administrative operations.",
       "problem": "Roulette requires synchronized timers, locked betting windows, authoritative outcomes, exact settlement, reconnect behaviour and a presentation that remains readable during live rounds.",
       "solution": "A real-time game system separating visual wheel animation from authoritative round state, bet validation, settlement and operational controls across supported chain environments.",
-      "image": "assets/projects/spin.png",
+      "image": "assets/projects/spin.webp",
       "imageAlt": "Dual-Chain Roulette / Spin & Win project screen",
       "imageFit": "cover",
       "imagePosition": "center",
@@ -633,7 +642,8 @@
         "Responsive UI",
         "Operations"
       ],
-      "links": []
+      "links": [],
+      "imageFallback": "assets/projects/spin.png"
     }
   ]
 }

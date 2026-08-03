@@ -1,4 +1,4 @@
-INHAUS TECHNOLOGIES v1.7.4 VALIDATION
+INHAUS TECHNOLOGIES v1.7.8 VALIDATION
 
 PASS: npm run build
 PASS: npm run verify
@@ -34,3 +34,10 @@ PASS: X/Twitter summary_large_image metadata
 PASS: Social card is a 1200 x 630 PNG
 PASS: Hashed production CSS and JavaScript
 PASS: Netlify cache-control headers
+
+
+WEBP PROJECT MEDIA
+- 10/10 project and game cards use valid WebP primary images.
+- Production projects.json references content-hashed WebP filenames.
+- Each card includes a matching local PNG fallback.
+- HTTP verification: every content-hashed WebP returned 200 image/webp.
