@@ -77,6 +77,17 @@ if (socialWidth !== 1200 || socialHeight !== 630) throw new Error(`Incorrect soc
 
 if (html.indexOf('id="projects"') > html.indexOf('id="games"')) throw new Error("Games appears before Projects");
 
+const primaryNavMatch = html.match(/<nav class="site-nav"[\s\S]*?<\/nav>/);
+if (!primaryNavMatch) throw new Error("Primary navigation is missing");
+const primaryNav = primaryNavMatch[0];
+for (const removedNavItem of ['href="#games"', 'href="#process"']) {
+  if (primaryNav.includes(removedNavItem)) throw new Error(`Removed primary-navigation item returned: ${removedNavItem}`);
+}
+if (!primaryNav.includes('href="#faq"')) throw new Error("FAQ is missing from primary navigation");
+if (!/scroll-padding-top:\s*var\(--anchor-offset\)/.test(builtCss) || !/scroll-margin-top:\s*var\(--anchor-offset\)/.test(builtCss)) {
+  throw new Error("Sticky-header anchor offset is missing; FAQ links may land under the navigation");
+}
+
 if (!html.includes("Current projects.")) throw new Error("Current projects heading is missing");
 if (!html.includes('id="faq"') || !html.includes("Paid engineering, not speculative participation.")) throw new Error("FAQ section or commercial engagement statement is missing");
 if (!html.includes("USDC") || !html.includes("Scope of Works")) throw new Error("Required FAQ commercial terms are missing");

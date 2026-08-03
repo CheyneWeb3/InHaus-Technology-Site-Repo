@@ -1,4 +1,4 @@
-# InHaus Technologies Business Site v1.7.3
+# InHaus Technologies Business Site v1.7.4
 
 Static, JSON-driven InHaus Technologies company site with full editable source and a built Netlify-ready `dist/`.
 
