@@ -15,6 +15,7 @@ const required = [
   "public/assets/inhaus-mark.svg",
   "public/assets/projects/README.txt",
   "public/assets/social/inhaus-technology-social-card.png",
+  "public/assets/reports/executive-engineering-capability-profile.pdf",
   "public/site.webmanifest",
   "public/sitemap.xml",
   "public/robots.txt",
@@ -170,7 +171,7 @@ builtHtml = builtHtml.replace(
 );
 builtHtml = builtHtml.replace(
   "</head>",
-  `  <meta name="inhaus-build" content="1.7.17-${digest(sourceCss + sourceJs)}" />\n</head>`
+  `  <meta name="inhaus-build" content="1.7.18-${digest(sourceCss + sourceJs)}" />\n</head>`
 );
 
 if (builtHtml.includes("./src/styles.css") || builtHtml.includes("./src/main.js")) {
@@ -200,6 +201,12 @@ await writeFile(path.join(dist, "_headers"), `
   Cache-Control: public, max-age=31536000, immutable
   X-Content-Type-Options: nosniff
 
+/assets/reports/*
+  Cache-Control: public, max-age=3600
+  Content-Type: application/pdf
+  Content-Disposition: inline
+  X-Content-Type-Options: nosniff
+
 /sitemap.xml
   Cache-Control: public, max-age=3600
   Content-Type: application/xml; charset=UTF-8
@@ -215,7 +222,7 @@ await writeFile(path.join(dist, "_headers"), `
 
 const build = {
   name: "InHaus Technology Business Site",
-  version: "1.7.17",
+  version: "1.7.18",
   builtAt: new Date().toISOString(),
   entries: catalogue.projects.length,
   projects: catalogue.projects.filter((project) => project.type === "System").length,

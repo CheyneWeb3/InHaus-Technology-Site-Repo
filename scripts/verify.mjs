@@ -7,6 +7,10 @@ const dist = path.join(root, "dist");
 const html = await readFile(path.join(dist, "index.html"), "utf8");
 const sourceCss = await readFile(path.join(root, "src/styles.css"), "utf8");
 const sourceJs = await readFile(path.join(root, "src/main.js"), "utf8");
+const serveSource = await readFile(path.join(root, "scripts/serve.mjs"), "utf8");
+if (!serveSource.includes('".pdf": "application/pdf"') || !serveSource.includes('"Content-Disposition": "inline"')) {
+  throw new Error("Local preview server is missing inline PDF support");
+}
 const catalogue = JSON.parse(await readFile(path.join(dist, "projects.json"), "utf8"));
 
 function cleanMediaPath(source = "") {
@@ -41,12 +45,24 @@ const builtJsPath = path.join(dist, "assets", jsMatch[1]);
 await access(builtCssPath);
 await access(builtJsPath);
 await access(path.join(dist, "_headers"));
+const deploymentHeaders = await readFile(path.join(dist, "_headers"), "utf8");
+if (!deploymentHeaders.includes("/assets/reports/*") ||
+    !deploymentHeaders.includes("Content-Type: application/pdf") ||
+    !deploymentHeaders.includes("Content-Disposition: inline")) {
+  throw new Error("Inline PDF deployment headers are missing");
+}
 await access(path.join(dist, "robots.txt"));
 await access(path.join(dist, "sitemap.xml"));
 await access(path.join(dist, "site.webmanifest"));
 await access(path.join(dist, "favicon.ico"));
 await access(path.join(dist, "apple-touch-icon.png"));
 await access(path.join(dist, "assets", "social", "inhaus-technology-social-card.png"));
+const capabilityProfilePath = path.join(dist, "assets", "reports", "executive-engineering-capability-profile.pdf");
+await access(capabilityProfilePath);
+const capabilityProfileBytes = await readFile(capabilityProfilePath);
+if (capabilityProfileBytes.subarray(0, 5).toString("ascii") !== "%PDF-") {
+  throw new Error("Executive capability profile is not a valid PDF");
+}
 
 const builtCss = await readFile(builtCssPath, "utf8");
 const builtJs = await readFile(builtJsPath, "utf8");
@@ -121,6 +137,12 @@ if (!/scroll-padding-top:\s*var\(--anchor-offset\)/.test(builtCss) || !/scroll-m
 }
 
 if (!html.includes("Current projects.")) throw new Error("Current projects heading is missing");
+const capabilityReportHref = './assets/reports/executive-engineering-capability-profile.pdf';
+if ((html.match(/Full Capabilities Report/g) || []).length < 2 ||
+    (html.match(/assets\/reports\/executive-engineering-capability-profile\.pdf/g) || []).length < 2 ||
+    !html.includes(`class="button button-secondary about-report-link" href="${capabilityReportHref}" target="_blank"`)) {
+  throw new Error("Full Capabilities Report links are missing from the About section or footer");
+}
 if (!html.includes('id="faq"') || !html.includes("Funded engineering first. Optional participation by agreement.")) {
   throw new Error("FAQ section or updated commercial engagement statement is missing");
 }

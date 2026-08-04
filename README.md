@@ -1,4 +1,12 @@
-# InHaus Technology Business Site v1.7.17
+# InHaus Technology Business Site v1.7.18
+
+## v1.7.18 executive capability profile
+
+- Added the browser-viewable Executive Engineering & Business Systems Profile PDF.
+- Added a **Full Capabilities Report** button to the About section.
+- Added the same report link to the professional footer.
+- Build verification now confirms the PDF and both public links are present.
+
 
 ## v1.7.17 roulette media correction
 

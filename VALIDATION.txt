@@ -1,4 +1,4 @@
-INHAUS TECHNOLOGY v1.7.17 VALIDATION
+INHAUS TECHNOLOGY v1.7.18 VALIDATION
 
 PASS: npm run build
 PASS: npm run verify
@@ -70,3 +70,7 @@ PASS: Game navigation remains within Games
 PASS: First/last modal navigation wraps like a gallery
 PASS: Left and Right Arrow keyboard navigation
 PASS: Subtle directional modal slide transition
+
+CAPABILITY REPORT
+- PDF included at assets/reports/executive-engineering-capability-profile.pdf
+- About button and footer link both open the PDF in a new browser tab

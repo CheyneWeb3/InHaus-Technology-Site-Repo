@@ -255,6 +255,10 @@ p { color: var(--muted); }
   align-items: start;
 }
 .about-layout h2 { margin-bottom: 0; max-width: 760px; }
+.about-report-link {
+  width: fit-content;
+  margin-top: 8px;
+}
 .prose-stack p { font-size: 1.07rem; line-height: 1.82; }
 .prose-stack p:last-child { margin-bottom: 0; }
 
@@ -1365,6 +1369,7 @@ p { color: var(--muted); }
   .prose-stack { gap: 12px; }
   .mobile-preview-copy { margin-bottom: 0; font-size: 0.97rem; line-height: 1.62; }
   #aboutMore p:last-child { margin-bottom: 0; }
+  .about-report-link { width: 100%; }
   .audit-intro p { font-size: 0.97rem; line-height: 1.64; }
   .audit-intro .text-link { margin-top: 2px; font-size: 0.88rem; }
   .network-canvas { opacity: 0.35; }
