@@ -1,0 +1,14 @@
+import { FormEvent,useEffect,useState } from 'react';
+import { Link,useSearchParams } from 'react-router-dom';
+import { api } from '../lib/api';
+import type { Project } from '../lib/types';
+import { Badge,Card,Empty,PageTitle } from '../components/Ui';
+const types=['project','endpoint','repository','network','contract','infrastructure','secret_reference','document','procedure','asset','component','component_version','decision'];
+export function Search(){
+  const [params,setParams]=useSearchParams();const [q,setQ]=useState(params.get('q')||'');const [projectId,setProjectId]=useState(params.get('projectId')||'');const [projects,setProjects]=useState<Project[]>([]);const [selected,setSelected]=useState<string[]>([]);const [results,setResults]=useState<any[]>([]);const [busy,setBusy]=useState(false);
+  useEffect(()=>{api<Project[]>('/projects').then(setProjects)},[]);
+  const run=async(query=q,scope=projectId)=>{if(!query.trim()){setResults([]);return}setBusy(true);try{const s=new URLSearchParams({q:query});if(selected.length)s.set('types',selected.join(','));if(scope)s.set('projectId',scope);const data=await api<any>(`/search?${s}`);setResults(data.results||[]);}finally{setBusy(false)}};
+  useEffect(()=>{const initial=params.get('q');const scope=params.get('projectId')||'';if(initial){setQ(initial);setProjectId(scope);void run(initial,scope)}},[]);
+  const submit=(e:FormEvent)=>{e.preventDefault();const next:any={};if(q)next.q=q;if(projectId)next.projectId=projectId;setParams(next);void run()};
+  return <><PageTitle title="Search everything" subtitle="Search globally or narrow to one project. Aliases, exact addresses, URLs, repos, servers, docs and component specs share one index."/><Card><form className="search-page-form" onSubmit={submit}><input autoFocus value={q} onChange={e=>setQ(e.target.value)} placeholder="Try 2443, DLSS, faucet, a contract address, server alias…"/><select value={projectId} onChange={e=>setProjectId(e.target.value)}><option value="">All projects</option>{projects.map(p=><option key={p.id} value={p.id}>{p.name}</option>)}</select><button className="button primary">{busy?'Searching…':'Search'}</button></form><div className="filter-row">{types.map(t=><button type="button" key={t} className={selected.includes(t)?'filter active':'filter'} onClick={()=>setSelected(s=>s.includes(t)?s.filter(x=>x!==t):[...s,t])}>{t.replace('_',' ')}</button>)}</div></Card><div className="search-results">{results.length?results.map((r:any)=><Link key={`${r.entity_type}-${r.entity_id}`} to={r.path||'#'} className="search-result"><div><div className="row-title">{r.title}</div><div className="row-sub">{r.subtitle}{r.project_name?` · ${r.project_name}`:''}</div><p>{r.preview}</p></div><Badge>{r.entity_type.replace('_',' ')}</Badge></Link>):q&&!busy?<Empty>No matching knowledge found.</Empty>:null}</div></>;
+}

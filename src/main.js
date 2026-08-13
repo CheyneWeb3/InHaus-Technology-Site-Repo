@@ -307,12 +307,42 @@ function normalizedGallery(project) {
 }
 
 async function loadCatalogue() {
+  try {
+    const response = await fetch(
+      "https://pm-api.inhaus.technology/api/public/inhaus-projects.json",
+      { cache: "no-store" }
+    );
+
+    if (response.ok) {
+      const managed = await response.json();
+
+      if (
+        managed &&
+        Array.isArray(managed.projects) &&
+        managed.projects.length > 0
+      ) {
+        return managed.projects;
+      }
+    }
+  } catch (error) {
+    console.warn(
+      "Project Manager sync unavailable; using bundled catalogue.",
+      error
+    );
+  }
+
   const response = await fetch("./projects.json", { cache: "no-store" });
-  if (!response.ok) throw new Error(`./projects.json returned ${response.status}`);
+
+  if (!response.ok) {
+    throw new Error(`./projects.json returned ${response.status}`);
+  }
+
   const catalogue = await response.json();
+
   if (!catalogue || !Array.isArray(catalogue.projects)) {
     throw new Error("./projects.json does not contain a projects array");
   }
+
   return catalogue.projects;
 }
 

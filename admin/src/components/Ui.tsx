@@ -1,0 +1,6 @@
+export function Card({children,className=''}:{children:React.ReactNode;className?:string}){return <section className={`card ${className}`}>{children}</section>}
+export function PageTitle({title,subtitle,actions}:{title:string;subtitle?:string;actions?:React.ReactNode}){return <div className="page-title"><div><h1>{title}</h1>{subtitle&&<p>{subtitle}</p>}</div>{actions&&<div className="page-actions">{actions}</div>}</div>}
+export function Empty({children}:{children:React.ReactNode}){return <div className="empty">{children}</div>}
+export function Badge({children,tone='neutral'}:{children:React.ReactNode;tone?:'neutral'|'active'|'warn'|'private'|'public'}){return <span className={`badge ${tone}`}>{children}</span>}
+export function Field({label,children}:{label:string;children:React.ReactNode}){return <label className="field"><span>{label}</span>{children}</label>}
+export function Modal({title,children,onClose}:{title:string;children:React.ReactNode;onClose:()=>void}){return <div className="modal-backdrop" onMouseDown={onClose}><div className="modal" onMouseDown={e=>e.stopPropagation()}><div className="modal-head"><h2>{title}</h2><button className="icon-button" onClick={onClose}>×</button></div>{children}</div></div>}

@@ -10,7 +10,9 @@
     "preview": "node scripts/serve.mjs --root dist --port 49216",
     "start": "node scripts/serve.mjs --root dist --port 49217",
     "check": "npm run build && npm run verify",
-    "verify": "node scripts/verify.mjs"
+    "verify": "node scripts/verify.mjs",
+    "build:admin": "npm ci --prefix admin && npm run build --prefix admin",
+    "build:netlify": "npm run check && npm run build:admin"
   },
   "engines": {
     "node": ">=18.18.0"
