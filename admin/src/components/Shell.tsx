@@ -7,7 +7,7 @@ export function Shell(){
   const {admin,logout}=useAuth(); const navigate=useNavigate(); const location=useLocation(); const [q,setQ]=useState('');
   return <div className="app-shell">
     <aside className="sidebar">
-      <div className="brand"><div className="brand-mark">IH</div><div><strong>InHaus</strong><span>Project Manager</span></div></div>
+      <div className="brand admin-brand"><a href="/" className="admin-brand-link" aria-label="InHaus Technology home"><img src="/assets/inhaus-technologies.svg" alt="InHaus Technology" /></a><span className="admin-brand-subtitle">Project Manager</span></div>
       <nav>{nav.map(([label,to])=><NavLink key={to} to={to} className={({isActive})=>isActive?'nav-item active':'nav-item'}>{label}</NavLink>)}</nav>
       <div className="sidebar-footer"><span className="wallet-label">{(admin?.wallet_address||admin?.walletAddress||'').slice(0,8)}…</span><button className="button ghost" onClick={async()=>{await logout();navigate('/admin');}}>Sign out</button></div>
     </aside>

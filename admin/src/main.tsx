@@ -7,5 +7,6 @@ import { wagmiConfig } from './lib/wagmi';
 import { AuthProvider } from './components/AuthProvider';
 import { App } from './App';
 import './styles.css';
+import './inhaus-public-theme.css';
 const queryClient=new QueryClient();
 ReactDOM.createRoot(document.getElementById('root')!).render(<React.StrictMode><WagmiProvider config={wagmiConfig}><QueryClientProvider client={queryClient}><BrowserRouter><AuthProvider><App/></AuthProvider></BrowserRouter></QueryClientProvider></WagmiProvider></React.StrictMode>);
