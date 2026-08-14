@@ -438,3 +438,25 @@ pre,
   .login-public-name { font-size: 1.3rem; }
   .admin-brand-name { font-size: 0.95rem; }
 }
+
+/* Guarded permanent project deletion */
+.button.danger {
+  border-color: rgba(255, 56, 100, 0.62);
+  background: rgba(255, 56, 100, 0.12);
+  color: #ffd8e1;
+}
+.button.danger:hover:not(:disabled) {
+  border-color: #ff3864;
+  background: rgba(255, 56, 100, 0.2);
+}
+.delete-project-warning {
+  border: 1px solid rgba(255, 56, 100, 0.48);
+  background: rgba(255, 56, 100, 0.08);
+  border-radius: 12px;
+  padding: 14px;
+  color: var(--text);
+}
+.delete-project-warning strong { color: #ffd8e1; }
+.delete-project-warning p { margin: 8px 0 0; color: var(--muted); line-height: 1.55; }
+.delete-confirmation-code { color: #ffd8e1; font-weight: 800; letter-spacing: .035em; }
+.delete-project-actions { display: flex; justify-content: flex-end; gap: 10px; }
