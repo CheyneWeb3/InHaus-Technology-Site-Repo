@@ -387,3 +387,54 @@ pre,
   .login-card { padding: 34px 24px 30px; }
   .admin-brand-link { width: 170px; }
 }
+
+/* Exact InHaus Technology brand lockup */
+.login-public-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: auto;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.login-public-mark {
+  width: 52px;
+  height: 52px;
+  flex: 0 0 52px;
+}
+
+.login-public-name {
+  color: var(--text);
+  font-size: 1.52rem;
+  font-weight: 820;
+  letter-spacing: -0.035em;
+  line-height: 1;
+}
+
+.admin-brand-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: auto;
+  text-decoration: none;
+}
+
+.admin-brand-mark {
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+}
+
+.admin-brand-name {
+  color: var(--text);
+  font-size: 1rem;
+  font-weight: 820;
+  letter-spacing: -0.025em;
+  line-height: 1;
+}
+
+@media (max-width: 620px) {
+  .login-public-name { font-size: 1.3rem; }
+  .admin-brand-name { font-size: 0.95rem; }
+}

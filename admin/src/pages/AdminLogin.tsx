@@ -119,7 +119,8 @@ export function AdminLogin() {
 
       <div className="login-card">
         <a className="login-public-brand" href="/" aria-label="InHaus Technology home">
-          <img src="/assets/inhaus-technologies.svg" alt="InHaus Technology" />
+          <img className="login-public-mark" src="/assets/inhaus-mark.svg" alt="" aria-hidden="true" />
+          <span className="login-public-name">InHaus Technology</span>
         </a>
 
         <div className="login-rule" />
