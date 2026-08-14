@@ -307,43 +307,45 @@ function normalizedGallery(project) {
 }
 
 async function loadCatalogue() {
+  let managedProjects = [];
+
   try {
-    const response = await fetch(
+    const managedResponse = await fetch(
       "https://pm-api.inhaus.technology/api/public/inhaus-projects.json",
       { cache: "no-store" }
     );
 
-    if (response.ok) {
-      const managed = await response.json();
-
-      if (
-        managed &&
-        Array.isArray(managed.projects) &&
-        managed.projects.length > 0
-      ) {
-        return managed.projects;
-      }
+    if (managedResponse.ok) {
+      const managed = await managedResponse.json();
+      if (managed && Array.isArray(managed.projects)) managedProjects = managed.projects;
     }
   } catch (error) {
-    console.warn(
-      "Project Manager sync unavailable; using bundled catalogue.",
-      error
-    );
+    console.warn("Project Manager sync unavailable; using bundled catalogue.", error);
   }
 
-  const response = await fetch("./projects.json", { cache: "no-store" });
-
-  if (!response.ok) {
-    throw new Error(`./projects.json returned ${response.status}`);
+  let bundledProjects = [];
+  try {
+    const response = await fetch("./projects.json", { cache: "no-store" });
+    if (!response.ok) throw new Error(`./projects.json returned ${response.status}`);
+    const catalogue = await response.json();
+    if (!catalogue || !Array.isArray(catalogue.projects)) {
+      throw new Error("./projects.json does not contain a projects array");
+    }
+    bundledProjects = catalogue.projects;
+  } catch (error) {
+    if (managedProjects.length) return sortedByOrder(managedProjects);
+    throw error;
   }
 
-  const catalogue = await response.json();
+  if (!managedProjects.length) return bundledProjects;
 
-  if (!catalogue || !Array.isArray(catalogue.projects)) {
-    throw new Error("./projects.json does not contain a projects array");
-  }
+  const keyFor = (project) => String(project?.id || project?.slug || project?.name || "").trim().toLowerCase();
+  const merged = new Map();
 
-  return catalogue.projects;
+  for (const project of bundledProjects) merged.set(keyFor(project), project);
+  for (const project of managedProjects) merged.set(keyFor(project), project);
+
+  return sortedByOrder(Array.from(merged.values()));
 }
 
 function sortedByOrder(items) {
